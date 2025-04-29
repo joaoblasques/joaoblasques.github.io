@@ -65,7 +65,7 @@ author:
       url: "https://jonasblasques.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/jonasblasques.com"
+      url: "https://github.com/jonasblasques"
 
 footer:
   links:
@@ -74,7 +74,7 @@ footer:
       url: "https://jonasblasques.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/jonasblasques.com"
+      url: "https://github.com/jonasblasques"
 
 defaults:
   # _posts

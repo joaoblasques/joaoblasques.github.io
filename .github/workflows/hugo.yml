@@ -44,19 +44,6 @@ jobs:
           hugo-version: '0.121.2'
           extended: true
       
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
-      
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          fi
-      
       - name: List directories for debugging
         run: |
           ls -la

@@ -76,8 +76,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      # Add explicit environment protection rule
-      production_branch: main
+      # Environment is configured through GitHub settings
     runs-on: ubuntu-latest
     needs: build
     steps:

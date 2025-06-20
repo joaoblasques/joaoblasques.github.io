@@ -1,21 +1,22 @@
-baseURL = "https://jonasblasques.com/"
+baseURL = "https://joaoblasques.github.io/"
 languageCode = "en-us"
-title = "Professional Website"
+title = "João Blasques | AI-Enabled Data Engineer"
 theme = "github-style"
 
 [params]
   author = "João Blasques (Jonas)"
-  description = "Professional Website"
-  github = "your-github-username"
+  description = "Professional website of João Blasques, AI-Enabled Data Engineer"
+  github = "joaoblasques"
   # Optional settings
   twitter = ""
-  linkedin = "www.linkedin.com/in/joaoblasques"
+  linkedin = "https://www.linkedin.com/in/joaoblasques"
   email = "joaoeduardoblasques@gmail.com"
-  avatar = "/images/avatar.png"
+  avatar = "/images/avatar.jpg"
   favicon = "/images/favicon.ico"
 
-[params.gitalk]
-  owner = "" # Your GitHub ID
-  repo = "" # The repo to store comments
-  clientId = "" # Your client ID
-  clientSecret = "" # Your client secret
+# Comment out Gitalk since it's not being used
+# [params.gitalk]
+#   owner = "" # Your GitHub ID
+#   repo = "" # The repo to store comments
+#   clientId = "" # Your client ID
+#   clientSecret = "" # Your client secret

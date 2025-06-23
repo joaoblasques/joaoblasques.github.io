@@ -13,7 +13,7 @@ theme = "github-style"
   email = "joaoeduardoblasques@gmail.com"
   avatar = "/images/avatar.jpg"
   favicon = "/images/favicon.ico"
-  headerIcon = "/images/github-mark-white.png"
+  headerIcon = "images/github-mark-white.png"
 
 # Comment out Gitalk since it's not being used
 # [params.gitalk]

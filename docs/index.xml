@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>João Blasques on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.github.io/</link><description>Recent content in João Blasques on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 20 Jun 2025 16:03:08 +0100</lastBuildDate><atom:link href="https://joaoblasques.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Skills &amp; Expertise</title><link>https://joaoblasques.github.io/skills/</link><pubDate>Fri, 20 Jun 2025 16:03:08 +0100</pubDate><guid>https://joaoblasques.github.io/skills/</guid><description>&lt;h2 id="technical-skills-overview">Technical Skills Overview&lt;/h2>
+&lt;p>I&amp;rsquo;ve developed a diverse set of technical skills throughout my career, focusing on data engineering, machine learning, and cloud technologies. Below is a detailed breakdown of my expertise areas.&lt;/p>
+&lt;h3 id="skill-level-legend">Skill Level Legend&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Expert&lt;/strong>: Deep knowledge with 5+ years of experience, can architect solutions and mentor others&lt;/li>
+&lt;li>&lt;strong>Advanced&lt;/strong>: Strong working knowledge, can implement complex solutions independently&lt;/li>
+&lt;li>&lt;strong>Intermediate&lt;/strong>: Good understanding, can work with guidance on complex tasks&lt;/li>
+&lt;li>&lt;strong>Beginner&lt;/strong>: Basic understanding, actively learning&lt;/li>
+&lt;/ul>
+&lt;h2 id="data-engineering">Data Engineering&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Skill&lt;/th>
+ &lt;th>Proficiency&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>ETL/ELT Pipeline Design&lt;/td>
+ &lt;td>&lt;strong>Expert&lt;/strong>&lt;/td>
+ &lt;td>Design and implementation of robust data pipelines for batch and streaming data&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Data Modeling&lt;/td>
+ &lt;td>&lt;strong>Expert&lt;/strong>&lt;/td>
+ &lt;td>Schema design, dimensional modeling, data warehousing concepts&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Stream Processing&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Real-time data processing and analytics frameworks&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Data Governance&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Data quality, lineage, metadata management, compliance&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Data Orchestration&lt;/td>
+ &lt;td>&lt;strong>Expert&lt;/strong>&lt;/td>
+ &lt;td>Workflow management and job scheduling&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="tools--technologies">Tools &amp;amp; Technologies&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Apache Ecosystem&lt;/strong>: Spark, Kafka, NiFi, Hadoop (HDFS, YARN)&lt;/li>
+&lt;li>&lt;strong>Workflow Orchestration&lt;/strong>: Airflow, Dagster, Prefect&lt;/li>
+&lt;li>&lt;strong>Data Warehousing&lt;/strong>: Snowflake, BigQuery, Redshift&lt;/li>
+&lt;li>&lt;strong>Data Transformation&lt;/strong>: dbt, Dataform&lt;/li>
+&lt;li>&lt;strong>Data Quality&lt;/strong>: Great Expectations, dbt tests, custom frameworks&lt;/li>
+&lt;/ul>
+&lt;h2 id="machine-learning--ai">Machine Learning &amp;amp; AI&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Skill&lt;/th>
+ &lt;th>Proficiency&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>ML Model Development&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Developing and training machine learning models for various use cases&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Feature Engineering&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Creating effective features from raw data for ML models&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Natural Language Processing&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Text processing, sentiment analysis, entity extraction&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MLOps&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>ML model deployment, monitoring, and lifecycle management&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Deep Learning&lt;/td>
+ &lt;td>&lt;strong>Intermediate&lt;/strong>&lt;/td>
+ &lt;td>Neural networks for complex pattern recognition tasks&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="tools--technologies-1">Tools &amp;amp; Technologies&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>ML Frameworks&lt;/strong>: Scikit-learn, TensorFlow, PyTorch&lt;/li>
+&lt;li>&lt;strong>NLP Libraries&lt;/strong>: spaCy, NLTK, Hugging Face Transformers&lt;/li>
+&lt;li>&lt;strong>ML Platforms&lt;/strong>: MLflow, Kubeflow, SageMaker&lt;/li>
+&lt;li>&lt;strong>Feature Stores&lt;/strong>: Feast, Tecton&lt;/li>
+&lt;li>&lt;strong>Model Monitoring&lt;/strong>: Evidently AI, WhyLabs, custom solutions&lt;/li>
+&lt;/ul>
+&lt;h2 id="cloud--infrastructure">Cloud &amp;amp; Infrastructure&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Skill&lt;/th>
+ &lt;th>Proficiency&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>AWS&lt;/td>
+ &lt;td>&lt;strong>Expert&lt;/strong>&lt;/td>
+ &lt;td>Comprehensive knowledge of AWS services and architecture patterns&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>GCP&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Strong experience with Google Cloud data services&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Azure&lt;/td>
+ &lt;td>&lt;strong>Intermediate&lt;/strong>&lt;/td>
+ &lt;td>Working knowledge of key Azure data services&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>IaC&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Infrastructure as code for cloud resource provisioning&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Containerization&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Container technologies for consistent deployments&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="tools--technologies-2">Tools &amp;amp; Technologies&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>AWS&lt;/strong>: S3, Lambda, Glue, EMR, Redshift, Kinesis, Athena, SageMaker&lt;/li>
+&lt;li>&lt;strong>GCP&lt;/strong>: BigQuery, Dataflow, Pub/Sub, Dataproc, Vertex AI&lt;/li>
+&lt;li>&lt;strong>IaC&lt;/strong>: Terraform, CloudFormation, Pulumi&lt;/li>
+&lt;li>&lt;strong>Containerization&lt;/strong>: Docker, Kubernetes, ECS&lt;/li>
+&lt;li>&lt;strong>CI/CD&lt;/strong>: GitHub Actions, Jenkins, GitLab CI&lt;/li>
+&lt;/ul>
+&lt;h2 id="programming-languages">Programming Languages&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Language&lt;/th>
+ &lt;th>Proficiency&lt;/th>
+ &lt;th>Focus Areas&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Python&lt;/td>
+ &lt;td>&lt;strong>Expert&lt;/strong>&lt;/td>
+ &lt;td>Data engineering, ML/AI, automation, web backends&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SQL&lt;/td>
+ &lt;td>&lt;strong>Expert&lt;/strong>&lt;/td>
+ &lt;td>Data querying, analysis, optimization&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Scala&lt;/td>
+ &lt;td>&lt;strong>Intermediate&lt;/strong>&lt;/td>
+ &lt;td>Spark applications, data processing&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Java&lt;/td>
+ &lt;td>&lt;strong>Intermediate&lt;/strong>&lt;/td>
+ &lt;td>Enterprise applications, backend services&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Bash/Shell&lt;/td>
+ &lt;td>&lt;strong>Advanced&lt;/strong>&lt;/td>
+ &lt;td>Automation, system administration&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="tools--technologies-3">Tools &amp;amp; Technologies&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Python Ecosystem&lt;/strong>: Pandas, NumPy, Matplotlib, Flask, FastAPI&lt;/li>
+&lt;li>&lt;strong>SQL Dialects&lt;/strong>: PostgreSQL, MySQL, T-SQL, BigQuery SQL&lt;/li>
+&lt;li>&lt;strong>Development&lt;/strong>: Git, GitHub, VS Code, PyCharm, Jupyter&lt;/li>
+&lt;/ul>
+&lt;h2 id="methodologies--best-practices">Methodologies &amp;amp; Best Practices&lt;/h2>
+&lt;h3 id="software-development">Software Development&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Agile Development&lt;/strong>: Scrum, Kanban, iterative development approaches&lt;/li>
+&lt;li>&lt;strong>CI/CD&lt;/strong>: Continuous integration and deployment practices&lt;/li>
+&lt;li>&lt;strong>Test-Driven Development&lt;/strong>: Writing tests before implementation&lt;/li>
+&lt;li>&lt;strong>Code Review&lt;/strong>: Thorough peer review processes for quality control&lt;/li>
+&lt;li>&lt;strong>Documentation&lt;/strong>: Comprehensive documentation practices for code and systems&lt;/li>
+&lt;/ul>
+&lt;h3 id="data-engineering-1">Data Engineering&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Data Mesh&lt;/strong>: Domain-oriented data ownership and architecture&lt;/li>
+&lt;li>&lt;strong>Data Lake Design&lt;/strong>: Multi-tiered data lake organization (raw, bronze, silver, gold)&lt;/li>
+&lt;li>&lt;strong>Data Observability&lt;/strong>: Monitoring data quality, freshness, and system health&lt;/li>
+&lt;li>&lt;strong>Incremental Processing&lt;/strong>: Efficient handling of data updates and changes&lt;/li>
+&lt;li>&lt;strong>Schema Evolution&lt;/strong>: Managing changing data structures over time&lt;/li>
+&lt;/ul>
+&lt;h3 id="machine-learning">Machine Learning&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>ML Project Lifecycle&lt;/strong>: From problem definition to deployment and monitoring&lt;/li>
+&lt;li>&lt;strong>Experiment Tracking&lt;/strong>: Systematic recording of ML experiments and results&lt;/li>
+&lt;li>&lt;strong>Model Evaluation&lt;/strong>: Rigorous testing and validation of model performance&lt;/li>
+&lt;li>&lt;strong>Responsible AI&lt;/strong>: Ethical considerations, bias detection and mitigation&lt;/li>
+&lt;li>&lt;strong>A/B Testing&lt;/strong>: Systematic approach to testing model improvements&lt;/li>
+&lt;/ul>
+&lt;h2 id="certifications--professional-development">Certifications &amp;amp; Professional Development&lt;/h2>
+&lt;h3 id="current-certifications">Current Certifications&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>AWS Certified Solutions Architect – Associate&lt;/strong> (2023)&lt;/li>
+&lt;li>&lt;strong>Google Professional Data Engineer&lt;/strong> (2024)&lt;/li>
+&lt;li>&lt;strong>TensorFlow Developer Certificate&lt;/strong> (2023)&lt;/li>
+&lt;li>&lt;strong>Microsoft Certified: Azure Data Engineer Associate&lt;/strong> (2024)&lt;/li>
+&lt;/ul>
+&lt;h3 id="continuous-learning">Continuous Learning&lt;/h3>
+&lt;p>I&amp;rsquo;m committed to ongoing professional development. Currently, I&amp;rsquo;m:&lt;/p></description></item><item><title>Projects &amp; Portfolio</title><link>https://joaoblasques.github.io/projects/</link><pubDate>Fri, 20 Jun 2025 16:01:06 +0100</pubDate><guid>https://joaoblasques.github.io/projects/</guid><description>&lt;h2 id="professional-projects">Professional Projects&lt;/h2>
+&lt;p>Here are some key projects I&amp;rsquo;ve led or contributed to significantly in my professional career:&lt;/p>
+&lt;h3 id="real-time-customer-analytics-platform">Real-Time Customer Analytics Platform&lt;/h3>
+&lt;p>&lt;strong>Client&lt;/strong>: Major E-commerce Retailer&lt;br>
+&lt;strong>Timeline&lt;/strong>: 2023 - Present&lt;/p>
+&lt;p>&lt;strong>Technologies Used&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>Apache Kafka &amp;amp; Kafka Streams&lt;/li>
+&lt;li>AWS (Lambda, Kinesis, S3, DynamoDB)&lt;/li>
+&lt;li>Python, Spark Structured Streaming&lt;/li>
+&lt;li>Kubernetes for orchestration&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Project Overview&lt;/strong>:&lt;br>
+Designed and implemented a real-time customer analytics platform processing over 5TB of daily event data. The system captures user interactions, processes them through a sophisticated streaming pipeline, and feeds AI models that generate personalized recommendations in under 200ms.&lt;/p></description></item><item><title>About Me</title><link>https://joaoblasques.github.io/about/</link><pubDate>Fri, 20 Jun 2025 16:00:12 +0100</pubDate><guid>https://joaoblasques.github.io/about/</guid><description>&lt;h2 id="professional-summary">Professional Summary&lt;/h2>
+&lt;p>I am João Blasques, an AI-Enabled Data Engineer with over 7 years of experience in designing, implementing, and optimizing data pipelines and machine learning solutions. I specialize in transforming complex data challenges into actionable insights and automated systems that drive business growth and operational efficiency.&lt;/p>
+&lt;p>My career is built on a strong foundation in data engineering complemented by deep expertise in artificial intelligence and machine learning applications. I excel at bridging the gap between technical implementations and business objectives, ensuring that data solutions deliver measurable value.&lt;/p></description></item><item><title>Welcome to My Professional Website</title><link>https://joaoblasques.github.io/posts/welcome/</link><pubDate>Fri, 20 Jun 2025 15:55:33 +0100</pubDate><guid>https://joaoblasques.github.io/posts/welcome/</guid><description>&lt;h2 id="hello-im-joão-blasques">Hello, I&amp;rsquo;m João Blasques&lt;/h2>
+&lt;p>Welcome to my professional website! I&amp;rsquo;m an AI-Enabled Data Engineer passionate about leveraging artificial intelligence and data solutions to solve complex business problems.&lt;/p>
+&lt;h3 id="my-background">My Background&lt;/h3>
+&lt;p>With expertise in data engineering, machine learning, and AI integration, I help organizations transform their data into actionable insights. I specialize in designing and implementing data pipelines, creating machine learning models, and developing AI-powered applications that drive business value.&lt;/p>
+&lt;h3 id="what-youll-find-here">What You&amp;rsquo;ll Find Here&lt;/h3>
+&lt;p>On this website, you can explore:&lt;/p></description></item></channel></rss>

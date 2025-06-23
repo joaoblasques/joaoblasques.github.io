@@ -2,6 +2,7 @@ baseURL = "https://joaoblasques.github.io/"
 languageCode = "en-us"
 title = "João Blasques | AI-Enabled Data Engineer"
 theme = "github-style"
+publishDir = "docs"
 
 [params]
   author = "João Blasques (Jonas)"

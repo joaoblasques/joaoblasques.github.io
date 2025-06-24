@@ -1,6 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.github.io/tags/introduction/</link><description>Recent content in Introduction on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 20 Jun 2025 15:55:33 +0100</lastBuildDate><atom:link href="https://joaoblasques.github.io/tags/introduction/index.xml" rel="self" type="application/rss+xml"/><item><title>Welcome to My Professional Website</title><link>https://joaoblasques.github.io/posts/welcome/</link><pubDate>Fri, 20 Jun 2025 15:55:33 +0100</pubDate><guid>https://joaoblasques.github.io/posts/welcome/</guid><description>&lt;h2 id="hello-im-joão-blasques">Hello, I&amp;rsquo;m João Blasques&lt;/h2>
-&lt;p>Welcome to my professional website! I&amp;rsquo;m an AI-Enabled Data Engineer passionate about leveraging artificial intelligence and data solutions to solve complex business problems.&lt;/p>
-&lt;h3 id="my-background">My Background&lt;/h3>
-&lt;p>With expertise in data engineering, machine learning, and AI integration, I help organizations transform their data into actionable insights. I specialize in designing and implementing data pipelines, creating machine learning models, and developing AI-powered applications that drive business value.&lt;/p>
-&lt;h3 id="what-youll-find-here">What You&amp;rsquo;ll Find Here&lt;/h3>
-&lt;p>On this website, you can explore:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on João Blasques | AI-Enabled Data Engineer</title>
+    <link>http://localhost:62291/tags/introduction/</link>
+    <description>Recent content in Introduction on João Blasques | AI-Enabled Data Engineer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 Jun 2023 15:55:33 +0100</lastBuildDate>
+    <atom:link href="http://localhost:62291/tags/introduction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome to My Professional Website</title>
+      <link>http://localhost:62291/post/welcome/</link>
+      <pubDate>Tue, 20 Jun 2023 15:55:33 +0100</pubDate>
+      <guid>http://localhost:62291/post/welcome/</guid>
+      <description>&lt;h2 id=&#34;hello-im-joão-blasques&#34;&gt;Hello, I&amp;rsquo;m João Blasques&lt;/h2&gt;&#xA;&lt;p&gt;Welcome to my professional website! I&amp;rsquo;m an AI-Enabled Data Engineer passionate about leveraging artificial intelligence and data solutions to solve complex business problems.&lt;/p&gt;&#xA;&lt;h3 id=&#34;my-background&#34;&gt;My Background&lt;/h3&gt;&#xA;&lt;p&gt;With expertise in data engineering, machine learning, and AI integration, I help organizations transform their data into actionable insights. I specialize in designing and implementing data pipelines, creating machine learning models, and developing AI-powered applications that drive business value.&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-youll-find-here&#34;&gt;What You&amp;rsquo;ll Find Here&lt;/h3&gt;&#xA;&lt;p&gt;On this website, you can explore:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

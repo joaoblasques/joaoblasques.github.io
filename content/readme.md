@@ -1,32 +1,28 @@
 # João Blasques Professional Website
 
-This repository contains the source code for my professional website, built with Hugo.
+## Skills
 
-## Local Development
+- Python
+- SQL
+- Data Engineering
+    - **E**xtraction, Ingestion, Batch & Streaming
+    - **L**oading,DataWarehouses, DataLakes
+    - **T**ransformation
+    - Visualization, Delivery to ML
+- DevOps
+    - Version Control
+    - **C**ontinuous **I**ntegration
+    - **C**ontinuous **D**elivery/**D**eployment
+    - Automated Testing (Unit and End to End)
+    - Automated Monitoring
+    - Containerization and Container Orchestration
+    - Cloud Infrastructure and Services
+    - **I**nfrastructure **a**s **C**ode
+    - Networks, Security and Configuration Management
 
-To run the site locally:
+## Projects/Repos
 
-1. Clone the repository
-2. Install Hugo if you haven't already
-3. Run `hugo server -D` from the root directory
-4. Visit http://localhost:1313 in your browser
+- TBD
 
-## Content
 
-The site includes:
-- Professional information
-- Blog posts
-- Projects
-- Skills and expertise
 
-## Deployment
-
-The site is automatically deployed to GitHub Pages when changes are pushed to the main branch.
-
-# Personal Website
-
-My personal website built with Jekyll.
-
-## Status
-
-This site is built with Hugo and deployed using GitHub Pages Actions. 

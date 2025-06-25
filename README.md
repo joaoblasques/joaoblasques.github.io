@@ -1,6 +1,6 @@
 # João Blasques Professional Website
 
-This repository contains the source code for my professional website, built with Hugo.
+This repository contains the source code for my professional website, built with Hugo and deployed using GitHub Pages Actions.
 
 ## Local Development
 
@@ -22,8 +22,3 @@ The site includes:
 ## Deployment
 
 The site is automatically deployed to GitHub Pages when changes are pushed to the main branch.
-
-## Status
-
-This site is built with Hugo and deployed using GitHub Pages Actions.
-

@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-06-20T16:03:08+01:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/skills/</loc>
     <lastmod>2025-06-20T16:03:08+01:00</lastmod>
   </url><url>
@@ -11,42 +14,6 @@
     <loc>http://localhost:1313/about/</loc>
     <lastmod>2025-06-20T16:00:12+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-06-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/analytics/</loc>
-    <lastmod>2023-06-23T16:45:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/architecture/</loc>
-    <lastmod>2023-06-23T16:45:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2023-06-23T16:45:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/real-time/</loc>
-    <lastmod>2023-06-23T16:45:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/post-5/</loc>
-    <lastmod>2023-06-23T16:45:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/streaming/</loc>
-    <lastmod>2023-06-23T16:45:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2023-06-23T16:45:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/compliance/</loc>
-    <lastmod>2023-06-23T14:30:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/data-governance/</loc>
-    <lastmod>2023-06-23T14:30:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/post-4/</loc>
-    <lastmod>2023-06-23T14:30:00+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/ethics/</loc>
-    <lastmod>2023-06-23T14:30:00+01:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/ai/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
@@ -54,6 +21,12 @@
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/innovation/</loc>
+    <lastmod>2023-06-23T12:15:00+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2023-06-23T12:15:00+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/post-3/</loc>

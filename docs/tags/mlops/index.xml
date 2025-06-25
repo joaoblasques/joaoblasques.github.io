@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MLOps on João Blasques | AI-Enabled Data Engineer</title>
-    <link>http://localhost:62291/tags/mlops/</link>
+    <link>http://localhost:1313/tags/mlops/</link>
     <description>Recent content in MLOps on João Blasques | AI-Enabled Data Engineer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 23 Jun 2023 10:45:00 +0100</lastBuildDate>
-    <atom:link href="http://localhost:62291/tags/mlops/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/mlops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning Pipeline Design</title>
-      <link>http://localhost:62291/post/post-2/</link>
+      <link>http://localhost:1313/post/post-2/</link>
       <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/post/post-2/</guid>
+      <guid>http://localhost:1313/post/post-2/</guid>
       <description>&lt;h2 id=&#34;building-effective-machine-learning-pipelines&#34;&gt;Building Effective Machine Learning Pipelines&lt;/h2&gt;&#xA;&lt;p&gt;Creating robust machine learning pipelines is essential for deploying AI solutions at scale. This post covers key considerations and best practices.&lt;/p&gt;&#xA;&lt;h3 id=&#34;the-anatomy-of-an-ml-pipeline&#34;&gt;The Anatomy of an ML Pipeline&lt;/h3&gt;&#xA;&lt;p&gt;A well-designed ML pipeline includes these key stages:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Ingestion&lt;/strong&gt; - Collecting and importing data from various sources&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Preparation&lt;/strong&gt; - Cleaning, transforming, and feature engineering&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Training&lt;/strong&gt; - Developing and tuning ML models&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Evaluation&lt;/strong&gt; - Assessing performance and validity&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Deployment&lt;/strong&gt; - Serving models in production environments&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt; - Tracking performance and detecting drift&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;common-challenges-and-solutions&#34;&gt;Common Challenges and Solutions&lt;/h3&gt;&#xA;&lt;h4 id=&#34;challenge-data-quality-issues&#34;&gt;Challenge: Data Quality Issues&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;: Implement robust data validation and cleaning processes early in the pipeline.&lt;/p&gt;</description>
     </item>
   </channel>

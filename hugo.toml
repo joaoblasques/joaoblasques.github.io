@@ -6,7 +6,7 @@ publishDir = "docs"
 
 [params]
   author = "João Blasques (Jonas)"
-  description = "Professional website of João Blasques, AI-Enabled Data Engineer"
+  description = "AI-Enabled Data Engineer"
   github = "joaoblasques"
   # Optional settings
   twitter = ""

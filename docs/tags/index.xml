@@ -2,136 +2,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on João Blasques | AI-Enabled Data Engineer</title>
-    <link>http://localhost:62291/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on João Blasques | AI-Enabled Data Engineer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Jun 2023 16:45:00 +0100</lastBuildDate>
-    <atom:link href="http://localhost:62291/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Analytics</title>
-      <link>http://localhost:62291/tags/analytics/</link>
-      <pubDate>Fri, 23 Jun 2023 16:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/analytics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Architecture</title>
-      <link>http://localhost:62291/tags/architecture/</link>
-      <pubDate>Fri, 23 Jun 2023 16:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/architecture/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Real-Time</title>
-      <link>http://localhost:62291/tags/real-time/</link>
-      <pubDate>Fri, 23 Jun 2023 16:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/real-time/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Streaming</title>
-      <link>http://localhost:62291/tags/streaming/</link>
-      <pubDate>Fri, 23 Jun 2023 16:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/streaming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Compliance</title>
-      <link>http://localhost:62291/tags/compliance/</link>
-      <pubDate>Fri, 23 Jun 2023 14:30:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/compliance/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Data Governance</title>
-      <link>http://localhost:62291/tags/data-governance/</link>
-      <pubDate>Fri, 23 Jun 2023 14:30:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/data-governance/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ethics</title>
-      <link>http://localhost:62291/tags/ethics/</link>
-      <pubDate>Fri, 23 Jun 2023 14:30:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/ethics/</guid>
-      <description></description>
-    </item>
+    <lastBuildDate>Fri, 23 Jun 2023 12:15:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI</title>
-      <link>http://localhost:62291/tags/ai/</link>
+      <link>http://localhost:1313/tags/ai/</link>
       <pubDate>Fri, 23 Jun 2023 12:15:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/ai/</guid>
+      <guid>http://localhost:1313/tags/ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Architecture</title>
-      <link>http://localhost:62291/tags/data-architecture/</link>
+      <link>http://localhost:1313/tags/data-architecture/</link>
       <pubDate>Fri, 23 Jun 2023 12:15:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/data-architecture/</guid>
+      <guid>http://localhost:1313/tags/data-architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Innovation</title>
-      <link>http://localhost:62291/tags/innovation/</link>
+      <link>http://localhost:1313/tags/innovation/</link>
       <pubDate>Fri, 23 Jun 2023 12:15:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/innovation/</guid>
+      <guid>http://localhost:1313/tags/innovation/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:62291/tags/machine-learning/</link>
+      <link>http://localhost:1313/tags/machine-learning/</link>
       <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/machine-learning/</guid>
+      <guid>http://localhost:1313/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>MLOps</title>
-      <link>http://localhost:62291/tags/mlops/</link>
+      <link>http://localhost:1313/tags/mlops/</link>
       <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/mlops/</guid>
+      <guid>http://localhost:1313/tags/mlops/</guid>
       <description></description>
     </item>
     <item>
       <title>Pipelines</title>
-      <link>http://localhost:62291/tags/pipelines/</link>
+      <link>http://localhost:1313/tags/pipelines/</link>
       <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/pipelines/</guid>
+      <guid>http://localhost:1313/tags/pipelines/</guid>
       <description></description>
     </item>
     <item>
       <title>Beginners</title>
-      <link>http://localhost:62291/tags/beginners/</link>
+      <link>http://localhost:1313/tags/beginners/</link>
       <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/beginners/</guid>
+      <guid>http://localhost:1313/tags/beginners/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Engineering</title>
-      <link>http://localhost:62291/tags/data-engineering/</link>
+      <link>http://localhost:1313/tags/data-engineering/</link>
       <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/data-engineering/</guid>
+      <guid>http://localhost:1313/tags/data-engineering/</guid>
       <description></description>
     </item>
     <item>
       <title>Tutorial</title>
-      <link>http://localhost:62291/tags/tutorial/</link>
+      <link>http://localhost:1313/tags/tutorial/</link>
       <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
-      <guid>http://localhost:62291/tags/tutorial/</guid>
+      <guid>http://localhost:1313/tags/tutorial/</guid>
       <description></description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:62291/tags/about/</link>
+      <link>http://localhost:1313/tags/about/</link>
       <pubDate>Tue, 20 Jun 2023 15:55:33 +0100</pubDate>
-      <guid>http://localhost:62291/tags/about/</guid>
+      <guid>http://localhost:1313/tags/about/</guid>
       <description></description>
     </item>
     <item>
       <title>Introduction</title>
-      <link>http://localhost:62291/tags/introduction/</link>
+      <link>http://localhost:1313/tags/introduction/</link>
       <pubDate>Tue, 20 Jun 2023 15:55:33 +0100</pubDate>
-      <guid>http://localhost:62291/tags/introduction/</guid>
+      <guid>http://localhost:1313/tags/introduction/</guid>
       <description></description>
     </item>
   </channel>

@@ -1,5 +1,5 @@
 +++
-date = '2023-06-23T09:30:00+01:00'
+date = '2025-05-05T09:30:00+01:00'
 draft = false
 title = 'Getting Started with Data Engineering'
 description = 'An introduction to the fundamentals of data engineering'

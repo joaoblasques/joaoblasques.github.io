@@ -1,5 +1,5 @@
 +++
-date = '2023-06-23T10:45:00+01:00'
+date = '2025-05-09T10:45:00+01:00'
 draft = false
 title = 'Machine Learning Pipeline Design'
 description = 'Best practices for creating efficient and scalable ML pipelines'

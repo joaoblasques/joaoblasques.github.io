@@ -1,5 +1,5 @@
 +++
-date = '2023-06-23T12:15:00+01:00'
+date = '2025-05-11T12:15:00+01:00'
 draft = false
 title = 'The Role of AI in Modern Data Architectures'
 description = 'How artificial intelligence is transforming data systems and workflows'

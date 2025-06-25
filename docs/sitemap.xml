@@ -2,71 +2,71 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://joaoblasques.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-06-20T16:03:08+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/skills/</loc>
+    <loc>http://localhost:1313/skills/</loc>
     <lastmod>2025-06-20T16:03:08+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/projects/</loc>
+    <loc>http://localhost:1313/projects/</loc>
     <lastmod>2025-06-20T16:01:06+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2025-06-20T16:00:12+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/ai/</loc>
+    <loc>http://localhost:1313/tags/ai/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/data-architecture/</loc>
+    <loc>http://localhost:1313/tags/data-architecture/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/innovation/</loc>
+    <loc>http://localhost:1313/tags/innovation/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/post/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/post/post-3/</loc>
+    <loc>http://localhost:1313/post/post-3/</loc>
     <lastmod>2023-06-23T12:15:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/machine-learning/</loc>
+    <loc>http://localhost:1313/tags/machine-learning/</loc>
     <lastmod>2023-06-23T10:45:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/post/post-2/</loc>
+    <loc>http://localhost:1313/post/post-2/</loc>
     <lastmod>2023-06-23T10:45:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/mlops/</loc>
+    <loc>http://localhost:1313/tags/mlops/</loc>
     <lastmod>2023-06-23T10:45:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/pipelines/</loc>
+    <loc>http://localhost:1313/tags/pipelines/</loc>
     <lastmod>2023-06-23T10:45:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/beginners/</loc>
+    <loc>http://localhost:1313/tags/beginners/</loc>
     <lastmod>2023-06-23T09:30:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/data-engineering/</loc>
+    <loc>http://localhost:1313/tags/data-engineering/</loc>
     <lastmod>2023-06-23T09:30:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/post/post-1/</loc>
+    <loc>http://localhost:1313/post/post-1/</loc>
     <lastmod>2023-06-23T09:30:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/tutorial/</loc>
+    <loc>http://localhost:1313/tags/tutorial/</loc>
     <lastmod>2023-06-23T09:30:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/about/</loc>
+    <loc>http://localhost:1313/tags/about/</loc>
     <lastmod>2023-06-20T15:55:33+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/introduction/</loc>
+    <loc>http://localhost:1313/tags/introduction/</loc>
     <lastmod>2023-06-20T15:55:33+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/post/welcome/</loc>
+    <loc>http://localhost:1313/post/welcome/</loc>
     <lastmod>2023-06-20T15:55:33+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/readme/</loc>
+    <loc>http://localhost:1313/readme/</loc>
   </url><url>
-    <loc>https://joaoblasques.com/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>

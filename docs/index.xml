@@ -32,28 +32,28 @@
     <item>
       <title>The Role of AI in Modern Data Architectures</title>
       <link>https://joaoblasques.com/post/post-3/</link>
-      <pubDate>Fri, 23 Jun 2023 12:15:00 +0100</pubDate>
+      <pubDate>Sun, 11 May 2025 12:15:00 +0100</pubDate>
       <guid>https://joaoblasques.com/post/post-3/</guid>
       <description>&lt;h2 id=&#34;ai-driven-data-architecture&#34;&gt;AI-Driven Data Architecture&lt;/h2&gt;&#xA;&lt;p&gt;Artificial intelligence isn&amp;rsquo;t just a consumer of data—it&amp;rsquo;s increasingly becoming an integral part of how we design and operate our data systems. This post explores the evolving relationship between AI and data architecture.&lt;/p&gt;&#xA;&lt;h3 id=&#34;ai-enhanced-data-processing&#34;&gt;AI-Enhanced Data Processing&lt;/h3&gt;&#xA;&lt;p&gt;Modern data architectures are incorporating AI at various levels:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Intelligent Data Cataloging&lt;/strong&gt; - Automatically discovering, classifying, and tagging data assets&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Adaptive Data Integration&lt;/strong&gt; - Using ML to identify optimal integration patterns and transformations&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Automated Quality Management&lt;/strong&gt; - Detecting anomalies and quality issues without manual rules&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Self-Tuning Systems&lt;/strong&gt; - Databases and data platforms that optimize themselves based on workloads&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;real-world-applications&#34;&gt;Real-World Applications&lt;/h3&gt;&#xA;&lt;h4 id=&#34;recommendation-systems&#34;&gt;Recommendation Systems&lt;/h4&gt;&#xA;&lt;p&gt;AI algorithms help determine which data is most relevant to different users and use cases, optimizing data discovery and access.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Machine Learning Pipeline Design</title>
       <link>https://joaoblasques.com/post/post-2/</link>
-      <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
+      <pubDate>Fri, 09 May 2025 10:45:00 +0100</pubDate>
       <guid>https://joaoblasques.com/post/post-2/</guid>
       <description>&lt;h2 id=&#34;building-effective-machine-learning-pipelines&#34;&gt;Building Effective Machine Learning Pipelines&lt;/h2&gt;&#xA;&lt;p&gt;Creating robust machine learning pipelines is essential for deploying AI solutions at scale. This post covers key considerations and best practices.&lt;/p&gt;&#xA;&lt;h3 id=&#34;the-anatomy-of-an-ml-pipeline&#34;&gt;The Anatomy of an ML Pipeline&lt;/h3&gt;&#xA;&lt;p&gt;A well-designed ML pipeline includes these key stages:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Ingestion&lt;/strong&gt; - Collecting and importing data from various sources&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Preparation&lt;/strong&gt; - Cleaning, transforming, and feature engineering&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Training&lt;/strong&gt; - Developing and tuning ML models&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Evaluation&lt;/strong&gt; - Assessing performance and validity&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Deployment&lt;/strong&gt; - Serving models in production environments&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt; - Tracking performance and detecting drift&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;common-challenges-and-solutions&#34;&gt;Common Challenges and Solutions&lt;/h3&gt;&#xA;&lt;h4 id=&#34;challenge-data-quality-issues&#34;&gt;Challenge: Data Quality Issues&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;: Implement robust data validation and cleaning processes early in the pipeline.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Getting Started with Data Engineering</title>
       <link>https://joaoblasques.com/post/post-1/</link>
-      <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
+      <pubDate>Mon, 05 May 2025 09:30:00 +0100</pubDate>
       <guid>https://joaoblasques.com/post/post-1/</guid>
       <description>&lt;h2 id=&#34;data-engineering-fundamentals&#34;&gt;Data Engineering Fundamentals&lt;/h2&gt;&#xA;&lt;p&gt;Data engineering is the backbone of any data-driven organization. In this post, we will explore the fundamental concepts that every aspiring data engineer should understand.&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-is-data-engineering&#34;&gt;What is Data Engineering?&lt;/h3&gt;&#xA;&lt;p&gt;Data engineering focuses on designing, building, and maintaining the infrastructure and architecture for data generation, storage, and analysis. Data engineers develop the systems that collect, manage, and convert raw data into usable information for data scientists and business analysts.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Welcome to My Professional Website</title>
       <link>https://joaoblasques.com/post/welcome/</link>
-      <pubDate>Tue, 20 Jun 2023 15:55:33 +0100</pubDate>
+      <pubDate>Wed, 23 Apr 2025 15:55:33 +0100</pubDate>
       <guid>https://joaoblasques.com/post/welcome/</guid>
       <description>&lt;h2 id=&#34;hello-im-joão-blasques&#34;&gt;Hello, I&amp;rsquo;m João Blasques&lt;/h2&gt;&#xA;&lt;p&gt;Welcome to my professional website! I&amp;rsquo;m an AI-Enabled Data Engineer passionate about leveraging artificial intelligence and data solutions to solve complex business problems.&lt;/p&gt;&#xA;&lt;h3 id=&#34;my-background&#34;&gt;My Background&lt;/h3&gt;&#xA;&lt;p&gt;With expertise in data engineering, machine learning, and AI integration, I help organizations transform their data into actionable insights. I specialize in designing and implementing data pipelines, creating machine learning models, and developing AI-powered applications that drive business value.&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-youll-find-here&#34;&gt;What You&amp;rsquo;ll Find Here&lt;/h3&gt;&#xA;&lt;p&gt;On this website, you can explore:&lt;/p&gt;</description>
     </item>

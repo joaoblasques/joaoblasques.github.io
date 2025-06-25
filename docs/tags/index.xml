@@ -2,87 +2,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on João Blasques | AI-Enabled Data Engineer</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://joaoblasques.com/tags/</link>
     <description>Recent content in Tags on João Blasques | AI-Enabled Data Engineer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 23 Jun 2023 12:15:00 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joaoblasques.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI</title>
-      <link>http://localhost:1313/tags/ai/</link>
+      <link>https://joaoblasques.com/tags/ai/</link>
       <pubDate>Fri, 23 Jun 2023 12:15:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/ai/</guid>
+      <guid>https://joaoblasques.com/tags/ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Architecture</title>
-      <link>http://localhost:1313/tags/data-architecture/</link>
+      <link>https://joaoblasques.com/tags/data-architecture/</link>
       <pubDate>Fri, 23 Jun 2023 12:15:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/data-architecture/</guid>
+      <guid>https://joaoblasques.com/tags/data-architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Innovation</title>
-      <link>http://localhost:1313/tags/innovation/</link>
+      <link>https://joaoblasques.com/tags/innovation/</link>
       <pubDate>Fri, 23 Jun 2023 12:15:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/innovation/</guid>
+      <guid>https://joaoblasques.com/tags/innovation/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:1313/tags/machine-learning/</link>
+      <link>https://joaoblasques.com/tags/machine-learning/</link>
       <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/machine-learning/</guid>
+      <guid>https://joaoblasques.com/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>MLOps</title>
-      <link>http://localhost:1313/tags/mlops/</link>
+      <link>https://joaoblasques.com/tags/mlops/</link>
       <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/mlops/</guid>
+      <guid>https://joaoblasques.com/tags/mlops/</guid>
       <description></description>
     </item>
     <item>
       <title>Pipelines</title>
-      <link>http://localhost:1313/tags/pipelines/</link>
+      <link>https://joaoblasques.com/tags/pipelines/</link>
       <pubDate>Fri, 23 Jun 2023 10:45:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/pipelines/</guid>
+      <guid>https://joaoblasques.com/tags/pipelines/</guid>
       <description></description>
     </item>
     <item>
       <title>Beginners</title>
-      <link>http://localhost:1313/tags/beginners/</link>
+      <link>https://joaoblasques.com/tags/beginners/</link>
       <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/beginners/</guid>
+      <guid>https://joaoblasques.com/tags/beginners/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Engineering</title>
-      <link>http://localhost:1313/tags/data-engineering/</link>
+      <link>https://joaoblasques.com/tags/data-engineering/</link>
       <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/data-engineering/</guid>
+      <guid>https://joaoblasques.com/tags/data-engineering/</guid>
       <description></description>
     </item>
     <item>
       <title>Tutorial</title>
-      <link>http://localhost:1313/tags/tutorial/</link>
+      <link>https://joaoblasques.com/tags/tutorial/</link>
       <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
-      <guid>http://localhost:1313/tags/tutorial/</guid>
+      <guid>https://joaoblasques.com/tags/tutorial/</guid>
       <description></description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/tags/about/</link>
+      <link>https://joaoblasques.com/tags/about/</link>
       <pubDate>Tue, 20 Jun 2023 15:55:33 +0100</pubDate>
-      <guid>http://localhost:1313/tags/about/</guid>
+      <guid>https://joaoblasques.com/tags/about/</guid>
       <description></description>
     </item>
     <item>
       <title>Introduction</title>
-      <link>http://localhost:1313/tags/introduction/</link>
+      <link>https://joaoblasques.com/tags/introduction/</link>
       <pubDate>Tue, 20 Jun 2023 15:55:33 +0100</pubDate>
-      <guid>http://localhost:1313/tags/introduction/</guid>
+      <guid>https://joaoblasques.com/tags/introduction/</guid>
       <description></description>
     </item>
   </channel>

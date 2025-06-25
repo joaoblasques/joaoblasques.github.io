@@ -1,4 +1,4 @@
-baseURL = "https://joaoblasques.github.io/"
+baseURL = "https://joaoblasques.com"
 languageCode = "en-us"
 title = "João Blasques | AI-Enabled Data Engineer"
 theme = "github-style"
@@ -15,6 +15,7 @@ publishDir = "docs"
   avatar = "/images/avatar.jpg"
   favicon = "/images/favicon.ico"
   headerIcon = "/images/github-mark-white.png"
+  url = "https://joaoblasques.com"
 
 # Comment out Gitalk since it's not being used
 # [params.gitalk]

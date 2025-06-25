@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beginners on João Blasques | AI-Enabled Data Engineer</title>
-    <link>http://localhost:1313/tags/beginners/</link>
+    <link>https://joaoblasques.com/tags/beginners/</link>
     <description>Recent content in Beginners on João Blasques | AI-Enabled Data Engineer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 23 Jun 2023 09:30:00 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/beginners/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joaoblasques.com/tags/beginners/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting Started with Data Engineering</title>
-      <link>http://localhost:1313/post/post-1/</link>
+      <link>https://joaoblasques.com/post/post-1/</link>
       <pubDate>Fri, 23 Jun 2023 09:30:00 +0100</pubDate>
-      <guid>http://localhost:1313/post/post-1/</guid>
+      <guid>https://joaoblasques.com/post/post-1/</guid>
       <description>&lt;h2 id=&#34;data-engineering-fundamentals&#34;&gt;Data Engineering Fundamentals&lt;/h2&gt;&#xA;&lt;p&gt;Data engineering is the backbone of any data-driven organization. In this post, we will explore the fundamental concepts that every aspiring data engineer should understand.&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-is-data-engineering&#34;&gt;What is Data Engineering?&lt;/h3&gt;&#xA;&lt;p&gt;Data engineering focuses on designing, building, and maintaining the infrastructure and architecture for data generation, storage, and analysis. Data engineers develop the systems that collect, manage, and convert raw data into usable information for data scientists and business analysts.&lt;/p&gt;</description>
     </item>
   </channel>

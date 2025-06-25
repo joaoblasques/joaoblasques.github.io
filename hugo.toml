@@ -1,4 +1,4 @@
-baseURL = "https://joaoblasques.com"
+baseURL = "https://joaoblasques.com/"
 languageCode = "en-us"
 title = "João Blasques | AI-Enabled Data Engineer"
 theme = "github-style"

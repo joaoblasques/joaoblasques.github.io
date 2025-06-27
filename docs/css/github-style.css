@@ -189,3 +189,14 @@ body {
 .pinned-item-desc img {
   max-width: 100%;
 }
+
+/* Fix list indentation issues */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.2em;
+}
+
+.pinned-item-desc ul,
+.pinned-item-desc ol {
+  padding-left: 1em;
+}

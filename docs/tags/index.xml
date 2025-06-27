@@ -6,8 +6,92 @@
     <description>Recent content in Tags on João Blasques | AI-Enabled Data Engineer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 May 2025 12:15:00 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 21 Jun 2025 09:30:00 +0100</lastBuildDate>
     <atom:link href="https://joaoblasques.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beginners</title>
+      <link>https://joaoblasques.com/tags/beginners/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/beginners/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bigquery</title>
+      <link>https://joaoblasques.com/tags/bigquery/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/bigquery/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Engineering</title>
+      <link>https://joaoblasques.com/tags/data-engineering/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/data-engineering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Warehouse</title>
+      <link>https://joaoblasques.com/tags/data-warehouse/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/data-warehouse/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://joaoblasques.com/tags/docker/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gcp</title>
+      <link>https://joaoblasques.com/tags/gcp/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/gcp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kestra</title>
+      <link>https://joaoblasques.com/tags/kestra/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/kestra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Orchestration</title>
+      <link>https://joaoblasques.com/tags/orchestration/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/orchestration/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Postgresql</title>
+      <link>https://joaoblasques.com/tags/postgresql/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://joaoblasques.com/tags/python/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Terraform</title>
+      <link>https://joaoblasques.com/tags/terraform/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/terraform/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://joaoblasques.com/tags/tutorial/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/tags/tutorial/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI</title>
       <link>https://joaoblasques.com/tags/ai/</link>
@@ -48,27 +132,6 @@
       <link>https://joaoblasques.com/tags/pipelines/</link>
       <pubDate>Fri, 09 May 2025 10:45:00 +0100</pubDate>
       <guid>https://joaoblasques.com/tags/pipelines/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Beginners</title>
-      <link>https://joaoblasques.com/tags/beginners/</link>
-      <pubDate>Mon, 05 May 2025 09:30:00 +0100</pubDate>
-      <guid>https://joaoblasques.com/tags/beginners/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Data Engineering</title>
-      <link>https://joaoblasques.com/tags/data-engineering/</link>
-      <pubDate>Mon, 05 May 2025 09:30:00 +0100</pubDate>
-      <guid>https://joaoblasques.com/tags/data-engineering/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tutorial</title>
-      <link>https://joaoblasques.com/tags/tutorial/</link>
-      <pubDate>Mon, 05 May 2025 09:30:00 +0100</pubDate>
-      <guid>https://joaoblasques.com/tags/tutorial/</guid>
       <description></description>
     </item>
     <item>

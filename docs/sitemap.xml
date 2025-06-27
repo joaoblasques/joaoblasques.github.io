@@ -2,8 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://joaoblasques.com/tags/beginners/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/bigquery/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/data-engineering/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/post/data-pipeline-orchestration-kestra/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/data-warehouse/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/docker/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/gcp/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
     <loc>https://joaoblasques.com/</loc>
-    <lastmod>2025-06-20T16:03:08+01:00</lastmod>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/kestra/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/orchestration/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/postgresql/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/post/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/python/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/post/data-pipeline-simple/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/terraform/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
+  </url><url>
+    <loc>https://joaoblasques.com/tags/tutorial/</loc>
+    <lastmod>2025-06-21T09:30:00+01:00</lastmod>
   </url><url>
     <loc>https://joaoblasques.com/skills/</loc>
     <lastmod>2025-06-20T16:03:08+01:00</lastmod>
@@ -23,19 +71,13 @@
     <loc>https://joaoblasques.com/tags/innovation/</loc>
     <lastmod>2025-05-11T12:15:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/post/</loc>
-    <lastmod>2025-05-11T12:15:00+01:00</lastmod>
-  </url><url>
-    <loc>https://joaoblasques.com/tags/</loc>
-    <lastmod>2025-05-11T12:15:00+01:00</lastmod>
-  </url><url>
-    <loc>https://joaoblasques.com/post/post-3/</loc>
+    <loc>https://joaoblasques.com/post/the-role-of-ai-in-modern-data-architectures/</loc>
     <lastmod>2025-05-11T12:15:00+01:00</lastmod>
   </url><url>
     <loc>https://joaoblasques.com/tags/machine-learning/</loc>
     <lastmod>2025-05-09T10:45:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/post/post-2/</loc>
+    <loc>https://joaoblasques.com/post/ml-pipeline-design/</loc>
     <lastmod>2025-05-09T10:45:00+01:00</lastmod>
   </url><url>
     <loc>https://joaoblasques.com/tags/mlops/</loc>
@@ -44,16 +86,7 @@
     <loc>https://joaoblasques.com/tags/pipelines/</loc>
     <lastmod>2025-05-09T10:45:00+01:00</lastmod>
   </url><url>
-    <loc>https://joaoblasques.com/tags/beginners/</loc>
-    <lastmod>2025-05-05T09:30:00+01:00</lastmod>
-  </url><url>
-    <loc>https://joaoblasques.com/tags/data-engineering/</loc>
-    <lastmod>2025-05-05T09:30:00+01:00</lastmod>
-  </url><url>
-    <loc>https://joaoblasques.com/post/post-1/</loc>
-    <lastmod>2025-05-05T09:30:00+01:00</lastmod>
-  </url><url>
-    <loc>https://joaoblasques.com/tags/tutorial/</loc>
+    <loc>https://joaoblasques.com/post/getting-started-with-data-engineering/</loc>
     <lastmod>2025-05-05T09:30:00+01:00</lastmod>
   </url><url>
     <loc>https://joaoblasques.com/tags/about/</loc>

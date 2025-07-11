@@ -1,19 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>AI on João Blasques | AI-Enabled Data Engineer</title>
-    <link>http://localhost:1313/tags/ai/</link>
-    <description>Recent content in AI on João Blasques | AI-Enabled Data Engineer</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 11 May 2025 12:15:00 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Role of AI in Modern Data Architectures</title>
-      <link>http://localhost:1313/post/the-role-of-ai-in-modern-data-architectures/</link>
-      <pubDate>Sun, 11 May 2025 12:15:00 +0100</pubDate>
-      <guid>http://localhost:1313/post/the-role-of-ai-in-modern-data-architectures/</guid>
-      <description>&lt;h2 id=&#34;ai-driven-data-architecture&#34;&gt;AI-Driven Data Architecture&lt;/h2&gt;&#xA;&lt;p&gt;Artificial intelligence isn&amp;rsquo;t just a consumer of data—it&amp;rsquo;s increasingly becoming an integral part of how we design and operate our data systems. This post explores the evolving relationship between AI and data architecture.&lt;/p&gt;&#xA;&lt;h3 id=&#34;ai-enhanced-data-processing&#34;&gt;AI-Enhanced Data Processing&lt;/h3&gt;&#xA;&lt;p&gt;Modern data architectures are incorporating AI at various levels:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Intelligent Data Cataloging&lt;/strong&gt; - Automatically discovering, classifying, and tagging data assets&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Adaptive Data Integration&lt;/strong&gt; - Using ML to identify optimal integration patterns and transformations&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Automated Quality Management&lt;/strong&gt; - Detecting anomalies and quality issues without manual rules&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Self-Tuning Systems&lt;/strong&gt; - Databases and data platforms that optimize themselves based on workloads&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;real-world-applications&#34;&gt;Real-World Applications&lt;/h3&gt;&#xA;&lt;h4 id=&#34;recommendation-systems&#34;&gt;Recommendation Systems&lt;/h4&gt;&#xA;&lt;p&gt;AI algorithms help determine which data is most relevant to different users and use cases, optimizing data discovery and access.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.com/tags/ai/</link><description>Recent content in AI on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 11 May 2025 12:15:00 +0100</lastBuildDate><atom:link href="https://joaoblasques.com/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>The Role of AI in Modern Data Architectures</title><link>https://joaoblasques.com/post/the-role-of-ai-in-modern-data-architectures/</link><pubDate>Sun, 11 May 2025 12:15:00 +0100</pubDate><guid>https://joaoblasques.com/post/the-role-of-ai-in-modern-data-architectures/</guid><description>&lt;h2 id="ai-driven-data-architecture">AI-Driven Data Architecture&lt;/h2>
+&lt;p>Artificial intelligence isn&amp;rsquo;t just a consumer of data—it&amp;rsquo;s increasingly becoming an integral part of how we design and operate our data systems. This post explores the evolving relationship between AI and data architecture.&lt;/p>
+&lt;h3 id="ai-enhanced-data-processing">AI-Enhanced Data Processing&lt;/h3>
+&lt;p>Modern data architectures are incorporating AI at various levels:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Intelligent Data Cataloging&lt;/strong> - Automatically discovering, classifying, and tagging data assets&lt;/li>
+&lt;li>&lt;strong>Adaptive Data Integration&lt;/strong> - Using ML to identify optimal integration patterns and transformations&lt;/li>
+&lt;li>&lt;strong>Automated Quality Management&lt;/strong> - Detecting anomalies and quality issues without manual rules&lt;/li>
+&lt;li>&lt;strong>Self-Tuning Systems&lt;/strong> - Databases and data platforms that optimize themselves based on workloads&lt;/li>
+&lt;/ul>
+&lt;h3 id="real-world-applications">Real-World Applications&lt;/h3>
+&lt;h4 id="recommendation-systems">Recommendation Systems&lt;/h4>
+&lt;p>AI algorithms help determine which data is most relevant to different users and use cases, optimizing data discovery and access.&lt;/p></description></item></channel></rss>

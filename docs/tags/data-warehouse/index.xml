@@ -1,26 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Data Warehouse on João Blasques | AI-Enabled Data Engineer</title>
-    <link>http://localhost:1313/tags/data-warehouse/</link>
-    <description>Recent content in Data Warehouse on João Blasques | AI-Enabled Data Engineer</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 21 Jun 2025 09:30:00 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/data-warehouse/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Data Pipeline Orchestration using Kestra</title>
-      <link>http://localhost:1313/post/data-pipeline-orchestration-kestra/</link>
-      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
-      <guid>http://localhost:1313/post/data-pipeline-orchestration-kestra/</guid>
-      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This &lt;a href=&#34;https://github.com/joaoblasques/data-pipeline-orchestration-kestra&#34;&gt;repository&lt;/a&gt; demonstrates workflow orchestration for data engineering pipelines using &lt;a href=&#34;https://kestra.io/&#34;&gt;Kestra&lt;/a&gt;. It guides users through building, running, and scheduling data pipelines that extract, transform, and load (ETL) data both locally (with PostgreSQL) and in the cloud (with Google Cloud Platform). The project is hands-on and includes conceptual explanations, infrastructure setup, and several example pipeline flows.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Workflow Orchestration:&lt;/strong&gt; Automating and managing complex workflows with dependencies, retries, logging, and monitoring.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Kestra:&lt;/strong&gt; An orchestration platform with a user-friendly UI and YAML-based workflow definitions (called &amp;ldquo;flows&amp;rdquo;).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Lake &amp;amp; Data Warehouse:&lt;/strong&gt; Demonstrates moving data from raw storage (GCS) to structured analytics (BigQuery).&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Orchestrating Data Pipelines with Apache Airflow: A Comprehensive Guide</title>
-      <link>http://localhost:1313/post/data-pipeline-orchestration-airflow/</link>
-      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
-      <guid>http://localhost:1313/post/data-pipeline-orchestration-airflow/</guid>
-      <description>&lt;h2 id=&#34;orchestrating-data-pipelines-with-apache-airflow-a-comprehensive-guide&#34;&gt;Orchestrating Data Pipelines with Apache Airflow: A Comprehensive Guide&lt;/h2&gt;&#xA;&lt;p&gt;This repository serves as a practical guide to building and orchestrating robust data pipelines using Apache Airflow. It covers essential concepts from basic workflow management to advanced deployments with Google Cloud Platform (GCP) and Kubernetes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-workflow-orchestration&#34;&gt;Understanding Workflow Orchestration&lt;/h2&gt;&#xA;&lt;p&gt;At its core, this project emphasizes the importance of workflow orchestration for managing complex data tasks. It highlights the limitations of monolithic scripts and introduces the concept of Directed Acyclic Graphs (DAGs) as the foundation for defining task dependencies, retries, logging, and scheduling within Airflow. The guide differentiates between Data Lakes and Data Warehouses, and ETL vs. ELT processes, providing a foundational understanding for data pipeline design.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Warehouse on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.com/tags/data-warehouse/</link><description>Recent content in Data Warehouse on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 21 Jun 2025 09:30:00 +0100</lastBuildDate><atom:link href="https://joaoblasques.com/tags/data-warehouse/index.xml" rel="self" type="application/rss+xml"/><item><title>Data Pipeline Orchestration using Kestra</title><link>https://joaoblasques.com/post/data-pipeline-orchestration-kestra/</link><pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate><guid>https://joaoblasques.com/post/data-pipeline-orchestration-kestra/</guid><description>&lt;h2 id="project-overview">Project Overview&lt;/h2>
+&lt;p>This &lt;a href="https://github.com/joaoblasques/data-pipeline-orchestration-kestra">repository&lt;/a> demonstrates workflow orchestration for data engineering pipelines using &lt;a href="https://kestra.io/">Kestra&lt;/a>. It guides users through building, running, and scheduling data pipelines that extract, transform, and load (ETL) data both locally (with PostgreSQL) and in the cloud (with Google Cloud Platform). The project is hands-on and includes conceptual explanations, infrastructure setup, and several example pipeline flows.&lt;/p>
+&lt;hr>
+&lt;h2 id="key-concepts">Key Concepts&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Workflow Orchestration:&lt;/strong> Automating and managing complex workflows with dependencies, retries, logging, and monitoring.&lt;/li>
+&lt;li>&lt;strong>Kestra:&lt;/strong> An orchestration platform with a user-friendly UI and YAML-based workflow definitions (called &amp;ldquo;flows&amp;rdquo;).&lt;/li>
+&lt;li>&lt;strong>Data Lake &amp;amp; Data Warehouse:&lt;/strong> Demonstrates moving data from raw storage (GCS) to structured analytics (BigQuery).&lt;/li>
+&lt;/ul></description></item><item><title>Orchestrating Data Pipelines with Apache Airflow: A Comprehensive Guide</title><link>https://joaoblasques.com/post/data-pipeline-orchestration-airflow/</link><pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate><guid>https://joaoblasques.com/post/data-pipeline-orchestration-airflow/</guid><description>&lt;h2 id="project-overview">Project Overview&lt;/h2>
+&lt;p>This &lt;a href="https://github.com/joaoblasques/data-pipeline-orchestration-airflow">repository&lt;/a> serves as a practical guide to building and orchestrating robust data pipelines using Apache Airflow. It covers essential concepts from basic workflow management to advanced deployments with Google Cloud Platform (GCP) and Kubernetes.&lt;/p>
+&lt;hr>
+&lt;h2 id="key-concepts">Key Concepts&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Workflow Orchestration:&lt;/strong> Automating and managing complex data workflows with dependencies, scheduling, retries, and monitoring using Apache Airflow.&lt;/li>
+&lt;li>&lt;strong>DAGs (Directed Acyclic Graphs):&lt;/strong> The core abstraction in Airflow for defining task dependencies, execution order, and workflow logic.&lt;/li>
+&lt;li>&lt;strong>Extensible Operators &amp;amp; Integrations:&lt;/strong> Leveraging Airflow&amp;rsquo;s wide range of built-in operators and custom plugins to interact with databases, cloud services (GCP, Kubernetes), and external systems.&lt;/li>
+&lt;li>&lt;strong>Scalable Deployments:&lt;/strong> Running Airflow locally for prototyping, or deploying on cloud and Kubernetes for production-scale, resilient, and distributed data pipeline execution.&lt;/li>
+&lt;/ul></description></item></channel></rss>

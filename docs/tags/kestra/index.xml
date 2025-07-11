@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kestra on João Blasques | AI-Enabled Data Engineer</title>
-    <link>https://joaoblasques.com/tags/kestra/</link>
+    <link>http://localhost:1313/tags/kestra/</link>
     <description>Recent content in Kestra on João Blasques | AI-Enabled Data Engineer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 21 Jun 2025 09:30:00 +0100</lastBuildDate>
-    <atom:link href="https://joaoblasques.com/tags/kestra/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/kestra/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Data Pipeline Orchestration using Kestra</title>
-      <link>https://joaoblasques.com/post/data-pipeline-orchestration-kestra/</link>
+      <link>http://localhost:1313/post/data-pipeline-orchestration-kestra/</link>
       <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
-      <guid>https://joaoblasques.com/post/data-pipeline-orchestration-kestra/</guid>
+      <guid>http://localhost:1313/post/data-pipeline-orchestration-kestra/</guid>
       <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This &lt;a href=&#34;https://github.com/joaoblasques/data-pipeline-orchestration-kestra&#34;&gt;repository&lt;/a&gt; demonstrates workflow orchestration for data engineering pipelines using &lt;a href=&#34;https://kestra.io/&#34;&gt;Kestra&lt;/a&gt;. It guides users through building, running, and scheduling data pipelines that extract, transform, and load (ETL) data both locally (with PostgreSQL) and in the cloud (with Google Cloud Platform). The project is hands-on and includes conceptual explanations, infrastructure setup, and several example pipeline flows.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Workflow Orchestration:&lt;/strong&gt; Automating and managing complex workflows with dependencies, retries, logging, and monitoring.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Kestra:&lt;/strong&gt; An orchestration platform with a user-friendly UI and YAML-based workflow definitions (called &amp;ldquo;flows&amp;rdquo;).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Lake &amp;amp; Data Warehouse:&lt;/strong&gt; Demonstrates moving data from raw storage (GCS) to structured analytics (BigQuery).&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>

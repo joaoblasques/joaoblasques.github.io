@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cloud on João Blasques | AI-Enabled Data Engineer</title>
+    <link>http://localhost:1313/tags/cloud/</link>
+    <description>Recent content in Cloud on João Blasques | AI-Enabled Data Engineer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Jul 2025 00:00:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Data Pipeline with BigQuery: From Storage to Analytics</title>
+      <link>http://localhost:1313/post/data-warehouse-bigquery-pipeline/</link>
+      <pubDate>Mon, 14 Jul 2025 00:00:00 +0100</pubDate>
+      <guid>http://localhost:1313/post/data-warehouse-bigquery-pipeline/</guid>
+      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This project demonstrates the implementation of a comprehensive data pipeline using Google BigQuery as the primary data warehouse solution. The pipeline showcases modern data engineering practices including external data integration, table optimization strategies, and performance tuning techniques.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Repository:&lt;/strong&gt; &lt;a href=&#34;https://github.com/jonasblasques/4-data-pipeline-datawarehouse-bigquery&#34;&gt;Data Pipeline with BigQuery&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;The project focuses on building a scalable, cost-effective data warehouse solution that can handle large volumes of NYC taxi trip data while maintaining optimal query performance and cost efficiency.&lt;/p&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;p&gt;• &lt;strong&gt;OLAP vs OLTP:&lt;/strong&gt; Understanding the fundamental differences between Online Analytical Processing and Online Transaction Processing systems&#xA;• &lt;strong&gt;Data Warehousing:&lt;/strong&gt; Implementing centralized storage for analytical workloads with optimized query performance&#xA;• &lt;strong&gt;Table Partitioning:&lt;/strong&gt; Dividing large tables into manageable chunks based on time or range values&#xA;• &lt;strong&gt;Clustering:&lt;/strong&gt; Organizing data within partitions to improve query performance and reduce costs&#xA;• &lt;strong&gt;External Tables:&lt;/strong&gt; Querying data stored outside BigQuery without incurring storage costs&#xA;• &lt;strong&gt;Performance Optimization:&lt;/strong&gt; Implementing best practices for cost reduction and query efficiency&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

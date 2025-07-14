@@ -16,6 +16,8 @@ publishDir = "docs"
   favicon = "/images/favicon.ico"
   headerIcon = "/images/github-mark-white.png"
   url = "https://joaoblasques.com"
+  # Custom CSS to fix theme issues
+  custom_css = ["/css/custom.css"]
 
 # Comment out Gitalk since it's not being used
 # [params.gitalk]

@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.com/tags/machine-learning/</link><description>Recent content in Machine Learning on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 09 May 2025 10:45:00 +0100</lastBuildDate><atom:link href="https://joaoblasques.com/tags/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>Machine Learning Pipeline Design</title><link>https://joaoblasques.com/post/ml-pipeline-design/</link><pubDate>Fri, 09 May 2025 10:45:00 +0100</pubDate><guid>https://joaoblasques.com/post/ml-pipeline-design/</guid><description>&lt;h2 id="building-effective-machine-learning-pipelines">Building Effective Machine Learning Pipelines&lt;/h2>
-&lt;p>Creating robust machine learning pipelines is essential for deploying AI solutions at scale. This post covers key considerations and best practices.&lt;/p>
-&lt;h3 id="the-anatomy-of-an-ml-pipeline">The Anatomy of an ML Pipeline&lt;/h3>
-&lt;p>A well-designed ML pipeline includes these key stages:&lt;/p>
-&lt;ol>
-&lt;li>&lt;strong>Data Ingestion&lt;/strong> - Collecting and importing data from various sources&lt;/li>
-&lt;li>&lt;strong>Data Preparation&lt;/strong> - Cleaning, transforming, and feature engineering&lt;/li>
-&lt;li>&lt;strong>Model Training&lt;/strong> - Developing and tuning ML models&lt;/li>
-&lt;li>&lt;strong>Model Evaluation&lt;/strong> - Assessing performance and validity&lt;/li>
-&lt;li>&lt;strong>Model Deployment&lt;/strong> - Serving models in production environments&lt;/li>
-&lt;li>&lt;strong>Monitoring&lt;/strong> - Tracking performance and detecting drift&lt;/li>
-&lt;/ol>
-&lt;h3 id="common-challenges-and-solutions">Common Challenges and Solutions&lt;/h3>
-&lt;h4 id="challenge-data-quality-issues">Challenge: Data Quality Issues&lt;/h4>
-&lt;p>&lt;strong>Solution&lt;/strong>: Implement robust data validation and cleaning processes early in the pipeline.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on João Blasques | AI-Enabled Data Engineer</title>
+    <link>http://localhost:1313/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on João Blasques | AI-Enabled Data Engineer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 May 2025 10:45:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Machine Learning Pipeline Design</title>
+      <link>http://localhost:1313/post/ml-pipeline-design/</link>
+      <pubDate>Fri, 09 May 2025 10:45:00 +0100</pubDate>
+      <guid>http://localhost:1313/post/ml-pipeline-design/</guid>
+      <description>&lt;h2 id=&#34;building-effective-machine-learning-pipelines&#34;&gt;Building Effective Machine Learning Pipelines&lt;/h2&gt;&#xA;&lt;p&gt;Creating robust machine learning pipelines is essential for deploying AI solutions at scale. This post covers key considerations and best practices.&lt;/p&gt;&#xA;&lt;h3 id=&#34;the-anatomy-of-an-ml-pipeline&#34;&gt;The Anatomy of an ML Pipeline&lt;/h3&gt;&#xA;&lt;p&gt;A well-designed ML pipeline includes these key stages:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Ingestion&lt;/strong&gt; - Collecting and importing data from various sources&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Preparation&lt;/strong&gt; - Cleaning, transforming, and feature engineering&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Training&lt;/strong&gt; - Developing and tuning ML models&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Evaluation&lt;/strong&gt; - Assessing performance and validity&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Model Deployment&lt;/strong&gt; - Serving models in production environments&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt; - Tracking performance and detecting drift&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;common-challenges-and-solutions&#34;&gt;Common Challenges and Solutions&lt;/h3&gt;&#xA;&lt;h4 id=&#34;challenge-data-quality-issues&#34;&gt;Challenge: Data Quality Issues&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;: Implement robust data validation and cleaning processes early in the pipeline.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='http://localhost:1313/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='http://localhost:1313/css/frameworks.min.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/github.min.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/github-style.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/light.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/dark.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/syntax.css' />
+    <title>Analytics Engineering with dbt: From Raw Data to Business Intelligence - João Blasques | AI-Enabled Data Engineer</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/favicon.ico'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    <link rel="stylesheet" href="http://localhost:1313/css/custom.css">
+    
+
+    
+    <meta name="description"
+  content="Project Overview This project demonstrates the implementation of a comprehensive analytics engineering pipeline using dbt (data build tool) as the primary transformation layer. The pipeline showcases modern data engineering practices including ELT methodology, dimensional modeling, automated testing, and business intelligence visualization.
+Repository: Analytics Engineering with dbt
+The project focuses on transforming raw NYC taxi trip data into business-ready analytics tables using dbt&rsquo;s modular approach, implementing both dbt Cloud and dbt Core workflows, and creating interactive dashboards with Looker Studio.
+Key Concepts • Analytics Engineering: Bridging the gap between data engineering and data analysis with software engineering best practices • ELT vs ETL: Leveraging cloud data warehouses for in-database transformations • Dimensional Modeling: Implementing Kimball&rsquo;s star schema methodology for analytical workloads • dbt Fundamentals: Models, macros, packages, variables, and testing frameworks • Data Governance: Testing, documentation, and deployment strategies • Business Intelligence: Creating interactive dashboards and visualizations
+" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="http://localhost:1313/post/data-pipeline-transformation-analytics/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Analytics Engineering with dbt: From Raw Data to Business Intelligence - João Blasques | AI-Enabled Data Engineer" />
+<meta name="twitter:description"
+  content="Project Overview This project demonstrates the implementation of a comprehensive analytics engineering pipeline using dbt (data build tool) as the primary transformation layer. The pipeline showcases modern data engineering practices including ELT methodology, dimensional modeling, automated testing, and business intelligence visualization.
+Repository: Analytics Engineering with dbt
+The project focuses on transforming raw NYC taxi trip data into business-ready analytics tables using dbt&rsquo;s modular approach, implementing both dbt Cloud and dbt Core workflows, and creating interactive dashboards with Looker Studio.
+Key Concepts • Analytics Engineering: Bridging the gap between data engineering and data analysis with software engineering best practices • ELT vs ETL: Leveraging cloud data warehouses for in-database transformations • Dimensional Modeling: Implementing Kimball&rsquo;s star schema methodology for analytical workloads • dbt Fundamentals: Models, macros, packages, variables, and testing frameworks • Data Governance: Testing, documentation, and deployment strategies • Business Intelligence: Creating interactive dashboards and visualizations
+" />
+<meta name="twitter:site" content="http://localhost:1313/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="http://localhost:1313/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Analytics Engineering with dbt: From Raw Data to Business Intelligence - João Blasques | AI-Enabled Data Engineer">
+<meta property="og:description"
+  content="Project Overview This project demonstrates the implementation of a comprehensive analytics engineering pipeline using dbt (data build tool) as the primary transformation layer. The pipeline showcases modern data engineering practices including ELT methodology, dimensional modeling, automated testing, and business intelligence visualization.
+Repository: Analytics Engineering with dbt
+The project focuses on transforming raw NYC taxi trip data into business-ready analytics tables using dbt&rsquo;s modular approach, implementing both dbt Cloud and dbt Core workflows, and creating interactive dashboards with Looker Studio.
+Key Concepts • Analytics Engineering: Bridging the gap between data engineering and data analysis with software engineering best practices • ELT vs ETL: Leveraging cloud data warehouses for in-database transformations • Dimensional Modeling: Implementing Kimball&rsquo;s star schema methodology for analytical workloads • dbt Fundamentals: Models, macros, packages, variables, and testing frameworks • Data Governance: Testing, documentation, and deployment strategies • Business Intelligence: Creating interactive dashboards and visualizations
+" />
+<meta property="og:url" content="http://localhost:1313/post/data-pipeline-transformation-analytics/" />
+<meta property="og:site_name" content="Analytics Engineering with dbt: From Raw Data to Business Intelligence" />
+<meta property="og:image"
+  content="http://localhost:1313/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-07-14 00:00:00 &#43;0100 WEST" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="http://localhost:1313/">
+        <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:http://localhost:1313/">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="http://localhost:1313/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="http://localhost:1313/">
+                  <img class=" avatar-user"
+                    src="/images/avatar.jpg"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="http://localhost:1313/">João Blasques (Jonas)</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="http://localhost:1313/post/data-pipeline-transformation-analytics/">Analytics Engineering with dbt: From Raw Data to Business Intelligence</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Mon, 14 Jul 2025 00:00:00 &#43;0100"
+                    class="no-wrap">
+                    Mon, 14 Jul 2025 00:00:00 &#43;0100</relative-time>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1432 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/analytics-engineering">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      analytics engineering
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/dbt">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      dbt
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/bigquery">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      bigquery
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/data-transformation">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      data transformation
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/dimensional-modeling">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      dimensional modeling
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/looker-studio">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      looker studio
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/elt">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      ELT
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/data-pipeline">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      data pipeline
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><h2 id="project-overview">Project Overview</h2>
+<p>This project demonstrates the implementation of a comprehensive analytics engineering pipeline using dbt (data build tool) as the primary transformation layer. The pipeline showcases modern data engineering practices including ELT methodology, dimensional modeling, automated testing, and business intelligence visualization.</p>
+<p><strong>Repository:</strong> <a href="https://github.com/joaoblasques/data-pipeline-transformation-analytics">Analytics Engineering with dbt</a></p>
+<p>The project focuses on transforming raw NYC taxi trip data into business-ready analytics tables using dbt&rsquo;s modular approach, implementing both dbt Cloud and dbt Core workflows, and creating interactive dashboards with Looker Studio.</p>
+<h2 id="key-concepts">Key Concepts</h2>
+<p>• <strong>Analytics Engineering:</strong> Bridging the gap between data engineering and data analysis with software engineering best practices
+• <strong>ELT vs ETL:</strong> Leveraging cloud data warehouses for in-database transformations
+• <strong>Dimensional Modeling:</strong> Implementing Kimball&rsquo;s star schema methodology for analytical workloads
+• <strong>dbt Fundamentals:</strong> Models, macros, packages, variables, and testing frameworks
+• <strong>Data Governance:</strong> Testing, documentation, and deployment strategies
+• <strong>Business Intelligence:</strong> Creating interactive dashboards and visualizations</p>
+<h2 id="understanding-analytics-engineering">Understanding Analytics Engineering</h2>
+<h3 id="the-analytics-engineer-role">The Analytics Engineer Role</h3>
+<p>In traditional data teams, we recognize the data engineer, data analyst, and data scientist. However, a gap exists between these roles:</p>
+<p><strong>Data Engineers</strong> excel at building infrastructure and maintaining data pipelines but may lack deep understanding of business requirements and data usage patterns.</p>
+<p><strong>Data Analysts</strong> understand business needs and can derive insights from data but often lack software engineering skills for building scalable, maintainable solutions.</p>
+<p><strong>Analytics Engineers</strong> bridge this gap by combining:</p>
+<ul>
+<li>Software engineering practices from data engineering</li>
+<li>Business understanding from data analysis</li>
+<li>Modern cloud-based transformation tools</li>
+</ul>
+<h3 id="modern-data-stack-architecture">Modern Data Stack Architecture</h3>
+<p>The analytics engineer typically works with:</p>
+<ul>
+<li><strong>Data Loading:</strong> Stitch, Apache NiFi, Airbyte</li>
+<li><strong>Data Storing:</strong> Google BigQuery, Snowflake, Amazon Redshift</li>
+<li><strong>Data Modeling:</strong> dbt, Dataform, Apache Spark SQL</li>
+<li><strong>Data Presentation:</strong> Looker, Tableau, Google Data Studio, Power BI</li>
+</ul>
+<h3 id="elt-vs-etl-methodology">ELT vs ETL Methodology</h3>
+<p><strong>ETL (Extract, Transform, Load)</strong> transforms data before loading into the warehouse, requiring upfront processing but ensuring data quality.</p>
+<p><strong>ELT (Extract, Load, Transform)</strong> loads raw data first, then transforms within the warehouse, offering:</p>
+<ul>
+<li>Faster implementation</li>
+<li>Greater flexibility</li>
+<li>Leverages cloud warehouse compute power</li>
+<li>Lower storage costs</li>
+</ul>
+<p>This approach capitalizes on cloud data warehousing advances that have dramatically reduced storage and compute costs.</p>
+<h2 id="introduction-to-dbt">Introduction to dbt</h2>
+<h3 id="what-is-dbt">What is dbt?</h3>
+<p>dbt (data build tool) is a transformation workflow that enables analysts and engineers to transform data using SQL and Python. It sits on top of your data warehouse and helps convert raw data into analysis-ready datasets.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>SQL-First:</strong> Write transformations in familiar SQL</li>
+<li><strong>Version Control:</strong> Full Git integration for collaboration</li>
+<li><strong>Testing:</strong> Built-in data quality testing framework</li>
+<li><strong>Documentation:</strong> Auto-generated documentation and lineage</li>
+<li><strong>Modularity:</strong> Reusable models and macros</li>
+</ul>
+<h3 id="how-dbt-works">How dbt Works</h3>
+<ol>
+<li><strong>Model Definition:</strong> Write SELECT statements in .sql files</li>
+<li><strong>Compilation:</strong> dbt compiles SQL with Jinja templating</li>
+<li><strong>Execution:</strong> Generated SQL runs against your data warehouse</li>
+<li><strong>Materialization:</strong> Results stored as tables, views, or incremental builds</li>
+</ol>
+<h3 id="dbt-architecture-options">dbt Architecture Options</h3>
+<p><strong>dbt Core:</strong></p>
+<ul>
+<li>Open-source command-line tool</li>
+<li>Local development environment</li>
+<li>Manual infrastructure management</li>
+<li>Free to use</li>
+</ul>
+<p><strong>dbt Cloud:</strong></p>
+<ul>
+<li>SaaS platform with web IDE</li>
+<li>Managed infrastructure</li>
+<li>Built-in scheduling and monitoring</li>
+<li>Free tier available</li>
+</ul>
+<h2 id="dimensional-modeling-with-dbt">Dimensional Modeling with dbt</h2>
+<h3 id="kimballs-dimensional-modeling">Kimball&rsquo;s Dimensional Modeling</h3>
+<p>This project implements Kimball&rsquo;s methodology focusing on:</p>
+<ul>
+<li><strong>Business Understanding:</strong> Data that&rsquo;s intuitive for stakeholders</li>
+<li><strong>Query Performance:</strong> Optimized for analytical workloads</li>
+<li><strong>Star Schema Design:</strong> Central fact tables surrounded by dimension tables</li>
+</ul>
+<h3 id="project-structure">Project Structure</h3>
+<p>The dbt project follows a modular architecture:</p>
+<pre tabindex="0"><code>├── models/
+│   ├── staging/          # Raw data cleaning and standardization
+│   │   ├── stg_green_tripdata.sql
+│   │   ├── stg_yellow_tripdata.sql
+│   │   └── schema.yml
+│   └── core/             # Business logic and dimensional models
+│       ├── dim_zones.sql
+│       ├── fact_trips.sql
+│       ├── dm_monthly_zone_revenue.sql
+│       └── schema.yml
+├── macros/               # Reusable SQL functions
+│   └── get_payment_type_description.sql
+├── seeds/                # Static reference data
+│   └── taxi_zone_lookup.csv
+└── dbt_project.yml       # Project configuration
+</code></pre><h2 id="implementation-nyc-taxi-data-pipeline">Implementation: NYC Taxi Data Pipeline</h2>
+<h3 id="staging-layer-data-standardization">Staging Layer: Data Standardization</h3>
+<p>The staging layer cleanses and standardizes raw data using consistent patterns:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- stg_green_tripdata.sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">{{</span> config(materialized<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;view&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> tripdata <span style="color:#66d9ef">as</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>,
+</span></span><span style="display:flex;"><span>    row_number() over(partition <span style="color:#66d9ef">by</span> vendorid, lpep_pickup_datetime) <span style="color:#66d9ef">as</span> rn
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#66d9ef">source</span>(<span style="color:#e6db74">&#39;staging&#39;</span>,<span style="color:#e6db74">&#39;green_tripdata&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">where</span> vendorid <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> 
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- identifiers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#960050;background-color:#1e0010">{{</span> dbt_utils.generate_surrogate_key([<span style="color:#e6db74">&#39;vendorid&#39;</span>, <span style="color:#e6db74">&#39;lpep_pickup_datetime&#39;</span>]) <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#66d9ef">as</span> tripid,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">{{</span> dbt.safe_cast(<span style="color:#e6db74">&#34;vendorid&#34;</span>, api.<span style="color:#66d9ef">Column</span>.translate_type(<span style="color:#e6db74">&#34;integer&#34;</span>)) <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#66d9ef">as</span> vendorid,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- timestamps
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">cast</span>(lpep_pickup_datetime <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">timestamp</span>) <span style="color:#66d9ef">as</span> pickup_datetime,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">cast</span>(lpep_dropoff_datetime <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">timestamp</span>) <span style="color:#66d9ef">as</span> dropoff_datetime,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- payment info
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">cast</span>(fare_amount <span style="color:#66d9ef">as</span> numeric) <span style="color:#66d9ef">as</span> fare_amount,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">{{</span> get_payment_type_description(<span style="color:#e6db74">&#34;payment_type&#34;</span>) <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#66d9ef">as</span> payment_type_description
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> tripdata
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> rn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Deduplication:</strong> Using ROW_NUMBER() for data quality</li>
+<li><strong>Type Casting:</strong> Standardizing data types across sources</li>
+<li><strong>Surrogate Keys:</strong> Generating unique identifiers</li>
+<li><strong>Macros:</strong> Reusable transformation logic</li>
+</ul>
+<h3 id="core-layer-dimensional-models">Core Layer: Dimensional Models</h3>
+<h4 id="dimension-tables">Dimension Tables</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- dim_zones.sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">{{</span> config(materialized<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;table&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> 
+</span></span><span style="display:flex;"><span>    locationid, 
+</span></span><span style="display:flex;"><span>    borough, 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">zone</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">replace</span>(service_zone,<span style="color:#e6db74">&#39;Boro&#39;</span>,<span style="color:#e6db74">&#39;Green&#39;</span>) <span style="color:#66d9ef">as</span> service_zone 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#66d9ef">ref</span>(<span style="color:#e6db74">&#39;taxi_zone_lookup&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+</span></span></code></pre></div><h4 id="fact-tables">Fact Tables</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- fact_trips.sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">{{</span> config(materialized<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;table&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> green_tripdata <span style="color:#66d9ef">as</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>, <span style="color:#e6db74">&#39;Green&#39;</span> <span style="color:#66d9ef">as</span> service_type
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#66d9ef">ref</span>(<span style="color:#e6db74">&#39;stg_green_tripdata&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+</span></span><span style="display:flex;"><span>), 
+</span></span><span style="display:flex;"><span>yellow_tripdata <span style="color:#66d9ef">as</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>, <span style="color:#e6db74">&#39;Yellow&#39;</span> <span style="color:#66d9ef">as</span> service_type
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#66d9ef">ref</span>(<span style="color:#e6db74">&#39;stg_yellow_tripdata&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+</span></span><span style="display:flex;"><span>), 
+</span></span><span style="display:flex;"><span>trips_unioned <span style="color:#66d9ef">as</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> green_tripdata
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">union</span> <span style="color:#66d9ef">all</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> yellow_tripdata
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> 
+</span></span><span style="display:flex;"><span>    trips_unioned.tripid,
+</span></span><span style="display:flex;"><span>    trips_unioned.service_type,
+</span></span><span style="display:flex;"><span>    pickup_zone.borough <span style="color:#66d9ef">as</span> pickup_borough,
+</span></span><span style="display:flex;"><span>    pickup_zone.<span style="color:#66d9ef">zone</span> <span style="color:#66d9ef">as</span> pickup_zone,
+</span></span><span style="display:flex;"><span>    dropoff_zone.borough <span style="color:#66d9ef">as</span> dropoff_borough,
+</span></span><span style="display:flex;"><span>    dropoff_zone.<span style="color:#66d9ef">zone</span> <span style="color:#66d9ef">as</span> dropoff_zone,
+</span></span><span style="display:flex;"><span>    trips_unioned.pickup_datetime,
+</span></span><span style="display:flex;"><span>    trips_unioned.fare_amount,
+</span></span><span style="display:flex;"><span>    trips_unioned.total_amount
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> trips_unioned
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#66d9ef">ref</span>(<span style="color:#e6db74">&#39;dim_zones&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#66d9ef">as</span> pickup_zone
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">on</span> trips_unioned.pickup_locationid <span style="color:#f92672">=</span> pickup_zone.locationid
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#66d9ef">ref</span>(<span style="color:#e6db74">&#39;dim_zones&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#66d9ef">as</span> dropoff_zone
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">on</span> trips_unioned.dropoff_locationid <span style="color:#f92672">=</span> dropoff_zone.locationid
+</span></span></code></pre></div><h3 id="advanced-dbt-features">Advanced dbt Features</h3>
+<h4 id="macros-for-code-reusability">Macros for Code Reusability</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- macros/get_payment_type_description.sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">{</span><span style="color:#f92672">%</span> macro get_payment_type_description(payment_type) <span style="color:#f92672">-%</span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#960050;background-color:#1e0010">{{</span> dbt.safe_cast(<span style="color:#e6db74">&#34;payment_type&#34;</span>, api.<span style="color:#66d9ef">Column</span>.translate_type(<span style="color:#e6db74">&#34;integer&#34;</span>)) <span style="color:#960050;background-color:#1e0010">}}</span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;Credit card&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;Cash&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;No charge&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">4</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;Dispute&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;Unknown&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">6</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;Voided trip&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;EMPTY&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">{</span><span style="color:#f92672">%-</span> endmacro <span style="color:#f92672">%</span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span></code></pre></div><h4 id="variables-for-environment-configuration">Variables for Environment Configuration</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Development vs Production data limits
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">{</span><span style="color:#f92672">%</span> <span style="color:#66d9ef">if</span> var(<span style="color:#e6db74">&#39;is_test_run&#39;</span>, <span style="color:#66d9ef">default</span><span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>) <span style="color:#f92672">%</span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">{</span><span style="color:#f92672">%</span> endif <span style="color:#f92672">%</span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span></code></pre></div><h4 id="package-management">Package Management</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># packages.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">packages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">package</span>: <span style="color:#ae81ff">dbt-labs/dbt_utils</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">1.1.1</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">package</span>: <span style="color:#ae81ff">dbt-labs/codegen</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">0.12.1</span>
+</span></span></code></pre></div><h2 id="data-quality-and-testing">Data Quality and Testing</h2>
+<h3 id="built-in-tests">Built-in Tests</h3>
+<p>dbt provides four essential tests out of the box:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># models/staging/schema.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">models</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">stg_green_tripdata</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">columns</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">tripid</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">unique</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">not_null</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">payment_type</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">accepted_values</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">values</span>: [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pickup_locationid</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">relationships</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">to</span>: <span style="color:#ae81ff">ref(&#39;dim_zones&#39;)</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">field</span>: <span style="color:#ae81ff">locationid</span>
+</span></span></code></pre></div><h3 id="testing-strategy">Testing Strategy</h3>
+<ul>
+<li><strong>Unique:</strong> Ensures primary key integrity</li>
+<li><strong>Not Null:</strong> Validates required fields</li>
+<li><strong>Accepted Values:</strong> Enforces valid enum values</li>
+<li><strong>Relationships:</strong> Maintains referential integrity</li>
+</ul>
+<h2 id="deployment-and-production">Deployment and Production</h2>
+<h3 id="development-workflow">Development Workflow</h3>
+<ol>
+<li><strong>Branch-based Development:</strong> Each developer works in isolated branches</li>
+<li><strong>Testing:</strong> All tests must pass before merging</li>
+<li><strong>Code Review:</strong> Pull request process for quality control</li>
+<li><strong>Deployment:</strong> Automated production deployment</li>
+</ol>
+<h3 id="production-jobs">Production Jobs</h3>
+<p>dbt Cloud enables automated production workflows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Production job configuration</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">dbt deps         </span> <span style="color:#75715e"># Install packages</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">dbt seed         </span> <span style="color:#75715e"># Load reference data</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">dbt run          </span> <span style="color:#75715e"># Execute transformations</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">dbt test         </span> <span style="color:#75715e"># Validate data quality</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">dbt docs generate</span> <span style="color:#75715e"># Create documentation</span>
+</span></span></code></pre></div><h3 id="continuous-integration">Continuous Integration</h3>
+<p>CI/CD pipelines ensure code quality:</p>
+<ul>
+<li><strong>Automated Testing:</strong> Run tests on every pull request</li>
+<li><strong>Isolated Environments:</strong> Temporary schemas for testing</li>
+<li><strong>Documentation Updates:</strong> Auto-generated docs for each deployment</li>
+</ul>
+<h2 id="business-intelligence-with-looker-studio">Business Intelligence with Looker Studio</h2>
+<h3 id="dashboard-creation-process">Dashboard Creation Process</h3>
+<ol>
+<li><strong>Data Source Connection:</strong> Connect Looker Studio to BigQuery</li>
+<li><strong>Data Modeling:</strong> Configure aggregations and dimensions</li>
+<li><strong>Visualization Design:</strong> Create charts, tables, and controls</li>
+<li><strong>Interactive Features:</strong> Add filters and drill-down capabilities</li>
+</ol>
+<h3 id="key-visualizations">Key Visualizations</h3>
+<ul>
+<li><strong>Time Series Analysis:</strong> Trip volume trends over time</li>
+<li><strong>Geographic Analysis:</strong> Revenue by pickup zones</li>
+<li><strong>Service Comparison:</strong> Green vs Yellow taxi performance</li>
+<li><strong>Payment Analysis:</strong> Payment method distributions</li>
+</ul>
+<h3 id="performance-insights">Performance Insights</h3>
+<p>The dashboard reveals business insights such as:</p>
+<ul>
+<li>COVID-19 impact on ridership (March 2020 drop)</li>
+<li>Seasonal usage patterns</li>
+<li>Geographic revenue concentrations</li>
+<li>Payment method preferences</li>
+</ul>
+<h2 id="dbt-core-implementation">dbt Core Implementation</h2>
+<h3 id="local-development-setup">Local Development Setup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Installation</span>
+</span></span><span style="display:flex;"><span>pip install dbt-core dbt-bigquery
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Project initialization</span>
+</span></span><span style="display:flex;"><span>dbt init dbtcore_bigquery
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dependencies and execution</span>
+</span></span><span style="display:flex;"><span>dbt deps
+</span></span><span style="display:flex;"><span>dbt seed
+</span></span><span style="display:flex;"><span>dbt run
+</span></span><span style="display:flex;"><span>dbt test
+</span></span></code></pre></div><h3 id="configuration-management">Configuration Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># dbt_project.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#e6db74">&#39;dbtcore_bigquery&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;1.0.0&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">profile</span>: <span style="color:#e6db74">&#39;dbtcore_bigquery&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">models</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dbtcore_bigquery</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">staging</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">materialized</span>: <span style="color:#ae81ff">view</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">core</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">materialized</span>: <span style="color:#ae81ff">table</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">vars</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">payment_type_values</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]
+</span></span></code></pre></div><h2 id="best-practices-and-scalability">Best Practices and Scalability</h2>
+<h3 id="code-organization">Code Organization</h3>
+<ol>
+<li><strong>Layered Architecture:</strong> Staging → Core → Marts</li>
+<li><strong>Naming Conventions:</strong> Clear, consistent model names</li>
+<li><strong>Documentation:</strong> Comprehensive field descriptions</li>
+<li><strong>Version Control:</strong> Git-based collaboration</li>
+</ol>
+<h3 id="performance-optimization">Performance Optimization</h3>
+<ol>
+<li><strong>Materialization Strategy:</strong> Views for staging, tables for core models</li>
+<li><strong>Incremental Models:</strong> For large, append-only datasets</li>
+<li><strong>BigQuery Optimization:</strong> Partitioning and clustering</li>
+<li><strong>Resource Management:</strong> Appropriate warehouse sizing</li>
+</ol>
+<h3 id="data-governance">Data Governance</h3>
+<ol>
+<li><strong>Testing Coverage:</strong> Comprehensive data quality tests</li>
+<li><strong>Documentation:</strong> Auto-generated model documentation</li>
+<li><strong>Access Control:</strong> Role-based permissions</li>
+<li><strong>Monitoring:</strong> Job failure alerts and data freshness checks</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>This project demonstrates how to build a robust, scalable analytics engineering pipeline using modern tools and methodologies. The implementation showcases:</p>
+<ul>
+<li><strong>Modern ELT Architecture:</strong> Leveraging cloud data warehouse capabilities</li>
+<li><strong>Dimensional Modeling:</strong> Business-friendly star schema design</li>
+<li><strong>Software Engineering Practices:</strong> Version control, testing, and CI/CD</li>
+<li><strong>Business Intelligence:</strong> Interactive dashboards for stakeholder consumption</li>
+</ul>
+<p>The pipeline processes millions of taxi trip records, transforming raw data into actionable business insights while maintaining data quality and operational excellence.</p>
+<p><strong>Key Achievements:</strong></p>
+<ul>
+<li>Automated data quality testing preventing bad data propagation</li>
+<li>Modular, maintainable code architecture</li>
+<li>Comprehensive documentation and lineage tracking</li>
+<li>Production-ready deployment with monitoring and alerting</li>
+</ul>
+<p><strong>Next Steps:</strong> Consider implementing real-time streaming transformations, advanced ML features, or extending the pipeline to additional data sources for a more comprehensive analytics platform.</p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='http://localhost:1313/js/toc.js'></script>
+<link rel="stylesheet" href='http://localhost:1313/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="http://localhost:1313/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+
+</body>
+
+<script type="application/javascript" src="http://localhost:1313/js/github-style.js"></script>
+
+
+
+
+
+
+
+</html>

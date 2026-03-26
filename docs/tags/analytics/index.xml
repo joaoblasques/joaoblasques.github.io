@@ -1,11 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Analytics on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.com/tags/analytics/</link><description>Recent content in Analytics on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 14 Jul 2025 00:00:00 +0100</lastBuildDate><atom:link href="https://joaoblasques.com/tags/analytics/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a Data Pipeline with BigQuery: From Storage to Analytics</title><link>https://joaoblasques.com/post/data-warehouse-bigquery-pipeline/</link><pubDate>Mon, 14 Jul 2025 00:00:00 +0100</pubDate><guid>https://joaoblasques.com/post/data-warehouse-bigquery-pipeline/</guid><description>&lt;h2 id="project-overview">Project Overview&lt;/h2>
-&lt;p>This project demonstrates the implementation of a comprehensive data pipeline using Google BigQuery as the primary data warehouse solution. The pipeline showcases modern data engineering practices including external data integration, table optimization strategies, and performance tuning techniques.&lt;/p>
-&lt;p>&lt;strong>Repository:&lt;/strong> &lt;a href="https://github.com/jonasblasques/4-data-pipeline-datawarehouse-bigquery">Data Pipeline with BigQuery&lt;/a>&lt;/p>
-&lt;p>The project focuses on building a scalable, cost-effective data warehouse solution that can handle large volumes of NYC taxi trip data while maintaining optimal query performance and cost efficiency.&lt;/p>
-&lt;h2 id="key-concepts">Key Concepts&lt;/h2>
-&lt;p>• &lt;strong>OLAP vs OLTP:&lt;/strong> Understanding the fundamental differences between Online Analytical Processing and Online Transaction Processing systems
-• &lt;strong>Data Warehousing:&lt;/strong> Implementing centralized storage for analytical workloads with optimized query performance
-• &lt;strong>Table Partitioning:&lt;/strong> Dividing large tables into manageable chunks based on time or range values
-• &lt;strong>Clustering:&lt;/strong> Organizing data within partitions to improve query performance and reduce costs
-• &lt;strong>External Tables:&lt;/strong> Querying data stored outside BigQuery without incurring storage costs
-• &lt;strong>Performance Optimization:&lt;/strong> Implementing best practices for cost reduction and query efficiency&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Analytics on João Blasques | AI-Enabled Data Engineer</title>
+    <link>https://joaoblasques.com/tags/analytics/</link>
+    <description>Recent content in Analytics on João Blasques | AI-Enabled Data Engineer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2026 10:00:00 +0100</lastBuildDate>
+    <atom:link href="https://joaoblasques.com/tags/analytics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Customer Analytics Pipeline with Airflow, dbt and Spark</title>
+      <link>https://joaoblasques.com/post/customer-analytics-pipeline/</link>
+      <pubDate>Thu, 26 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/post/customer-analytics-pipeline/</guid>
+      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This &lt;a href=&#34;https://github.com/joaoblasques/customer-analytics-pipeline&#34;&gt;repository&lt;/a&gt; implements a production-grade ELT pipeline that automates the daily identification of high-value customers. Built as the capstone project for the DE101 course, it brings together Apache Airflow for orchestration, dbt-spark for transformation and data quality, and Apache Iceberg as the open table format — all running locally via Docker Compose.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Medallion Architecture:&lt;/strong&gt; Data flows through Bronze (raw), Silver (cleaned), and Gold (business-ready) layers, each serving a distinct purpose in the transformation chain.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Airflow Orchestration:&lt;/strong&gt; A single DAG wires together data generation, dbt runs, quality tests, and dashboard generation into a reliable daily schedule.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dbt Data Quality:&lt;/strong&gt; 38 automated tests gate pipeline output — if any test fails, downstream tasks are blocked and the sales mart is never written with bad data.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Apache Iceberg Table Format:&lt;/strong&gt; Iceberg provides schema evolution, time-travel queries, and efficient partition pruning on top of the local Spark engine.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Building a Data Pipeline with BigQuery: From Storage to Analytics</title>
+      <link>https://joaoblasques.com/post/data-warehouse-bigquery-pipeline/</link>
+      <pubDate>Mon, 14 Jul 2025 00:00:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/post/data-warehouse-bigquery-pipeline/</guid>
+      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This project demonstrates the implementation of a comprehensive data pipeline using Google BigQuery as the primary data warehouse solution. The pipeline showcases modern data engineering practices including external data integration, table optimization strategies, and performance tuning techniques.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Repository:&lt;/strong&gt; &lt;a href=&#34;https://github.com/jonasblasques/4-data-pipeline-datawarehouse-bigquery&#34;&gt;Data Pipeline with BigQuery&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;The project focuses on building a scalable, cost-effective data warehouse solution that can handle large volumes of NYC taxi trip data while maintaining optimal query performance and cost efficiency.&lt;/p&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;p&gt;• &lt;strong&gt;OLAP vs OLTP:&lt;/strong&gt; Understanding the fundamental differences between Online Analytical Processing and Online Transaction Processing systems&#xA;• &lt;strong&gt;Data Warehousing:&lt;/strong&gt; Implementing centralized storage for analytical workloads with optimized query performance&#xA;• &lt;strong&gt;Table Partitioning:&lt;/strong&gt; Dividing large tables into manageable chunks based on time or range values&#xA;• &lt;strong&gt;Clustering:&lt;/strong&gt; Organizing data within partitions to improve query performance and reduce costs&#xA;• &lt;strong&gt;External Tables:&lt;/strong&gt; Querying data stored outside BigQuery without incurring storage costs&#xA;• &lt;strong&gt;Performance Optimization:&lt;/strong&gt; Implementing best practices for cost reduction and query efficiency&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

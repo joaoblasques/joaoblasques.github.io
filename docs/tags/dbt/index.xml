@@ -1,11 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dbt on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.com/tags/dbt/</link><description>Recent content in Dbt on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 14 Jul 2025 00:00:00 +0100</lastBuildDate><atom:link href="https://joaoblasques.com/tags/dbt/index.xml" rel="self" type="application/rss+xml"/><item><title>Analytics Engineering with dbt: From Raw Data to Business Intelligence</title><link>https://joaoblasques.com/post/data-pipeline-transformation-analytics/</link><pubDate>Mon, 14 Jul 2025 00:00:00 +0100</pubDate><guid>https://joaoblasques.com/post/data-pipeline-transformation-analytics/</guid><description>&lt;h2 id="project-overview">Project Overview&lt;/h2>
-&lt;p>This project demonstrates the implementation of a comprehensive analytics engineering pipeline using dbt (data build tool) as the primary transformation layer. The pipeline showcases modern data engineering practices including ELT methodology, dimensional modeling, automated testing, and business intelligence visualization.&lt;/p>
-&lt;p>&lt;strong>Repository:&lt;/strong> &lt;a href="https://github.com/joaoblasques/data-pipeline-transformation-analytics">Analytics Engineering with dbt&lt;/a>&lt;/p>
-&lt;p>The project focuses on transforming raw NYC taxi trip data into business-ready analytics tables using dbt&amp;rsquo;s modular approach, implementing both dbt Cloud and dbt Core workflows, and creating interactive dashboards with Looker Studio.&lt;/p>
-&lt;h2 id="key-concepts">Key Concepts&lt;/h2>
-&lt;p>• &lt;strong>Analytics Engineering:&lt;/strong> Bridging the gap between data engineering and data analysis with software engineering best practices
-• &lt;strong>ELT vs ETL:&lt;/strong> Leveraging cloud data warehouses for in-database transformations
-• &lt;strong>Dimensional Modeling:&lt;/strong> Implementing Kimball&amp;rsquo;s star schema methodology for analytical workloads
-• &lt;strong>dbt Fundamentals:&lt;/strong> Models, macros, packages, variables, and testing frameworks
-• &lt;strong>Data Governance:&lt;/strong> Testing, documentation, and deployment strategies
-• &lt;strong>Business Intelligence:&lt;/strong> Creating interactive dashboards and visualizations&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dbt on João Blasques | AI-Enabled Data Engineer</title>
+    <link>https://joaoblasques.com/tags/dbt/</link>
+    <description>Recent content in Dbt on João Blasques | AI-Enabled Data Engineer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2026 10:00:00 +0100</lastBuildDate>
+    <atom:link href="https://joaoblasques.com/tags/dbt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Customer Analytics Pipeline with Airflow, dbt and Spark</title>
+      <link>https://joaoblasques.com/post/customer-analytics-pipeline/</link>
+      <pubDate>Thu, 26 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/post/customer-analytics-pipeline/</guid>
+      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This &lt;a href=&#34;https://github.com/joaoblasques/customer-analytics-pipeline&#34;&gt;repository&lt;/a&gt; implements a production-grade ELT pipeline that automates the daily identification of high-value customers. Built as the capstone project for the DE101 course, it brings together Apache Airflow for orchestration, dbt-spark for transformation and data quality, and Apache Iceberg as the open table format — all running locally via Docker Compose.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Medallion Architecture:&lt;/strong&gt; Data flows through Bronze (raw), Silver (cleaned), and Gold (business-ready) layers, each serving a distinct purpose in the transformation chain.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Airflow Orchestration:&lt;/strong&gt; A single DAG wires together data generation, dbt runs, quality tests, and dashboard generation into a reliable daily schedule.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dbt Data Quality:&lt;/strong&gt; 38 automated tests gate pipeline output — if any test fails, downstream tasks are blocked and the sales mart is never written with bad data.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Apache Iceberg Table Format:&lt;/strong&gt; Iceberg provides schema evolution, time-travel queries, and efficient partition pruning on top of the local Spark engine.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Analytics Engineering with dbt: From Raw Data to Business Intelligence</title>
+      <link>https://joaoblasques.com/post/data-pipeline-transformation-analytics/</link>
+      <pubDate>Mon, 14 Jul 2025 00:00:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/post/data-pipeline-transformation-analytics/</guid>
+      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This project demonstrates the implementation of a comprehensive analytics engineering pipeline using dbt (data build tool) as the primary transformation layer. The pipeline showcases modern data engineering practices including ELT methodology, dimensional modeling, automated testing, and business intelligence visualization.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Repository:&lt;/strong&gt; &lt;a href=&#34;https://github.com/joaoblasques/data-pipeline-transformation-analytics&#34;&gt;Analytics Engineering with dbt&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;The project focuses on transforming raw NYC taxi trip data into business-ready analytics tables using dbt&amp;rsquo;s modular approach, implementing both dbt Cloud and dbt Core workflows, and creating interactive dashboards with Looker Studio.&lt;/p&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;p&gt;• &lt;strong&gt;Analytics Engineering:&lt;/strong&gt; Bridging the gap between data engineering and data analysis with software engineering best practices&#xA;• &lt;strong&gt;ELT vs ETL:&lt;/strong&gt; Leveraging cloud data warehouses for in-database transformations&#xA;• &lt;strong&gt;Dimensional Modeling:&lt;/strong&gt; Implementing Kimball&amp;rsquo;s star schema methodology for analytical workloads&#xA;• &lt;strong&gt;dbt Fundamentals:&lt;/strong&gt; Models, macros, packages, variables, and testing frameworks&#xA;• &lt;strong&gt;Data Governance:&lt;/strong&gt; Testing, documentation, and deployment strategies&#xA;• &lt;strong&gt;Business Intelligence:&lt;/strong&gt; Creating interactive dashboards and visualizations&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

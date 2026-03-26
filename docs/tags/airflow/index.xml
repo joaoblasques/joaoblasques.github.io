@@ -1,10 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Airflow on João Blasques | AI-Enabled Data Engineer</title><link>https://joaoblasques.com/tags/airflow/</link><description>Recent content in Airflow on João Blasques | AI-Enabled Data Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 21 Jun 2025 09:30:00 +0100</lastBuildDate><atom:link href="https://joaoblasques.com/tags/airflow/index.xml" rel="self" type="application/rss+xml"/><item><title>Orchestrating Data Pipelines with Apache Airflow: A Comprehensive Guide</title><link>https://joaoblasques.com/post/data-pipeline-orchestration-airflow/</link><pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate><guid>https://joaoblasques.com/post/data-pipeline-orchestration-airflow/</guid><description>&lt;h2 id="project-overview">Project Overview&lt;/h2>
-&lt;p>This &lt;a href="https://github.com/joaoblasques/data-pipeline-orchestration-airflow">repository&lt;/a> serves as a practical guide to building and orchestrating robust data pipelines using Apache Airflow. It covers essential concepts from basic workflow management to advanced deployments with Google Cloud Platform (GCP) and Kubernetes.&lt;/p>
-&lt;hr>
-&lt;h2 id="key-concepts">Key Concepts&lt;/h2>
-&lt;ul>
-&lt;li>&lt;strong>Workflow Orchestration:&lt;/strong> Automating and managing complex data workflows with dependencies, scheduling, retries, and monitoring using Apache Airflow.&lt;/li>
-&lt;li>&lt;strong>DAGs (Directed Acyclic Graphs):&lt;/strong> The core abstraction in Airflow for defining task dependencies, execution order, and workflow logic.&lt;/li>
-&lt;li>&lt;strong>Extensible Operators &amp;amp; Integrations:&lt;/strong> Leveraging Airflow&amp;rsquo;s wide range of built-in operators and custom plugins to interact with databases, cloud services (GCP, Kubernetes), and external systems.&lt;/li>
-&lt;li>&lt;strong>Scalable Deployments:&lt;/strong> Running Airflow locally for prototyping, or deploying on cloud and Kubernetes for production-scale, resilient, and distributed data pipeline execution.&lt;/li>
-&lt;/ul></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Airflow on João Blasques | AI-Enabled Data Engineer</title>
+    <link>https://joaoblasques.com/tags/airflow/</link>
+    <description>Recent content in Airflow on João Blasques | AI-Enabled Data Engineer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2026 10:00:00 +0100</lastBuildDate>
+    <atom:link href="https://joaoblasques.com/tags/airflow/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Customer Analytics Pipeline with Airflow, dbt and Spark</title>
+      <link>https://joaoblasques.com/post/customer-analytics-pipeline/</link>
+      <pubDate>Thu, 26 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/post/customer-analytics-pipeline/</guid>
+      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This &lt;a href=&#34;https://github.com/joaoblasques/customer-analytics-pipeline&#34;&gt;repository&lt;/a&gt; implements a production-grade ELT pipeline that automates the daily identification of high-value customers. Built as the capstone project for the DE101 course, it brings together Apache Airflow for orchestration, dbt-spark for transformation and data quality, and Apache Iceberg as the open table format — all running locally via Docker Compose.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Medallion Architecture:&lt;/strong&gt; Data flows through Bronze (raw), Silver (cleaned), and Gold (business-ready) layers, each serving a distinct purpose in the transformation chain.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Airflow Orchestration:&lt;/strong&gt; A single DAG wires together data generation, dbt runs, quality tests, and dashboard generation into a reliable daily schedule.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dbt Data Quality:&lt;/strong&gt; 38 automated tests gate pipeline output — if any test fails, downstream tasks are blocked and the sales mart is never written with bad data.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Apache Iceberg Table Format:&lt;/strong&gt; Iceberg provides schema evolution, time-travel queries, and efficient partition pruning on top of the local Spark engine.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Orchestrating Data Pipelines with Apache Airflow: A Comprehensive Guide</title>
+      <link>https://joaoblasques.com/post/data-pipeline-orchestration-airflow/</link>
+      <pubDate>Sat, 21 Jun 2025 09:30:00 +0100</pubDate>
+      <guid>https://joaoblasques.com/post/data-pipeline-orchestration-airflow/</guid>
+      <description>&lt;h2 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h2&gt;&#xA;&lt;p&gt;This &lt;a href=&#34;https://github.com/joaoblasques/data-pipeline-orchestration-airflow&#34;&gt;repository&lt;/a&gt; serves as a practical guide to building and orchestrating robust data pipelines using Apache Airflow. It covers essential concepts from basic workflow management to advanced deployments with Google Cloud Platform (GCP) and Kubernetes.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;key-concepts&#34;&gt;Key Concepts&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Workflow Orchestration:&lt;/strong&gt; Automating and managing complex data workflows with dependencies, scheduling, retries, and monitoring using Apache Airflow.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;DAGs (Directed Acyclic Graphs):&lt;/strong&gt; The core abstraction in Airflow for defining task dependencies, execution order, and workflow logic.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Extensible Operators &amp;amp; Integrations:&lt;/strong&gt; Leveraging Airflow&amp;rsquo;s wide range of built-in operators and custom plugins to interact with databases, cloud services (GCP, Kubernetes), and external systems.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Scalable Deployments:&lt;/strong&gt; Running Airflow locally for prototyping, or deploying on cloud and Kubernetes for production-scale, resilient, and distributed data pipeline execution.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

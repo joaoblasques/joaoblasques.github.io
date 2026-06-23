@@ -1,6 +1,6 @@
 +++
 date = '2026-06-23T10:00:00+01:00'
-draft = true
+draft = false
 title = 'Building a Self-Managing MBTA On-Time-Performance Lakehouse (Databricks + GCP)'
 description = 'A live transit-data lakehouse that ingests MBTA real-time feeds, computes on-time performance, and runs, heals, and improves itself — with an agentic layer that writes its own insights and opens pull requests.'
 tags = ['data engineering', 'databricks', 'gcp', 'lakehouse', 'spark', 'structured streaming', 'terraform', 'ci-cd', 'agentic']

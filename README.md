@@ -64,6 +64,24 @@ offline. It goes stale until you re-run it — that's the trade.
 
 Run standalone with `npm test`.
 
+### Link checking
+
+`check.js` is offline and instant, so it only covers *internal* links. External links
+(GitHub repos, docs sites) need the network, so they're a separate on-demand run:
+
+```sh
+npm run linkcheck    # pings every external link; non-zero exit if any are dead
+```
+
+Worth running before a deploy, or after editing links. It separates genuinely dead
+links from ones pointing at pages that exist in this build but aren't merged to the
+live site yet — the latter are expected and reported apart. LinkedIn is skipped
+(it returns 999 to any non-browser request).
+
+This exists because four "projects" advertised on the old site — `datastreampy`,
+`ml-monitor`, `data-quality-framework`, and an NLP demo — had 404'd for a long time
+without anyone noticing.
+
 ## Layout
 
 ```

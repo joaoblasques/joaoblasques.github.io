@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node build.js && node check.js",
     "test": "node check.js",
+    "linkcheck": "node linkcheck.js",
     "serve": "node build.js && npx --yes http-server docs -p 8080 -c-1",
     "refresh": "./refresh-contributions.sh && node build.js && node check.js"
   },

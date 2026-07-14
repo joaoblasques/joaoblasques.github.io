@@ -1,0 +1,159 @@
+[
+  {
+    "slug": "mbta-otp-lakehouse",
+    "title": "Building a Self-Managing MBTA On-Time-Performance Lakehouse (Databricks + GCP)",
+    "date": "2026-06-23",
+    "description": "A live transit-data lakehouse that ingests MBTA real-time feeds, computes on-time performance, and runs, heals, and improves itself — with an agentic layer that writes its own insights and opens pull requests.",
+    "tags": [
+      "data engineering",
+      "databricks",
+      "gcp",
+      "lakehouse",
+      "spark",
+      "structured streaming",
+      "terraform",
+      "ci-cd",
+      "agentic"
+    ]
+  },
+  {
+    "slug": "customer-analytics-pipeline",
+    "title": "Building a Customer Analytics Pipeline with Airflow, dbt and Spark",
+    "date": "2026-03-26",
+    "description": "A production-grade ELT pipeline that automates daily identification of high-value customers using Apache Airflow, dbt-spark, and Apache Iceberg.",
+    "tags": [
+      "data engineering",
+      "airflow",
+      "dbt",
+      "spark",
+      "docker",
+      "iceberg",
+      "analytics",
+      "pipeline"
+    ]
+  },
+  {
+    "slug": "data-pipeline-transformation-analytics",
+    "title": "Analytics Engineering with dbt: From Raw Data to Business Intelligence",
+    "date": "2025-07-14",
+    "description": "A comprehensive guide to implementing modern analytics engineering practices using dbt, BigQuery, and Looker Studio. Learn to build scalable data transformation pipelines with dimensional modeling, testing, and deployment strategies.",
+    "tags": [
+      "analytics engineering",
+      "dbt",
+      "bigquery",
+      "data transformation",
+      "dimensional modeling",
+      "looker studio",
+      "ELT",
+      "data pipeline"
+    ]
+  },
+  {
+    "slug": "data-warehouse-bigquery-pipeline",
+    "title": "Building a Data Pipeline with BigQuery: From Storage to Analytics",
+    "date": "2025-07-14",
+    "description": "A comprehensive guide to implementing a scalable, cost-effective data pipeline and warehouse using Google BigQuery, featuring external tables, partitioning, clustering, and performance optimization with NYC taxi data.",
+    "tags": [
+      "data engineering",
+      "bigquery",
+      "data warehouse",
+      "cloud",
+      "analytics",
+      "partitioning",
+      "clustering",
+      "nyc taxi"
+    ]
+  },
+  {
+    "slug": "data-pipeline-orchestration-airflow",
+    "title": "Orchestrating Data Pipelines with Apache Airflow: A Comprehensive Guide",
+    "date": "2025-06-21",
+    "description": "A practical guide to building and orchestrating robust data pipelines using Apache Airflow, covering local, cloud (GCP), and Kubernetes deployments.",
+    "tags": [
+      "data engineering",
+      "airflow",
+      "orchestration",
+      "tutorial",
+      "docker",
+      "gcp",
+      "kubernetes",
+      "bigquery",
+      "data warehouse"
+    ]
+  },
+  {
+    "slug": "data-pipeline-orchestration-kestra",
+    "title": "Data Pipeline Orchestration using Kestra",
+    "date": "2025-06-21",
+    "description": "Workflow Orchestration using Kestra tool",
+    "tags": [
+      "data engineering",
+      "beginners",
+      "tutorial",
+      "docker",
+      "kestra",
+      "orchestration",
+      "bigquery",
+      "data warehouse"
+    ]
+  },
+  {
+    "slug": "data-pipeline-simple",
+    "title": "Simple Data Pipeline",
+    "date": "2025-06-21",
+    "description": "A step by step guide of a simple data pipeline",
+    "tags": [
+      "data engineering",
+      "beginners",
+      "tutorial",
+      "docker",
+      "terraform",
+      "gcp",
+      "python",
+      "postgresql"
+    ]
+  },
+  {
+    "slug": "the-role-of-AI-in-modern-data-architectures",
+    "title": "The Role of AI in Modern Data Architectures",
+    "date": "2025-05-11",
+    "description": "How artificial intelligence is transforming data systems and workflows",
+    "tags": [
+      "AI",
+      "data architecture",
+      "innovation"
+    ]
+  },
+  {
+    "slug": "ML-pipeline-design",
+    "title": "Machine Learning Pipeline Design",
+    "date": "2025-05-09",
+    "description": "Best practices for creating efficient and scalable ML pipelines",
+    "tags": [
+      "machine learning",
+      "pipelines",
+      "MLOps"
+    ]
+  },
+  {
+    "slug": "getting-started-with-data-engineering",
+    "title": "Getting Started with Data Engineering",
+    "date": "2025-05-05",
+    "description": "An introduction to the fundamentals of data engineering",
+    "tags": [
+      "data engineering",
+      "beginners",
+      "tutorial"
+    ]
+  },
+  {
+    "slug": "welcome",
+    "title": "Welcome to My Professional Website",
+    "date": "2025-04-23",
+    "description": "Introduction and overview of what you can find on this site",
+    "tags": [
+      "introduction",
+      "about"
+    ]
+  }
+]

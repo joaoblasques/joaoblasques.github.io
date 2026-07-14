@@ -1,23 +1,6 @@
-# Hugo default output directory
-/public/
-/resources/_gen/
-/assets/jsconfig.json
-hugo_stats.json
+node_modules/
 
-# Hugo build lock file
-.hugo_build.lock
-
-# Temporary files
-.temp/
-.tmp/
-
-# Executable may be added to repository
-hugo.exe
-hugo.darwin
-hugo.linux
-
-# Temporary lock file while building
-/.hugo_build.lock
+# NOTE: docs/ is intentionally NOT ignored — GitHub Pages serves it from main.
 
 # OS generated files
 .DS_Store

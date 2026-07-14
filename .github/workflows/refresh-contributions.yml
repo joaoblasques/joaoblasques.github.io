@@ -1,0 +1,77 @@
+name: Refresh contribution heatmap
+
+# The heatmap is a committed snapshot, not a live API call — the page stays fast and
+# works offline, at the cost of going stale. This refreshes it weekly and commits the
+# result only if the numbers actually changed.
+#
+# Safety: the job rebuilds and runs check.js before committing. If the fetch returns
+# junk or the build breaks, it fails and commits nothing — a stale heatmap is much
+# better than a broken site.
+
+on:
+  schedule:
+    - cron: '17 6 * * 1'   # Mondays 06:17 UTC. Off-the-hour to dodge peak-load delays.
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write           # to commit the refreshed snapshot
+
+concurrency:
+  group: refresh-contributions
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: npm ci
+
+      - name: Fetch contribution calendar
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api graphql -f query='{
+            user(login: "joaoblasques") {
+              contributionsCollection {
+                contributionCalendar {
+                  totalContributions
+                  weeks { contributionDays { date contributionCount contributionLevel } }
+                }
+              }
+            }
+          }' --jq '.data.user.contributionsCollection.contributionCalendar' > /tmp/contributions.json
+
+          # Fail loudly rather than committing an empty or malformed heatmap.
+          node -e '
+            const c = require("/tmp/contributions.json");
+            const weeks = c.weeks?.length ?? 0;
+            const days = c.weeks?.reduce((n, w) => n + w.contributionDays.length, 0) ?? 0;
+            if (weeks !== 53) { console.error(`✗ got ${weeks} weeks, want 53`); process.exit(1); }
+            if (typeof c.totalContributions !== "number") { console.error("✗ no total"); process.exit(1); }
+            if (days < 360) { console.error(`✗ only ${days} days`); process.exit(1); }
+            console.log(`✓ ${c.totalContributions} contributions, ${weeks} weeks, ${days} days`);
+          '
+          cp /tmp/contributions.json data/contributions.json
+
+      - name: Rebuild and verify
+        run: npm run build
+
+      - name: Commit if the numbers changed
+        run: |
+          if git diff --quiet -- data/contributions.json docs; then
+            echo "No change — nothing to commit."
+            exit 0
+          fi
+          total=$(node -e 'console.log(require("./data/contributions.json").totalContributions)')
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/contributions.json docs
+          git commit -m "chore: refresh contribution heatmap (${total} contributions)"
+          git push
+          echo "Committed: ${total} contributions."

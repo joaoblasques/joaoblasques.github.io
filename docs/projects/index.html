@@ -101,112 +101,102 @@
 </aside>
     <main class="maincol">
 <div class="card" style="padding:24px;"><article class="mb"><h1>Projects &amp; Portfolio</h1>
-<h2>Professional Projects</h2>
-<p>Here are some key projects I&#39;ve led or contributed to significantly in my professional career:</p>
-<h3>Real-Time Customer Analytics Platform</h3>
-<p><strong>Client</strong>: Major E-commerce Retailer<br><strong>Timeline</strong>: 2023 - Present</p>
-<p><strong>Technologies Used</strong>:</p>
+<p>Three projects I&#39;m building now, and the open-source data-engineering work behind them.</p>
+<h2>Featured</h2>
+<h3>Vitals — Health-Data Medallion Lakehouse</h3>
+<p><strong>Site</strong>: <a href="https://joaoblasques.com/vitals/">joaoblasques.com/vitals</a><br><strong>Code</strong>: <a href="https://github.com/joaoblasques/vitals">joaoblasques/vitals</a><br><strong>Technologies</strong>: Databricks/Delta, dbt, Airflow, PySpark, Feast, pgvector</p>
+<p><strong>From raw clinical signals to trusted, AI-ready data.</strong></p>
+<p>Healthcare data is the messiest data there is: many source systems, competing
+vocabularies, silent unit drift, PHI everywhere, and free text where codes belong.
+Vitals is a governed medallion lakehouse that takes raw FHIR, claims, wearable and
+notes data in, and serves it three ways — because analytics, classical ML and RAG
+each need something different:</p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Tech</th>
+<th>Serves</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Analytics marts</td>
+<td>dbt (Kimball star) + MetricFlow</td>
+<td>BI, cohorts, reporting</td>
+</tr>
+<tr>
+<td>Feature store</td>
+<td>Feast</td>
+<td>risk features, online + point-in-time</td>
+</tr>
+<tr>
+<td>Vector index</td>
+<td>pgvector</td>
+<td>RAG / semantic search over clinical notes</td>
+</tr>
+</tbody></table>
+<p><em>Status: in active development.</em></p>
+<hr>
+<h3>Corpus — A Knowledge Base That Tends Itself</h3>
+<p><strong>Site</strong>: <a href="https://joaoblasques.com/corpus-docs/">joaoblasques.com/corpus-docs</a><br><strong>Technologies</strong>: LLM agents, retrieval, structured knowledge</p>
+<p><strong>Sources in. Cited pages out.</strong></p>
+<p>Most knowledge systems decay: notes pile up, links rot, nothing is findable a year
+later. Corpus puts an LLM agent in the role of librarian — it reads everything,
+writes it into a cross-linked web of citable pages, and keeps that web consistent as
+new sources arrive.</p>
+<p>Five intake channels (email, YouTube, PDF, Obsidian vaults, web articles) feed an
+inbox; an ingest agent runs collection → clustering → ingestion → verification.
+Provenance is non-negotiable by design: information without citations can&#39;t be
+audited, and information without cross-links can&#39;t be discovered.</p>
+<hr>
+<h3>Nora — Email-Native AI Executive Assistant</h3>
+<p><strong>Site</strong>: <a href="https://nora-bennett.com/">nora-bennett.com</a><br><strong>Docs</strong>: <a href="https://docs.nora-bennett.com/">docs.nora-bennett.com</a><br><strong>Technologies</strong>: LLM agents, email integration, Astro</p>
+<p>An AI executive assistant that lives in email rather than in another app you have to
+remember to open.</p>
+<p>The design constraint that shapes everything: <strong>Nora drafts, the human sends.</strong> That
+asymmetry is the product&#39;s trust model — an assistant that can send on your behalf is
+one bad inference away from an incident you can&#39;t take back.</p>
+<h2>Data Engineering — Open Source</h2>
+<p>The pipeline work underneath. All public, each with a write-up.</p>
+<h3>MBTA On-Time-Performance Lakehouse</h3>
+<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/mbta-on-time-lakehouse">joaoblasques/mbta-on-time-lakehouse</a><br><strong>Technologies</strong>: Databricks, GCP, Spark Structured Streaming, Terraform, CI/CD</p>
+<p>A self-managing lakehouse answering &quot;is the MBTA late, and where?&quot; — it ingests
+Boston&#39;s live transit feed, computes on-time performance, and runs, heals and
+improves itself. An agentic layer writes nightly insights and opens its own pull
+requests. Notably: the failure-monitor caught a real out-of-memory bug in production
+by itself, and the transformations are tested against a real Spark session including
+the after-midnight time-reconciliation case that silently corrupts naive
+implementations. <a href="/post/mbta-otp-lakehouse/">Read the write-up →</a></p>
+<hr>
+<h3>Customer Analytics Pipeline</h3>
+<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/customer-analytics-pipeline">joaoblasques/customer-analytics-pipeline</a><br><strong>Technologies</strong>: Airflow, dbt, Spark, Iceberg, Docker</p>
+<p>A daily ELT pipeline identifying high-value customers for sales outreach, using
+medallion architecture and Apache Iceberg. <a href="/post/customer-analytics-pipeline/">Read the write-up →</a></p>
+<hr>
+<h3>Analytics Engineering with dbt</h3>
+<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/data-pipeline-transformation-analytics">joaoblasques/data-pipeline-transformation-analytics</a><br><strong>Technologies</strong>: dbt, BigQuery, Looker Studio</p>
+<p>Raw NYC taxi data through dimensional models to business intelligence — with testing
+and deployment strategy. <a href="/post/data-pipeline-transformation-analytics/">Read the write-up →</a></p>
+<hr>
+<h3>Orchestration: Airflow &amp; Kestra</h3>
+<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/data-pipeline-orchestration-airflow">airflow</a> ·
+<a href="https://github.com/joaoblasques/data-pipeline-orchestration-kestra">kestra</a></p>
+<p>Orchestrating robust pipelines across local, GCP and Kubernetes deployments with
+Airflow; and the same problem solved with Kestra, fully containerized.
+<a href="/post/data-pipeline-orchestration-airflow/">Airflow write-up →</a> ·
+<a href="/post/data-pipeline-orchestration-kestra/">Kestra write-up →</a></p>
+<hr>
+<h3>Also public</h3>
 <ul>
-<li>Apache Kafka &amp; Kafka Streams</li>
-<li>AWS (Lambda, Kinesis, S3, DynamoDB)</li>
-<li>Python, Spark Structured Streaming</li>
-<li>Kubernetes for orchestration</li>
-</ul>
-<p><strong>Project Overview</strong>:<br>Designed and implemented a real-time customer analytics platform processing over 5TB of daily event data. The system captures user interactions, processes them through a sophisticated streaming pipeline, and feeds AI models that generate personalized recommendations in under 200ms.</p>
-<p><strong>Key Achievements</strong>:</p>
-<ul>
-<li>Reduced latency of customer insights from hours to seconds</li>
-<li>Improved recommendation relevance by 35%</li>
-<li>Built a scalable architecture that automatically adjusts to traffic spikes</li>
-<li>Implemented comprehensive monitoring and alerting systems</li>
+<li><a href="https://github.com/joaoblasques/e-commerce-analytics-platform"><strong>e-commerce-analytics-platform</strong></a> — real-time analytics with Spark, PySpark and Kafka</li>
+<li><a href="https://github.com/joaoblasques/us_media_business_data_pipelines"><strong>us_media_business_data_pipelines</strong></a> — GKE, Airflow, FastAPI ML endpoints, multi-environment Terraform</li>
+<li><a href="https://github.com/joaoblasques/data-pipeline-datawarehouse-bigquery"><strong>data-pipeline-datawarehouse-bigquery</strong></a> — external tables, partitioning, clustering (<a href="/post/data-warehouse-bigquery-pipeline/">write-up</a>)</li>
+<li><a href="https://github.com/joaoblasques/wpp-multi-cloud-data-pipeline-marketing"><strong>wpp-multi-cloud-data-pipeline-marketing</strong></a> — multi-cloud marketing pipeline in Terraform</li>
+<li><a href="https://github.com/joaoblasques/data-pipeline-simple"><strong>data-pipeline-simple</strong></a> — the foundations, one tool at a time (<a href="/post/data-pipeline-simple/">write-up</a>)</li>
 </ul>
 <hr>
-<h3>Enterprise Data Warehouse Modernization</h3>
-<p><strong>Client</strong>: Financial Services Company<br><strong>Timeline</strong>: 2022 - 2023</p>
-<p><strong>Technologies Used</strong>:</p>
-<ul>
-<li>Google BigQuery</li>
-<li>Airflow for orchestration</li>
-<li>dbt for transformation</li>
-<li>Python, SQL</li>
-<li>Terraform for infrastructure as code</li>
-</ul>
-<p><strong>Project Overview</strong>:<br>Led the migration from a legacy on-premises data warehouse to a cloud-based solution. Redesigned the data model, implemented automated ETL processes, and created a self-service analytics platform for business users.</p>
-<p><strong>Key Achievements</strong>:</p>
-<ul>
-<li>Reduced monthly infrastructure costs by 40%</li>
-<li>Cut data processing time from 8 hours to 30 minutes</li>
-<li>Implemented data quality monitoring with automated alerts</li>
-<li>Created comprehensive documentation and trained internal teams</li>
-</ul>
-<hr>
-<h3>Predictive Maintenance ML System</h3>
-<p><strong>Client</strong>: Manufacturing Industry Leader<br><strong>Timeline</strong>: 2021 - 2022</p>
-<p><strong>Technologies Used</strong>:</p>
-<ul>
-<li>TensorFlow for model development</li>
-<li>MLflow for experiment tracking</li>
-<li>Docker and Kubernetes for deployment</li>
-<li>Time-series data processing</li>
-<li>Edge computing for real-time analysis</li>
-</ul>
-<p><strong>Project Overview</strong>:<br>Developed a machine learning system that predicts equipment failures before they occur. The solution processes sensor data from manufacturing equipment, identifies patterns that precede failures, and alerts maintenance teams to intervene.</p>
-<p><strong>Key Achievements</strong>:</p>
-<ul>
-<li>Reduced unplanned downtime by 32%</li>
-<li>Saved an estimated €2.1M annually in maintenance costs</li>
-<li>Created a scalable ML pipeline for continuous model improvement</li>
-<li>Implemented an intuitive dashboard for maintenance teams</li>
-</ul>
-<h2>Personal &amp; Open Source Projects</h2>
-<h3>DataStreamPy</h3>
-<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/datastreampy">github.com/joaoblasques/datastreampy</a><br><strong>Technologies</strong>: Python, Apache Kafka, Docker</p>
-<p>An open-source Python library that simplifies working with streaming data. Provides high-level abstractions for common stream processing patterns and makes it easier to build robust data pipelines.</p>
-<p><strong>Key Features</strong>:</p>
-<ul>
-<li>Declarative stream processing DSL</li>
-<li>Fault-tolerance and exactly-once processing guarantees</li>
-<li>Extensive testing utilities</li>
-<li>Comprehensive documentation and examples</li>
-</ul>
-<hr>
-<h3>ML Model Monitoring Dashboard</h3>
-<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/ml-monitor">github.com/joaoblasques/ml-monitor</a><br><strong>Technologies</strong>: Python, FastAPI, React, PostgreSQL, Docker</p>
-<p>A full-stack application for monitoring machine learning models in production. Tracks drift, performance metrics, and resource utilization to ensure models continue to perform as expected.</p>
-<p><strong>Key Features</strong>:</p>
-<ul>
-<li>Automated detection of data and concept drift</li>
-<li>Visualizations of model performance over time</li>
-<li>Alerting system for performance degradation</li>
-<li>A/B testing framework for model comparison</li>
-</ul>
-<hr>
-<h3>Automated Data Quality Framework</h3>
-<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/data-quality-framework">github.com/joaoblasques/data-quality-framework</a><br><strong>Technologies</strong>: Python, Great Expectations, Airflow, PostgreSQL</p>
-<p>An extensible framework for automated data quality checking and monitoring. Integrates with data pipelines to validate data at each stage of processing and alert on anomalies.</p>
-<p><strong>Key Features</strong>:</p>
-<ul>
-<li>Customizable quality rules engine</li>
-<li>Integration with popular data engineering tools</li>
-<li>Historical quality metrics tracking</li>
-<li>Self-service interface for data stakeholders</li>
-</ul>
-<hr>
-<h3>NLP for Customer Support Analysis</h3>
-<p><strong>Demo</strong>: <a href="https://customer-support-nlp.jonasblasques.com">customer-support-nlp.jonasblasques.com</a><br><strong>Technologies</strong>: Python, SpaCy, BERT, Flask, D3.js</p>
-<p>A natural language processing application that analyzes customer support conversations to identify common issues, sentiment trends, and opportunities for automation.</p>
-<p><strong>Key Features</strong>:</p>
-<ul>
-<li>Topic modeling to categorize support tickets</li>
-<li>Sentiment analysis to track customer satisfaction</li>
-<li>Named entity recognition for product and feature mentions</li>
-<li>Interactive visualizations of support trends</li>
-</ul>
-<h2>Research &amp; Contributions</h2>
-<p>Beyond these projects, I regularly contribute to open-source data engineering and machine learning libraries, participate in research collaborations, and share my work through technical blog posts and conference presentations.</p>
-<p>I&#39;m particularly interested in the ethical implications of AI systems and work to ensure that the solutions I build are fair, transparent, and beneficial to users.</p>
-<hr>
-<p><em>Note: Some project details have been anonymized due to confidentiality agreements. For more information about any of these projects or to discuss potential collaborations, please <a href="/contact">contact me</a>.</em></p>
+<p>Interested in any of these, or have a data problem you&#39;d like to talk through?
+<a href="mailto:joaoeduardoblasques@gmail.com">Get in touch</a>.</p>
 </article></div>
     </main>
   </div>

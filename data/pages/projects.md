@@ -1,141 +1,125 @@
 # Projects & Portfolio
 
-## Professional Projects
+Three projects I'm building now, and the open-source data-engineering work behind them.
 
-Here are some key projects I've led or contributed to significantly in my professional career:
+## Featured
 
-### Real-Time Customer Analytics Platform
+### Vitals — Health-Data Medallion Lakehouse
 
-**Client**: Major E-commerce Retailer  
-**Timeline**: 2023 - Present
+**Site**: [joaoblasques.com/vitals](https://joaoblasques.com/vitals/)  
+**Code**: [joaoblasques/vitals](https://github.com/joaoblasques/vitals)  
+**Technologies**: Databricks/Delta, dbt, Airflow, PySpark, Feast, pgvector
 
-**Technologies Used**:
-- Apache Kafka & Kafka Streams
-- AWS (Lambda, Kinesis, S3, DynamoDB)
-- Python, Spark Structured Streaming
-- Kubernetes for orchestration
+**From raw clinical signals to trusted, AI-ready data.**
 
-**Project Overview**:  
-Designed and implemented a real-time customer analytics platform processing over 5TB of daily event data. The system captures user interactions, processes them through a sophisticated streaming pipeline, and feeds AI models that generate personalized recommendations in under 200ms.
+Healthcare data is the messiest data there is: many source systems, competing
+vocabularies, silent unit drift, PHI everywhere, and free text where codes belong.
+Vitals is a governed medallion lakehouse that takes raw FHIR, claims, wearable and
+notes data in, and serves it three ways — because analytics, classical ML and RAG
+each need something different:
 
-**Key Achievements**:
-- Reduced latency of customer insights from hours to seconds
-- Improved recommendation relevance by 35%
-- Built a scalable architecture that automatically adjusts to traffic spikes
-- Implemented comprehensive monitoring and alerting systems
+| Output | Tech | Serves |
+|---|---|---|
+| Analytics marts | dbt (Kimball star) + MetricFlow | BI, cohorts, reporting |
+| Feature store | Feast | risk features, online + point-in-time |
+| Vector index | pgvector | RAG / semantic search over clinical notes |
 
----
-
-### Enterprise Data Warehouse Modernization
-
-**Client**: Financial Services Company  
-**Timeline**: 2022 - 2023
-
-**Technologies Used**:
-- Google BigQuery
-- Airflow for orchestration
-- dbt for transformation
-- Python, SQL
-- Terraform for infrastructure as code
-
-**Project Overview**:  
-Led the migration from a legacy on-premises data warehouse to a cloud-based solution. Redesigned the data model, implemented automated ETL processes, and created a self-service analytics platform for business users.
-
-**Key Achievements**:
-- Reduced monthly infrastructure costs by 40%
-- Cut data processing time from 8 hours to 30 minutes
-- Implemented data quality monitoring with automated alerts
-- Created comprehensive documentation and trained internal teams
+*Status: in active development.*
 
 ---
 
-### Predictive Maintenance ML System
+### Corpus — A Knowledge Base That Tends Itself
 
-**Client**: Manufacturing Industry Leader  
-**Timeline**: 2021 - 2022
+**Site**: [joaoblasques.com/corpus-docs](https://joaoblasques.com/corpus-docs/)  
+**Technologies**: LLM agents, retrieval, structured knowledge
 
-**Technologies Used**:
-- TensorFlow for model development
-- MLflow for experiment tracking
-- Docker and Kubernetes for deployment
-- Time-series data processing
-- Edge computing for real-time analysis
+**Sources in. Cited pages out.**
 
-**Project Overview**:  
-Developed a machine learning system that predicts equipment failures before they occur. The solution processes sensor data from manufacturing equipment, identifies patterns that precede failures, and alerts maintenance teams to intervene.
+Most knowledge systems decay: notes pile up, links rot, nothing is findable a year
+later. Corpus puts an LLM agent in the role of librarian — it reads everything,
+writes it into a cross-linked web of citable pages, and keeps that web consistent as
+new sources arrive.
 
-**Key Achievements**:
-- Reduced unplanned downtime by 32%
-- Saved an estimated €2.1M annually in maintenance costs
-- Created a scalable ML pipeline for continuous model improvement
-- Implemented an intuitive dashboard for maintenance teams
-
-## Personal & Open Source Projects
-
-### DataStreamPy
-
-**GitHub**: [github.com/joaoblasques/datastreampy](https://github.com/joaoblasques/datastreampy)  
-**Technologies**: Python, Apache Kafka, Docker
-
-An open-source Python library that simplifies working with streaming data. Provides high-level abstractions for common stream processing patterns and makes it easier to build robust data pipelines.
-
-**Key Features**:
-- Declarative stream processing DSL
-- Fault-tolerance and exactly-once processing guarantees
-- Extensive testing utilities
-- Comprehensive documentation and examples
+Five intake channels (email, YouTube, PDF, Obsidian vaults, web articles) feed an
+inbox; an ingest agent runs collection → clustering → ingestion → verification.
+Provenance is non-negotiable by design: information without citations can't be
+audited, and information without cross-links can't be discovered.
 
 ---
 
-### ML Model Monitoring Dashboard
+### Nora — Email-Native AI Executive Assistant
 
-**GitHub**: [github.com/joaoblasques/ml-monitor](https://github.com/joaoblasques/ml-monitor)  
-**Technologies**: Python, FastAPI, React, PostgreSQL, Docker
+**Site**: [nora-bennett.com](https://nora-bennett.com/)  
+**Docs**: [docs.nora-bennett.com](https://docs.nora-bennett.com/)  
+**Technologies**: LLM agents, email integration, Astro
 
-A full-stack application for monitoring machine learning models in production. Tracks drift, performance metrics, and resource utilization to ensure models continue to perform as expected.
+An AI executive assistant that lives in email rather than in another app you have to
+remember to open.
 
-**Key Features**:
-- Automated detection of data and concept drift
-- Visualizations of model performance over time
-- Alerting system for performance degradation
-- A/B testing framework for model comparison
+The design constraint that shapes everything: **Nora drafts, the human sends.** That
+asymmetry is the product's trust model — an assistant that can send on your behalf is
+one bad inference away from an incident you can't take back.
 
----
+## Data Engineering — Open Source
 
-### Automated Data Quality Framework
+The pipeline work underneath. All public, each with a write-up.
 
-**GitHub**: [github.com/joaoblasques/data-quality-framework](https://github.com/joaoblasques/data-quality-framework)  
-**Technologies**: Python, Great Expectations, Airflow, PostgreSQL
+### MBTA On-Time-Performance Lakehouse
 
-An extensible framework for automated data quality checking and monitoring. Integrates with data pipelines to validate data at each stage of processing and alert on anomalies.
+**GitHub**: [joaoblasques/mbta-on-time-lakehouse](https://github.com/joaoblasques/mbta-on-time-lakehouse)  
+**Technologies**: Databricks, GCP, Spark Structured Streaming, Terraform, CI/CD
 
-**Key Features**:
-- Customizable quality rules engine
-- Integration with popular data engineering tools
-- Historical quality metrics tracking
-- Self-service interface for data stakeholders
-
----
-
-### NLP for Customer Support Analysis
-
-**Demo**: [customer-support-nlp.jonasblasques.com](https://customer-support-nlp.jonasblasques.com)  
-**Technologies**: Python, SpaCy, BERT, Flask, D3.js
-
-A natural language processing application that analyzes customer support conversations to identify common issues, sentiment trends, and opportunities for automation.
-
-**Key Features**:
-- Topic modeling to categorize support tickets
-- Sentiment analysis to track customer satisfaction
-- Named entity recognition for product and feature mentions
-- Interactive visualizations of support trends
-
-## Research & Contributions
-
-Beyond these projects, I regularly contribute to open-source data engineering and machine learning libraries, participate in research collaborations, and share my work through technical blog posts and conference presentations.
-
-I'm particularly interested in the ethical implications of AI systems and work to ensure that the solutions I build are fair, transparent, and beneficial to users.
+A self-managing lakehouse answering "is the MBTA late, and where?" — it ingests
+Boston's live transit feed, computes on-time performance, and runs, heals and
+improves itself. An agentic layer writes nightly insights and opens its own pull
+requests. Notably: the failure-monitor caught a real out-of-memory bug in production
+by itself, and the transformations are tested against a real Spark session including
+the after-midnight time-reconciliation case that silently corrupts naive
+implementations. [Read the write-up →](/post/mbta-otp-lakehouse/)
 
 ---
 
-*Note: Some project details have been anonymized due to confidentiality agreements. For more information about any of these projects or to discuss potential collaborations, please [contact me](/contact).*
+### Customer Analytics Pipeline
+
+**GitHub**: [joaoblasques/customer-analytics-pipeline](https://github.com/joaoblasques/customer-analytics-pipeline)  
+**Technologies**: Airflow, dbt, Spark, Iceberg, Docker
+
+A daily ELT pipeline identifying high-value customers for sales outreach, using
+medallion architecture and Apache Iceberg. [Read the write-up →](/post/customer-analytics-pipeline/)
+
+---
+
+### Analytics Engineering with dbt
+
+**GitHub**: [joaoblasques/data-pipeline-transformation-analytics](https://github.com/joaoblasques/data-pipeline-transformation-analytics)  
+**Technologies**: dbt, BigQuery, Looker Studio
+
+Raw NYC taxi data through dimensional models to business intelligence — with testing
+and deployment strategy. [Read the write-up →](/post/data-pipeline-transformation-analytics/)
+
+---
+
+### Orchestration: Airflow & Kestra
+
+**GitHub**: [airflow](https://github.com/joaoblasques/data-pipeline-orchestration-airflow) ·
+[kestra](https://github.com/joaoblasques/data-pipeline-orchestration-kestra)
+
+Orchestrating robust pipelines across local, GCP and Kubernetes deployments with
+Airflow; and the same problem solved with Kestra, fully containerized.
+[Airflow write-up →](/post/data-pipeline-orchestration-airflow/) ·
+[Kestra write-up →](/post/data-pipeline-orchestration-kestra/)
+
+---
+
+### Also public
+
+- [**e-commerce-analytics-platform**](https://github.com/joaoblasques/e-commerce-analytics-platform) — real-time analytics with Spark, PySpark and Kafka
+- [**us_media_business_data_pipelines**](https://github.com/joaoblasques/us_media_business_data_pipelines) — GKE, Airflow, FastAPI ML endpoints, multi-environment Terraform
+- [**data-pipeline-datawarehouse-bigquery**](https://github.com/joaoblasques/data-pipeline-datawarehouse-bigquery) — external tables, partitioning, clustering ([write-up](/post/data-warehouse-bigquery-pipeline/))
+- [**wpp-multi-cloud-data-pipeline-marketing**](https://github.com/joaoblasques/wpp-multi-cloud-data-pipeline-marketing) — multi-cloud marketing pipeline in Terraform
+- [**data-pipeline-simple**](https://github.com/joaoblasques/data-pipeline-simple) — the foundations, one tool at a time ([write-up](/post/data-pipeline-simple/))
+
+---
+
+Interested in any of these, or have a data problem you'd like to talk through?
+[Get in touch](mailto:joaoeduardoblasques@gmail.com).

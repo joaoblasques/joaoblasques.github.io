@@ -63,9 +63,9 @@ const tagPills = (tags) =>
 const repoCard = (r) => `
 <div class="card repo-card">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-    ${icon('repo', 16, 'fill:var(--faint);flex-shrink:0')}
+    ${icon(r.badge === 'Site' ? 'link' : 'repo', 16, 'fill:var(--faint);flex-shrink:0')}
     <a href="${r.url}" style="font-weight:600;font-size:14px;">${esc(r.name)}</a>
-    <span class="pill-public">Public</span>
+    <span class="pill-public">${esc(r.badge || 'Public')}</span>
   </div>
   <p style="font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 16px;flex:1;">${esc(r.desc)}</p>
   <div style="display:flex;align-items:center;gap:16px;font-size:12px;color:var(--muted);">
@@ -165,7 +165,7 @@ ${heatmap()}
 <div class="section">
   <div class="section-head">
     <h2 class="section-h" style="margin:0;">Pinned</h2>
-    <a href="${profile.github}?tab=repositories" style="font-size:12px;">View all repositories →</a>
+    <a href="/projects/" style="font-size:12px;">View all projects →</a>
   </div>
   <div class="repogrid">${repos.map(repoCard).join('')}</div>
 </div>

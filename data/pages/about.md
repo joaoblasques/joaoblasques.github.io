@@ -12,7 +12,7 @@ My career is built on a strong foundation in data engineering complemented by de
 - **Data Engineering**: ETL/ELT pipelines, data warehousing, stream processing
 - **Programming Languages**: Python, SQL, Java, Scala
 - **Big Data Technologies**: Spark, Hadoop, Kafka, Airflow
-- **Cloud Platforms**: AWS (Certified Solutions Architect), Google Cloud Platform, Azure
+- **Cloud Platforms**: AWS, Google Cloud Platform, Azure
 - **Machine Learning**: TensorFlow, PyTorch, scikit-learn, natural language processing
 - **MLOps**: ML model deployment, monitoring, and lifecycle management
 - **Data Visualization**: Tableau, PowerBI, D3.js
@@ -26,44 +26,16 @@ My career is built on a strong foundation in data engineering complemented by de
 - Clear technical communication
 - Stakeholder management
 
-## Professional Experience Highlights
+## What I Work On
 
-### AI-Enabled Data Engineer | DataStuff.nl
-*2022 - Present*
+- Building end-to-end data pipelines for batch and real-time analytics
+- Designing medallion-architecture lakehouses on Databricks, BigQuery and Delta
+- Orchestrating workflows with Airflow, dbt and Kestra
+- Automated data-quality monitoring and anomaly detection
+- Bringing software-engineering discipline — testing, CI/CD, IaC — to data work
 
-- Designed and implemented end-to-end data pipelines for real-time analytics processing over 5TB of daily data
-- Developed custom ML models to predict customer behavior, increasing conversion rates by 25%
-- Led the migration of legacy data systems to a cloud-based architecture, reducing operational costs by 30%
-- Implemented automated data quality monitoring systems with AI-driven anomaly detection
-- Mentored junior engineers in best practices for data engineering and machine learning
-
-### Senior Data Engineer | Tech Innovation Inc.
-*2019 - 2022*
-
-- Built scalable data processing frameworks that reduced ETL processing time by 60%
-- Integrated machine learning models into production systems for automated decision-making
-- Collaborated with cross-functional teams to define data requirements and KPIs
-- Developed data governance frameworks and documentation standards
-
-### Data Analyst | Data Insights Corp
-*2017 - 2019*
-
-- Analyzed large datasets to identify trends and opportunities for business optimization
-- Created interactive dashboards for executive reporting
-- Conducted statistical analysis to validate business hypotheses
-- Automated routine reporting processes, saving 20+ hours per week
-
-## Education & Certifications
-
-- **Master of Science in Computer Science**, University of Amsterdam, 2017
-  - Specialization in Artificial Intelligence and Data Engineering
-- **Bachelor of Science in Applied Mathematics**, Technical University of Lisbon, 2015
-
-### Certifications
-- AWS Certified Solutions Architect – Associate
-- Google Professional Data Engineer
-- TensorFlow Developer Certificate
-- Microsoft Certified: Azure Data Engineer Associate
+The [projects](/projects/) and [posts](/posts/) sections show this work in practice,
+with the code public on [GitHub](https://github.com/joaoblasques).
 
 ## Personal Interests
 

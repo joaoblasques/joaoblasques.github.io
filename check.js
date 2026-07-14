@@ -76,6 +76,31 @@ post.includes('Medallion architecture') ? ok('post body present in raw HTML')
 read('index.html').includes('contributions in the last year') ? ok('heatmap server-rendered')
                                                               : fail('heatmap missing');
 
+console.log('\nInternal links resolve');
+// Catches links to pages that were renamed or never existed (the old /contact).
+const internalBad = new Set();
+for (const p of pages) {
+  const html = fs.readFileSync(p, 'utf8');
+  for (const m of html.matchAll(/href="(\/[^"#?]*)"/g)) {
+    const href = m[1];
+    if (href.startsWith('//')) continue;
+    const target = href.endsWith('/') ? `${href.slice(1)}index.html` : href.slice(1);
+    if (!exists(target) && !exists(`${href.slice(1)}/index.html`)) {
+      internalBad.add(`${href}  (linked from /${path.relative(OUT, p)})`);
+    }
+  }
+}
+internalBad.size ? [...internalBad].forEach((l) => fail(`dead internal link: ${l}`))
+                 : ok('no dead internal links');
+
+// Cheap offline guard: the GitHub handle is joaoblasques. "jonasblasques" is the
+// personal nickname and has been typo'd into post prose before, 404ing silently.
+const wrongHandle = pages.filter((p) =>
+  /github\.com\/jonasblasques/.test(fs.readFileSync(p, 'utf8')));
+wrongHandle.length
+  ? wrongHandle.forEach((p) => fail(`wrong GitHub handle in /${path.relative(OUT, p)} (jonasblasques → joaoblasques)`))
+  : ok('no links to the wrong GitHub handle');
+
 console.log('\nHeatmap data is real, not placeholder');
 const c = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/contributions.json'), 'utf8'));
 const cells = c.weeks.reduce((n, w) => n + w.contributionDays.length, 0);

@@ -99,19 +99,12 @@ I've developed a diverse set of technical skills throughout my career, focusing 
 - **Responsible AI**: Ethical considerations, bias detection and mitigation
 - **A/B Testing**: Systematic approach to testing model improvements
 
-## Certifications & Professional Development
+## Continuous Learning
 
-### Current Certifications
-- **AWS Certified Solutions Architect – Associate** (2023)
-- **Google Professional Data Engineer** (2024)
-- **TensorFlow Developer Certificate** (2023)
-- **Microsoft Certified: Azure Data Engineer Associate** (2024)
-
-### Continuous Learning
 I'm committed to ongoing professional development. Currently, I'm:
-- Studying for the AWS Machine Learning Specialty certification
 - Deepening my knowledge of MLOps and feature stores
 - Exploring federated learning and privacy-preserving ML techniques
+- Building agentic systems that operate and improve data platforms
 - Participating in advanced data engineering communities and forums
 
 ## Soft Skills
@@ -126,4 +119,4 @@ Beyond technical capabilities, I bring:
 
 ---
 
-*This skills profile is regularly updated as I continue to develop my expertise. If you're interested in collaborating on projects that require these skills, please [contact me](/contact).*
+*This skills profile is regularly updated as I continue to develop my expertise. If you're interested in collaborating on projects that require these skills, please [contact me](mailto:joaoeduardoblasques@gmail.com).*

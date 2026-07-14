@@ -1,38 +1,44 @@
 [
   {
+    "name": "vitals",
+    "url": "https://joaoblasques.com/vitals/",
+    "lang": "Python",
+    "desc": "From raw clinical signals to trusted, AI-ready data — a health-data medallion lakehouse serving analytics marts, an ML feature store and a vector index (Databricks/Delta, dbt, Airflow, Feast, pgvector).",
+    "badge": "Site"
+  },
+  {
+    "name": "corpus",
+    "url": "https://joaoblasques.com/corpus-docs/",
+    "lang": "Python",
+    "desc": "A knowledge base that tends itself. Sources in, cited pages out — an LLM agent reads everything, writes it into a cross-linked web of citable pages, and keeps it consistent as new sources arrive.",
+    "badge": "Site"
+  },
+  {
+    "name": "nora",
+    "url": "https://nora-bennett.com/",
+    "lang": "Python",
+    "desc": "An email-native AI executive assistant. Nora drafts, the human sends — that asymmetry is the product's trust model.",
+    "badge": "Site"
+  },
+  {
     "name": "mbta-on-time-lakehouse",
     "url": "https://github.com/joaoblasques/mbta-on-time-lakehouse",
     "lang": "Python",
-    "desc": "A self-managing MBTA on-time-performance lakehouse on Databricks + GCP, with an agentic layer that writes its own insights and opens pull requests."
+    "desc": "A self-managing MBTA on-time-performance lakehouse on Databricks + GCP, with an agentic layer that writes its own insights and opens pull requests.",
+    "badge": "Public"
   },
   {
     "name": "customer-analytics-pipeline",
     "url": "https://github.com/joaoblasques/customer-analytics-pipeline",
     "lang": "Python",
-    "desc": "Daily ELT pipeline that identifies high-value customers for sales outreach — Airflow, dbt, Spark, Iceberg, Docker."
+    "desc": "Daily ELT pipeline that identifies high-value customers for sales outreach — Airflow, dbt, Spark, Iceberg, Docker.",
+    "badge": "Public"
   },
   {
-    "name": "data-pipeline-transformation-analytics",
-    "url": "https://github.com/joaoblasques/data-pipeline-transformation-analytics",
+    "name": "e-commerce-analytics-platform",
+    "url": "https://github.com/joaoblasques/e-commerce-analytics-platform",
     "lang": "Python",
-    "desc": "Analytics engineering with dbt: raw NYC taxi data → dimensional models → Looker Studio business intelligence."
-  },
-  {
-    "name": "data-pipeline-orchestration-airflow",
-    "url": "https://github.com/joaoblasques/data-pipeline-orchestration-airflow",
-    "lang": "Python",
-    "desc": "Orchestrating robust data pipelines with Apache Airflow across local, GCP and Kubernetes deployments."
-  },
-  {
-    "name": "data-pipeline-orchestration-kestra",
-    "url": "https://github.com/joaoblasques/data-pipeline-orchestration-kestra",
-    "lang": "Python",
-    "desc": "Workflow orchestration with Kestra — ETL to PostgreSQL and BigQuery, fully containerized with Docker Compose."
-  },
-  {
-    "name": "vitals",
-    "url": "https://github.com/joaoblasques/vitals",
-    "lang": "Python",
-    "desc": "From raw clinical signals to trusted, AI-ready data — a health-data medallion lakehouse (Databricks/Delta, dbt, Airflow)."
+    "desc": "Real-time e-commerce analytics platform using Apache Spark, PySpark and Kafka.",
+    "badge": "Public"
   }
 ]

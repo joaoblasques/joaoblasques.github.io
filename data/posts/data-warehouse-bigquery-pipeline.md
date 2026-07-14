@@ -2,7 +2,7 @@
 
 This project demonstrates the implementation of a comprehensive data pipeline using Google BigQuery as the primary data warehouse solution. The pipeline showcases modern data engineering practices including external data integration, table optimization strategies, and performance tuning techniques.
 
-**Repository:** [Data Pipeline with BigQuery](https://github.com/jonasblasques/4-data-pipeline-datawarehouse-bigquery)
+**Repository:** [Data Pipeline with BigQuery](https://github.com/joaoblasques/data-pipeline-datawarehouse-bigquery)
 
 The project focuses on building a scalable, cost-effective data warehouse solution that can handle large volumes of NYC taxi trip data while maintaining optimal query performance and cost efficiency.
 

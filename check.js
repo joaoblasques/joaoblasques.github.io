@@ -12,6 +12,22 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const OUT = path.join(__dirname, 'docs');
+
+// build.js writes docs/ fresh each run. If it crashed, docs/ holds the PREVIOUS
+// run's output and every check below would pass while describing a build that
+// never happened. Refuse to validate output older than the data it came from.
+const newestData = ['data/posts.json', 'data/profile.json', 'data/repos.json']
+  .map((f) => fs.statSync(path.join(__dirname, f)).mtimeMs)
+  .reduce((a, b) => Math.max(a, b), 0);
+if (!fs.existsSync(path.join(OUT, 'index.html'))) {
+  console.log('\n✗ docs/index.html missing — run `node build.js` first\n');
+  process.exit(1);
+}
+if (fs.statSync(path.join(OUT, 'index.html')).mtimeMs < newestData) {
+  console.log('\n✗ docs/ is older than data/ — the build did not run or it failed. Re-run `node build.js`.\n');
+  process.exit(1);
+}
+
 let failures = 0;
 const ok = (msg) => console.log(`  ok   ${msg}`);
 const fail = (msg) => { console.log(`  FAIL ${msg}`); failures++; };

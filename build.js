@@ -13,6 +13,7 @@ const path = require('path');
 const { marked } = require('marked');
 const { page, esc, fmtDate, LANG_COLOR } = require('./lib/layout');
 const { icon } = require('./lib/icons');
+const { validatePosts } = require('./build-lib');
 
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'docs');
@@ -49,7 +50,7 @@ const md = (s) => marked.parse(s);
 
 const profile = readJSON('data/profile.json');
 const repos = readJSON('data/repos.json');
-const posts = readJSON('data/posts.json');
+const posts = validatePosts(readJSON('data/posts.json'));
 const contrib = readJSON('data/contributions.json');
 const N = posts.length;
 

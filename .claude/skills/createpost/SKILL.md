@@ -53,7 +53,7 @@ Each one is here because it already went wrong on this site.
 5. **Never hand-edit `docs/`** — it's generated. Write `data/`, run `npm run build`.
 6. **The GitHub handle is `joaoblasques`**, never `jonasblasques` (the nickname has
    been typo'd into a live link before).
-7. **Never commit or push.** Leave everything staged for the human.
+7. **Never commit or push.** Leave everything unstaged, for the human to review.
 
 ## Phase 1 — Scan (no questions yet)
 

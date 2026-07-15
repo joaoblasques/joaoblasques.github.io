@@ -1,5 +1,8 @@
 node_modules/
 
+# /createpost LinkedIn drafts — local only, never published
+.createpost/
+
 # NOTE: docs/ is intentionally NOT ignored — GitHub Pages serves it from main.
 
 # OS generated files
@@ -17,3 +20,4 @@ Thumbs.db
 *.swp
 *.swo
 *~
+.superpowers/

@@ -6,8 +6,15 @@
     <description>AI-Enabled Data Engineer with over 7 years of experience designing, building and optimizing data pipelines and machine-learning solutions.</description>
     <language>en-us</language>
     <managingEditor>joaoeduardoblasques@gmail.com (João Blasques)</managingEditor>
-    <lastBuildDate>Tue, 23 Jun 2026 10:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2026 10:00:00 GMT</lastBuildDate>
     <atom:link href="https://joaoblasques.com/index.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Vitals: A Governed Medallion Lakehouse for Healthcare Data</title>
+      <link>https://joaoblasques.com/post/vitals-medallion-lakehouse/</link>
+      <pubDate>Wed, 15 Jul 2026 10:00:00 GMT</pubDate>
+      <guid>https://joaoblasques.com/post/vitals-medallion-lakehouse/</guid>
+      <description>A health-data lakehouse that turns messy FHIR, claims, wearable, and notes data into three trusted outputs — analytics marts, an ML feature store, and a vector index — with de-identification, OMOP standardization, and cross-engine parity testing that caught a real de-id gap.</description>
+    </item>
     <item>
       <title>Building a Self-Managing MBTA On-Time-Performance Lakehouse (Databricks + GCP)</title>
       <link>https://joaoblasques.com/post/mbta-otp-lakehouse/</link>

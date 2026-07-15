@@ -6,6 +6,7 @@
   <url><loc>https://joaoblasques.com/skills/</loc></url>
   <url><loc>https://joaoblasques.com/about/</loc></url>
   <url><loc>https://joaoblasques.com/tags/</loc></url>
+  <url><loc>https://joaoblasques.com/post/vitals-medallion-lakehouse/</loc></url>
   <url><loc>https://joaoblasques.com/post/mbta-otp-lakehouse/</loc></url>
   <url><loc>https://joaoblasques.com/post/customer-analytics-pipeline/</loc></url>
   <url><loc>https://joaoblasques.com/post/data-pipeline-transformation-analytics/</loc></url>
@@ -19,15 +20,18 @@
   <url><loc>https://joaoblasques.com/post/welcome/</loc></url>
   <url><loc>https://joaoblasques.com/tags/data-engineering/</loc></url>
   <url><loc>https://joaoblasques.com/tags/databricks/</loc></url>
-  <url><loc>https://joaoblasques.com/tags/gcp/</loc></url>
   <url><loc>https://joaoblasques.com/tags/lakehouse/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/dbt/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/airflow/</loc></url>
   <url><loc>https://joaoblasques.com/tags/spark/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/data-quality/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/healthcare/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/mlops/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/gcp/</loc></url>
   <url><loc>https://joaoblasques.com/tags/structured-streaming/</loc></url>
   <url><loc>https://joaoblasques.com/tags/terraform/</loc></url>
   <url><loc>https://joaoblasques.com/tags/ci-cd/</loc></url>
   <url><loc>https://joaoblasques.com/tags/agentic/</loc></url>
-  <url><loc>https://joaoblasques.com/tags/airflow/</loc></url>
-  <url><loc>https://joaoblasques.com/tags/dbt/</loc></url>
   <url><loc>https://joaoblasques.com/tags/docker/</loc></url>
   <url><loc>https://joaoblasques.com/tags/iceberg/</loc></url>
   <url><loc>https://joaoblasques.com/tags/analytics/</loc></url>
@@ -56,7 +60,6 @@
   <url><loc>https://joaoblasques.com/tags/innovation/</loc></url>
   <url><loc>https://joaoblasques.com/tags/machine-learning/</loc></url>
   <url><loc>https://joaoblasques.com/tags/pipelines/</loc></url>
-  <url><loc>https://joaoblasques.com/tags/mlops/</loc></url>
   <url><loc>https://joaoblasques.com/tags/introduction/</loc></url>
   <url><loc>https://joaoblasques.com/tags/about/</loc></url>
 </urlset>

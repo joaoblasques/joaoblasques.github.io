@@ -1,5 +1,22 @@
 [
   {
+    "slug": "vitals-medallion-lakehouse",
+    "title": "Vitals: A Governed Medallion Lakehouse for Healthcare Data",
+    "date": "2026-07-15",
+    "description": "A health-data lakehouse that turns messy FHIR, claims, wearable, and notes data into three trusted outputs — analytics marts, an ML feature store, and a vector index — with de-identification, OMOP standardization, and cross-engine parity testing that caught a real de-id gap.",
+    "tags": [
+      "data engineering",
+      "databricks",
+      "lakehouse",
+      "dbt",
+      "airflow",
+      "spark",
+      "data quality",
+      "healthcare",
+      "mlops"
+    ]
+  },
+  {
     "slug": "mbta-otp-lakehouse",
     "title": "Building a Self-Managing MBTA On-Time-Performance Lakehouse (Databricks + GCP)",
     "date": "2026-06-23",

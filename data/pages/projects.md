@@ -8,7 +8,7 @@ Three projects I'm building now, and the open-source data-engineering work behin
 
 **Site**: [joaoblasques.com/vitals](https://joaoblasques.com/vitals/)  
 **Code**: [joaoblasques/vitals](https://github.com/joaoblasques/vitals)  
-**Technologies**: Databricks/Delta, dbt, Airflow, PySpark, Feast, pgvector
+**Technologies**: Databricks/Delta, dbt, Airflow, PySpark, Kafka, Feast, pgvector, Great Expectations, Terraform
 
 **From raw clinical signals to trusted, AI-ready data.**
 
@@ -24,13 +24,19 @@ each need something different:
 | Feature store | Feast | risk features, online + point-in-time |
 | Vector index | pgvector | RAG / semantic search over clinical notes |
 
-*Status: in active development.*
+Silver conforms to the OMOP CDM, a Great Expectations gate fails the build on any
+coded-vocabulary violation, and the same silver/gold logic is proven identical across
+four execution engines (DuckDB, Databricks Delta, PySpark, and a real Kafka streaming
+path) — a parity check that has already caught a real cross-engine bug.
+
+*Status: MVP through Phase 6 shipped — deployed on Databricks (Delta + Unity
+Catalog), streaming, governed, and CI-gated.* [Read the write-up →](/post/vitals-medallion-lakehouse/)
 
 ---
 
 ### Corpus — A Knowledge Base That Tends Itself
 
-**Site**: [joaoblasques.com/corpus-docs](https://joaoblasques.com/corpus-docs/)  
+**Site**: [joaoblasques.com/corpus](https://joaoblasques.com/corpus/)  
 **Technologies**: LLM agents, retrieval, structured knowledge
 
 **Sources in. Cited pages out.**

@@ -3,12 +3,12 @@
     "name": "vitals",
     "url": "https://joaoblasques.com/vitals/",
     "lang": "Python",
-    "desc": "From raw clinical signals to trusted, AI-ready data — a health-data medallion lakehouse serving analytics marts, an ML feature store and a vector index (Databricks/Delta, dbt, Airflow, Feast, pgvector).",
+    "desc": "From raw clinical signals to trusted, AI-ready data — a governed health-data medallion lakehouse with OMOP standardization, a Great Expectations DQ gate, real Kafka streaming, and cross-engine parity (DuckDB/Databricks/PySpark) serving analytics marts, an ML feature store and a vector index.",
     "badge": "Site"
   },
   {
     "name": "corpus",
-    "url": "https://joaoblasques.com/corpus-docs/",
+    "url": "https://joaoblasques.com/corpus/",
     "lang": "Python",
     "desc": "A knowledge base that tends itself. Sources in, cited pages out — an LLM agent reads everything, writes it into a cross-linked web of citable pages, and keeps it consistent as new sources arrive.",
     "badge": "Site"

@@ -16,7 +16,11 @@ const OUT = path.join(__dirname, 'docs');
 // build.js writes docs/ fresh each run. If it crashed, docs/ holds the PREVIOUS
 // run's output and every check below would pass while describing a build that
 // never happened. Refuse to validate output older than the data it came from.
-const newestData = ['data/posts.json', 'data/profile.json', 'data/repos.json']
+// Every JSON file build.js reads. If docs/ is older than any of them, the build
+// either didn't run or crashed — and every check below would be validating the
+// previous run's output. Keep in sync with the readJSON calls in build.js.
+const DATA_INPUTS = ['data/posts.json', 'data/profile.json', 'data/repos.json', 'data/contributions.json'];
+const newestData = DATA_INPUTS
   .map((f) => fs.statSync(path.join(__dirname, f)).mtimeMs)
   .reduce((a, b) => Math.max(a, b), 0);
 if (!fs.existsSync(path.join(OUT, 'index.html'))) {

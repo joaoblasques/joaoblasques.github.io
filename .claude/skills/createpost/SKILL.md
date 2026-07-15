@@ -22,14 +22,29 @@ Each one is here because it already went wrong on this site.
 2. **Verify every link before you write it.** Check with
    `curl -s -o /dev/null -m 10 -L -w '%{http_code}'`. Four "projects" (`datastreampy`,
    `ml-monitor`, `data-quality-framework`, an NLP demo) were advertised for months
-   while 404ing. Never again.
-3. **Private repo → link the public destination, never the repo.** Check first:
+   while 404ing. Never again. If `curl` is unavailable or blocked, fall back to
+   `gh api` for GitHub URLs. If a link genuinely can't be verified either way, say so
+   to the user and ask — don't write an unverified link.
+3. **Private repo → link the public destination, never the repo.** The live check is
+   authoritative; the table below is only a hint and goes stale. Always run, don't trust
+   memory or the table:
    `gh api repos/joaoblasques/<repo> --jq .visibility`
+
+   If the live result contradicts the table, believe the live result and tell the user
+   the table is out of date (and fix the row while you're there).
+
+   Same problem for the destination URL — it moves. Determine it live, in order:
+   `gh api repos/joaoblasques/<repo> --jq .homepage`,
+   `gh api repos/joaoblasques/<repo>/pages --jq .html_url`, then the target repo's own
+   recent `git log` / README for a canonical URL. A 200 from `curl` is not proof it's the
+   *right* destination — old URLs can keep resolving from a stale, separate deployment
+   after the project has moved. If more than one URL resolves, prefer the one the project
+   itself currently points at; if it's genuinely ambiguous, ask the user rather than guess.
 
    | Project | Repo | Link this instead |
    |---|---|---|
    | Vitals | public | `https://joaoblasques.com/vitals/` |
-   | Corpus | **private** | `https://joaoblasques.com/corpus-docs/` |
+   | Corpus | public | `https://joaoblasques.com/corpus/` |
    | Nora | **private** | `https://nora-bennett.com/` |
 
    No public destination? Say so and ask. Don't link a 404; don't silently drop it.
@@ -50,7 +65,10 @@ Read enough to write from fact:
 - Repo tree, depth 3, ignoring `node_modules/`, `.git/`, build output
 - `git log --oneline -30` — what's actually been happening
 - `.github/workflows/*` — what's really tested and deployed
-- `pyproject.toml` / `requirements.txt` / `package.json` — the real stack
+- `pyproject.toml` / `requirements.txt` / `package.json` — the real stack. Not always
+  at the root — Corpus keeps its only manifest at `website/requirements.txt`. If none
+  exists at the root, search a couple levels deep before concluding there's no stack to
+  describe: `find . -maxdepth 3 -name pyproject.toml -o -maxdepth 3 -name requirements.txt -o -maxdepth 3 -name package.json | grep -v node_modules`
 - `gh api repos/<owner>/<repo> --jq '{visibility,description,language,homepage}'`
 
 Decide the slug now (the LinkedIn post links to it):

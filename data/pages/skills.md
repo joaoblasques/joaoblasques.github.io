@@ -5,7 +5,7 @@
 I've developed a diverse set of technical skills throughout my career, focusing on data engineering, machine learning, and cloud technologies. Below is a detailed breakdown of my expertise areas.
 
 ### Skill Level Legend
-- **Expert**: Deep knowledge with 5+ years of experience, can architect solutions and mentor others
+- **Expert**: Deep knowledge with 3+ years of experience, can architect solutions and mentor others
 - **Advanced**: Strong working knowledge, can implement complex solutions independently
 - **Intermediate**: Good understanding, can work with guidance on complex tasks
 - **Beginner**: Basic understanding, actively learning

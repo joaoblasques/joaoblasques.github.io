@@ -2,9 +2,14 @@
 
 ## Professional Summary
 
-I am João Blasques, an AI-Enabled Data Engineer with over 7 years of experience in designing, implementing, and optimizing data pipelines and machine learning solutions. I specialize in transforming complex data challenges into actionable insights and automated systems that drive business growth and operational efficiency.
+I am João Blasques, an AI-Enabled Data Engineer with over 3 years of experience in designing, implementing, and optimizing data pipelines and machine learning solutions. I specialize in transforming complex data challenges into actionable insights and automated systems that drive business growth and operational efficiency.
 
-My career is built on a strong foundation in data engineering complemented by deep expertise in artificial intelligence and machine learning applications. I excel at bridging the gap between technical implementations and business objectives, ensuring that data solutions deliver measurable value.
+I moved into data engineering from a background in GeoSpatial and Environmental Engineering, after several years working hands-on in wind-turbine blade repair — a deliberate reskilling into a field where I could combine that technical, detail-oriented background with software and data. That foundation is now complemented by deep expertise in artificial intelligence and machine learning applications. I excel at bridging the gap between technical implementations and business objectives, ensuring that data solutions deliver measurable value.
+
+## Education
+
+- **Master's degree, GeoSpatial Technologies** — NOVA IMS Information Management School (2010–2012)
+- **Bachelor's degree, Environmental Engineering Technology** — Universidade Nova de Lisboa (1995–2001)
 
 ## Key Skills & Expertise
 

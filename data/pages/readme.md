@@ -1,6 +1,6 @@
 # Hi, I'm João Blasques <span class="wave">👋</span>
 
-I'm an **AI-Enabled Data Engineer** with over 7 years of experience designing, building and optimizing data pipelines and machine-learning solutions. I turn complex data challenges into actionable insights and automated systems that drive real business value.
+I'm an **AI-Enabled Data Engineer** with over 3 years of experience designing, building and optimizing data pipelines and machine-learning solutions. I turn complex data challenges into actionable insights and automated systems that drive real business value.
 
 ## Core expertise
 

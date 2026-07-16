@@ -1,122 +1,53 @@
 # Skills & Expertise
 
-## Technical Skills Overview
+Everything on this page is backed by shipped, public work — mostly [Vitals](/projects/) (a governed
+healthcare lakehouse) and [MBTA](/projects/) (a streaming transit lakehouse). If I can't point at
+code or a write-up for a skill, it's in the "learning" tier, not the headline.
 
-I've developed a diverse set of technical skills throughout my career, focusing on data engineering, machine learning, and cloud technologies. Below is a detailed breakdown of my expertise areas.
+## Core — use daily, will defend in depth
 
-### Skill Level Legend
-- **Expert**: Deep knowledge with 3+ years of experience, can architect solutions and mentor others
-- **Advanced**: Strong working knowledge, can implement complex solutions independently
-- **Intermediate**: Good understanding, can work with guidance on complex tasks
-- **Beginner**: Basic understanding, actively learning
+| Area | Specifics | Evidence |
+|------|-----------|----------|
+| Python + SQL | pipelines, tested pure transforms, FastAPI services | all projects |
+| Databricks | Unity Catalog, Delta, Asset Bundles, serverless Jobs, Lakeflow/DLT | MBTA (both Jobs + DLT paradigms live) |
+| Lakehouse design | medallion, policy-in-gold, schema + provenance discipline | Vitals, MBTA |
+| dbt | gold marts, tests, semantic layer | Vitals |
+| Data quality gates | Great Expectations + dbt tests wired into CI, fail-the-build contracts | Vitals silver gate |
+| CI/CD & IaC | GitHub Actions, Terraform on GCP incl. keyless WIF/OIDC plan-on-PR / apply-on-merge | MBTA |
+| Cost discipline | budget alerts, per-job DBU attribution via system tables, paused-by-default schedules | MBTA, written up |
 
-## Data Engineering
+## Working — shipped with it, still deepening
 
-| Skill | Proficiency | Description |
-|-------|------------|-------------|
-| ETL/ELT Pipeline Design | **Expert** | Design and implementation of robust data pipelines for batch and streaming data |
-| Data Modeling | **Expert** | Schema design, dimensional modeling, data warehousing concepts |
-| Stream Processing | **Advanced** | Real-time data processing and analytics frameworks |
-| Data Governance | **Advanced** | Data quality, lineage, metadata management, compliance |
-| Data Orchestration | **Expert** | Workflow management and job scheduling |
+| Area | Specifics | Evidence |
+|------|-----------|----------|
+| Spark Structured Streaming | Auto Loader, checkpointing, Kafka source with parity verification | MBTA cutover; Vitals wearable stream |
+| Kafka | real broker integration, topic/offset semantics, producer + consumer | Vitals |
+| GCP data stack | GCS, Pub/Sub, Cloud Run jobs, Cloud Scheduler, Secret Manager | MBTA live ingestion |
+| Airflow | DAG design for batch orchestration | Vitals |
+| Feature stores | Feast — apply → materialize → retrieve, online/offline parity | Vitals |
+| Embeddings & search | pgvector serving store for clinical-note search | Vitals |
+| ML plumbing | scikit-learn models, MLflow tracking, PSI drift monitoring | Vitals |
+| Agentic/LLM systems | LLM-in-pipeline (propose-only patterns), agent-operated dev workflow | MBTA Dreamer/Monitor, Nora |
+| Docker | containerized jobs and local serving stores | MBTA, Vitals |
 
-### Tools & Technologies
-- **Apache Ecosystem**: Spark, Kafka, NiFi, Hadoop (HDFS, YARN)
-- **Workflow Orchestration**: Airflow, Dagster, Prefect
-- **Data Warehousing**: Snowflake, BigQuery, Redshift
-- **Data Transformation**: dbt, Dataform
-- **Data Quality**: Great Expectations, dbt tests, custom frameworks
+## Familiar — used, not claiming depth
 
-## Machine Learning & AI
+DuckDB & Postgres · BigQuery · Azure and AWS fundamentals (my cloud depth is GCP) ·
+Kubernetes basics · Scala/Java (read comfortably, don't write daily) · Tableau/PowerBI basics
 
-| Skill | Proficiency | Description |
-|-------|------------|-------------|
-| ML Model Development | **Advanced** | Developing and training machine learning models for various use cases |
-| Feature Engineering | **Advanced** | Creating effective features from raw data for ML models |
-| Natural Language Processing | **Advanced** | Text processing, sentiment analysis, entity extraction |
-| MLOps | **Advanced** | ML model deployment, monitoring, and lifecycle management |
-| Deep Learning | **Intermediate** | Neural networks for complex pattern recognition tasks |
+## How I work
 
-### Tools & Technologies
-- **ML Frameworks**: Scikit-learn, TensorFlow, PyTorch
-- **NLP Libraries**: spaCy, NLTK, Hugging Face Transformers
-- **ML Platforms**: MLflow, Kubeflow, SageMaker
-- **Feature Stores**: Feast, Tecton
-- **Model Monitoring**: Evidently AI, WhyLabs, custom solutions
+- **Decisions get ADRs** — every significant choice written down with its trade-off, in the repo.
+- **Claims get evidence** — tests, parity checks, live-run verification before "done".
+- **Spec → plan → build** — with review gates, including for AI-generated code.
+- **Stakeholder discipline** — definition-of-done agreed before building; progress visible early.
 
-## Cloud & Infrastructure
+## Currently learning
 
-| Skill | Proficiency | Description |
-|-------|------------|-------------|
-| AWS | **Expert** | Comprehensive knowledge of AWS services and architecture patterns |
-| GCP | **Advanced** | Strong experience with Google Cloud data services |
-| Azure | **Intermediate** | Working knowledge of key Azure data services |
-| IaC | **Advanced** | Infrastructure as code for cloud resource provisioning |
-| Containerization | **Advanced** | Container technologies for consistent deployments |
-
-### Tools & Technologies
-- **AWS**: S3, Lambda, Glue, EMR, Redshift, Kinesis, Athena, SageMaker
-- **GCP**: BigQuery, Dataflow, Pub/Sub, Dataproc, Vertex AI
-- **IaC**: Terraform, CloudFormation, Pulumi
-- **Containerization**: Docker, Kubernetes, ECS
-- **CI/CD**: GitHub Actions, Jenkins, GitLab CI
-
-## Programming Languages
-
-| Language | Proficiency | Focus Areas |
-|----------|------------|-------------|
-| Python | **Expert** | Data engineering, ML/AI, automation, web backends |
-| SQL | **Expert** | Data querying, analysis, optimization |
-| Scala | **Intermediate** | Spark applications, data processing |
-| Java | **Intermediate** | Enterprise applications, backend services |
-| Bash/Shell | **Advanced** | Automation, system administration |
-
-### Tools & Technologies
-- **Python Ecosystem**: Pandas, NumPy, Matplotlib, Flask, FastAPI
-- **SQL Dialects**: PostgreSQL, MySQL, T-SQL, BigQuery SQL
-- **Development**: Git, GitHub, VS Code, PyCharm, Jupyter
-
-## Methodologies & Best Practices
-
-### Software Development
-- **Agile Development**: Scrum, Kanban, iterative development approaches
-- **CI/CD**: Continuous integration and deployment practices
-- **Test-Driven Development**: Writing tests before implementation
-- **Code Review**: Thorough peer review processes for quality control
-- **Documentation**: Comprehensive documentation practices for code and systems
-
-### Data Engineering
-- **Data Mesh**: Domain-oriented data ownership and architecture
-- **Data Lake Design**: Multi-tiered data lake organization (raw, bronze, silver, gold)
-- **Data Observability**: Monitoring data quality, freshness, and system health
-- **Incremental Processing**: Efficient handling of data updates and changes
-- **Schema Evolution**: Managing changing data structures over time
-
-### Machine Learning
-- **ML Project Lifecycle**: From problem definition to deployment and monitoring
-- **Experiment Tracking**: Systematic recording of ML experiments and results
-- **Model Evaluation**: Rigorous testing and validation of model performance
-- **Responsible AI**: Ethical considerations, bias detection and mitigation
-- **A/B Testing**: Systematic approach to testing model improvements
-
-## Continuous Learning
-
-I'm committed to ongoing professional development. Currently, I'm:
-- Deepening my knowledge of MLOps and feature stores
-- Exploring federated learning and privacy-preserving ML techniques
-- Building agentic systems that operate and improve data platforms
-- Participating in advanced data engineering communities and forums
-
-## Soft Skills
-
-Beyond technical capabilities, I bring:
-- **Problem-solving**: Breaking down complex issues into manageable components
-- **Communication**: Translating technical concepts for non-technical stakeholders
-- **Leadership**: Guiding teams and mentoring junior engineers
-- **Project Management**: Planning, executing, and monitoring technical projects
-- **Business Acumen**: Understanding how technical solutions drive business value
-- **Adaptability**: Quickly learning new technologies and approaches
+Databricks certification prep (Data Engineer Associate) · deeper Spark internals ·
+production LLM/agent patterns — logged publicly as I go.
 
 ---
 
-*This skills profile is regularly updated as I continue to develop my expertise. If you're interested in collaborating on projects that require these skills, please [contact me](mailto:joaoeduardoblasques@gmail.com).*
+*Updated 2026-07-16 — trimmed to what the public work actually evidences.
+Questions? [Contact me](mailto:joaoeduardoblasques@gmail.com).*

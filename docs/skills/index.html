@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skills &amp; Expertise | João Blasques</title>
-<meta name="description" content="AI-Enabled Data Engineer with over 3 years of experience designing, building and optimizing data pipelines and machine-learning solutions.">
+<meta name="description" content="AI-enabled Data Engineer — data &amp; software background since 2009, full-time data engineering since 2023. I build governed lakehouses with tested transforms, CI/CD, and data-quality gates.">
 <meta name="author" content="João Blasques">
 <link rel="canonical" href="https://joaoblasques.com/skills/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Skills &amp; Expertise | João Blasques">
-<meta property="og:description" content="AI-Enabled Data Engineer with over 3 years of experience designing, building and optimizing data pipelines and machine-learning solutions.">
+<meta property="og:description" content="AI-enabled Data Engineer — data &amp; software background since 2009, full-time data engineering since 2023. I build governed lakehouses with tested transforms, CI/CD, and data-quality gates.">
 <meta property="og:url" content="https://joaoblasques.com/skills/">
 <meta property="og:image" content="https://joaoblasques.com/images/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -101,230 +101,125 @@
 </aside>
     <main class="maincol">
 <div class="card" style="padding:24px;"><article class="mb"><h1>Skills &amp; Expertise</h1>
-<h2>Technical Skills Overview</h2>
-<p>I&#39;ve developed a diverse set of technical skills throughout my career, focusing on data engineering, machine learning, and cloud technologies. Below is a detailed breakdown of my expertise areas.</p>
-<h3>Skill Level Legend</h3>
-<ul>
-<li><strong>Expert</strong>: Deep knowledge with 3+ years of experience, can architect solutions and mentor others</li>
-<li><strong>Advanced</strong>: Strong working knowledge, can implement complex solutions independently</li>
-<li><strong>Intermediate</strong>: Good understanding, can work with guidance on complex tasks</li>
-<li><strong>Beginner</strong>: Basic understanding, actively learning</li>
-</ul>
-<h2>Data Engineering</h2>
+<p>Everything on this page is backed by shipped, public work — mostly <a href="/projects/">Vitals</a> (a governed
+healthcare lakehouse) and <a href="/projects/">MBTA</a> (a streaming transit lakehouse). If I can&#39;t point at
+code or a write-up for a skill, it&#39;s in the &quot;learning&quot; tier, not the headline.</p>
+<h2>Core — use daily, will defend in depth</h2>
 <table>
 <thead>
 <tr>
-<th>Skill</th>
-<th>Proficiency</th>
-<th>Description</th>
+<th>Area</th>
+<th>Specifics</th>
+<th>Evidence</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>ETL/ELT Pipeline Design</td>
-<td><strong>Expert</strong></td>
-<td>Design and implementation of robust data pipelines for batch and streaming data</td>
+<td>Python + SQL</td>
+<td>pipelines, tested pure transforms, FastAPI services</td>
+<td>all projects</td>
 </tr>
 <tr>
-<td>Data Modeling</td>
-<td><strong>Expert</strong></td>
-<td>Schema design, dimensional modeling, data warehousing concepts</td>
+<td>Databricks</td>
+<td>Unity Catalog, Delta, Asset Bundles, serverless Jobs, Lakeflow/DLT</td>
+<td>MBTA (both Jobs + DLT paradigms live)</td>
 </tr>
 <tr>
-<td>Stream Processing</td>
-<td><strong>Advanced</strong></td>
-<td>Real-time data processing and analytics frameworks</td>
+<td>Lakehouse design</td>
+<td>medallion, policy-in-gold, schema + provenance discipline</td>
+<td>Vitals, MBTA</td>
 </tr>
 <tr>
-<td>Data Governance</td>
-<td><strong>Advanced</strong></td>
-<td>Data quality, lineage, metadata management, compliance</td>
+<td>dbt</td>
+<td>gold marts, tests, semantic layer</td>
+<td>Vitals</td>
 </tr>
 <tr>
-<td>Data Orchestration</td>
-<td><strong>Expert</strong></td>
-<td>Workflow management and job scheduling</td>
+<td>Data quality gates</td>
+<td>Great Expectations + dbt tests wired into CI, fail-the-build contracts</td>
+<td>Vitals silver gate</td>
+</tr>
+<tr>
+<td>CI/CD &amp; IaC</td>
+<td>GitHub Actions, Terraform on GCP incl. keyless WIF/OIDC plan-on-PR / apply-on-merge</td>
+<td>MBTA</td>
+</tr>
+<tr>
+<td>Cost discipline</td>
+<td>budget alerts, per-job DBU attribution via system tables, paused-by-default schedules</td>
+<td>MBTA, written up</td>
 </tr>
 </tbody></table>
-<h3>Tools &amp; Technologies</h3>
-<ul>
-<li><strong>Apache Ecosystem</strong>: Spark, Kafka, NiFi, Hadoop (HDFS, YARN)</li>
-<li><strong>Workflow Orchestration</strong>: Airflow, Dagster, Prefect</li>
-<li><strong>Data Warehousing</strong>: Snowflake, BigQuery, Redshift</li>
-<li><strong>Data Transformation</strong>: dbt, Dataform</li>
-<li><strong>Data Quality</strong>: Great Expectations, dbt tests, custom frameworks</li>
-</ul>
-<h2>Machine Learning &amp; AI</h2>
+<h2>Working — shipped with it, still deepening</h2>
 <table>
 <thead>
 <tr>
-<th>Skill</th>
-<th>Proficiency</th>
-<th>Description</th>
+<th>Area</th>
+<th>Specifics</th>
+<th>Evidence</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>ML Model Development</td>
-<td><strong>Advanced</strong></td>
-<td>Developing and training machine learning models for various use cases</td>
+<td>Spark Structured Streaming</td>
+<td>Auto Loader, checkpointing, Kafka source with parity verification</td>
+<td>MBTA cutover; Vitals wearable stream</td>
 </tr>
 <tr>
-<td>Feature Engineering</td>
-<td><strong>Advanced</strong></td>
-<td>Creating effective features from raw data for ML models</td>
+<td>Kafka</td>
+<td>real broker integration, topic/offset semantics, producer + consumer</td>
+<td>Vitals</td>
 </tr>
 <tr>
-<td>Natural Language Processing</td>
-<td><strong>Advanced</strong></td>
-<td>Text processing, sentiment analysis, entity extraction</td>
+<td>GCP data stack</td>
+<td>GCS, Pub/Sub, Cloud Run jobs, Cloud Scheduler, Secret Manager</td>
+<td>MBTA live ingestion</td>
 </tr>
 <tr>
-<td>MLOps</td>
-<td><strong>Advanced</strong></td>
-<td>ML model deployment, monitoring, and lifecycle management</td>
+<td>Airflow</td>
+<td>DAG design for batch orchestration</td>
+<td>Vitals</td>
 </tr>
 <tr>
-<td>Deep Learning</td>
-<td><strong>Intermediate</strong></td>
-<td>Neural networks for complex pattern recognition tasks</td>
+<td>Feature stores</td>
+<td>Feast — apply → materialize → retrieve, online/offline parity</td>
+<td>Vitals</td>
+</tr>
+<tr>
+<td>Embeddings &amp; search</td>
+<td>pgvector serving store for clinical-note search</td>
+<td>Vitals</td>
+</tr>
+<tr>
+<td>ML plumbing</td>
+<td>scikit-learn models, MLflow tracking, PSI drift monitoring</td>
+<td>Vitals</td>
+</tr>
+<tr>
+<td>Agentic/LLM systems</td>
+<td>LLM-in-pipeline (propose-only patterns), agent-operated dev workflow</td>
+<td>MBTA Dreamer/Monitor, Nora</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>containerized jobs and local serving stores</td>
+<td>MBTA, Vitals</td>
 </tr>
 </tbody></table>
-<h3>Tools &amp; Technologies</h3>
+<h2>Familiar — used, not claiming depth</h2>
+<p>DuckDB &amp; Postgres · BigQuery · Azure and AWS fundamentals (my cloud depth is GCP) ·
+Kubernetes basics · Scala/Java (read comfortably, don&#39;t write daily) · Tableau/PowerBI basics</p>
+<h2>How I work</h2>
 <ul>
-<li><strong>ML Frameworks</strong>: Scikit-learn, TensorFlow, PyTorch</li>
-<li><strong>NLP Libraries</strong>: spaCy, NLTK, Hugging Face Transformers</li>
-<li><strong>ML Platforms</strong>: MLflow, Kubeflow, SageMaker</li>
-<li><strong>Feature Stores</strong>: Feast, Tecton</li>
-<li><strong>Model Monitoring</strong>: Evidently AI, WhyLabs, custom solutions</li>
+<li><strong>Decisions get ADRs</strong> — every significant choice written down with its trade-off, in the repo.</li>
+<li><strong>Claims get evidence</strong> — tests, parity checks, live-run verification before &quot;done&quot;.</li>
+<li><strong>Spec → plan → build</strong> — with review gates, including for AI-generated code.</li>
+<li><strong>Stakeholder discipline</strong> — definition-of-done agreed before building; progress visible early.</li>
 </ul>
-<h2>Cloud &amp; Infrastructure</h2>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Proficiency</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AWS</td>
-<td><strong>Expert</strong></td>
-<td>Comprehensive knowledge of AWS services and architecture patterns</td>
-</tr>
-<tr>
-<td>GCP</td>
-<td><strong>Advanced</strong></td>
-<td>Strong experience with Google Cloud data services</td>
-</tr>
-<tr>
-<td>Azure</td>
-<td><strong>Intermediate</strong></td>
-<td>Working knowledge of key Azure data services</td>
-</tr>
-<tr>
-<td>IaC</td>
-<td><strong>Advanced</strong></td>
-<td>Infrastructure as code for cloud resource provisioning</td>
-</tr>
-<tr>
-<td>Containerization</td>
-<td><strong>Advanced</strong></td>
-<td>Container technologies for consistent deployments</td>
-</tr>
-</tbody></table>
-<h3>Tools &amp; Technologies</h3>
-<ul>
-<li><strong>AWS</strong>: S3, Lambda, Glue, EMR, Redshift, Kinesis, Athena, SageMaker</li>
-<li><strong>GCP</strong>: BigQuery, Dataflow, Pub/Sub, Dataproc, Vertex AI</li>
-<li><strong>IaC</strong>: Terraform, CloudFormation, Pulumi</li>
-<li><strong>Containerization</strong>: Docker, Kubernetes, ECS</li>
-<li><strong>CI/CD</strong>: GitHub Actions, Jenkins, GitLab CI</li>
-</ul>
-<h2>Programming Languages</h2>
-<table>
-<thead>
-<tr>
-<th>Language</th>
-<th>Proficiency</th>
-<th>Focus Areas</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Python</td>
-<td><strong>Expert</strong></td>
-<td>Data engineering, ML/AI, automation, web backends</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td><strong>Expert</strong></td>
-<td>Data querying, analysis, optimization</td>
-</tr>
-<tr>
-<td>Scala</td>
-<td><strong>Intermediate</strong></td>
-<td>Spark applications, data processing</td>
-</tr>
-<tr>
-<td>Java</td>
-<td><strong>Intermediate</strong></td>
-<td>Enterprise applications, backend services</td>
-</tr>
-<tr>
-<td>Bash/Shell</td>
-<td><strong>Advanced</strong></td>
-<td>Automation, system administration</td>
-</tr>
-</tbody></table>
-<h3>Tools &amp; Technologies</h3>
-<ul>
-<li><strong>Python Ecosystem</strong>: Pandas, NumPy, Matplotlib, Flask, FastAPI</li>
-<li><strong>SQL Dialects</strong>: PostgreSQL, MySQL, T-SQL, BigQuery SQL</li>
-<li><strong>Development</strong>: Git, GitHub, VS Code, PyCharm, Jupyter</li>
-</ul>
-<h2>Methodologies &amp; Best Practices</h2>
-<h3>Software Development</h3>
-<ul>
-<li><strong>Agile Development</strong>: Scrum, Kanban, iterative development approaches</li>
-<li><strong>CI/CD</strong>: Continuous integration and deployment practices</li>
-<li><strong>Test-Driven Development</strong>: Writing tests before implementation</li>
-<li><strong>Code Review</strong>: Thorough peer review processes for quality control</li>
-<li><strong>Documentation</strong>: Comprehensive documentation practices for code and systems</li>
-</ul>
-<h3>Data Engineering</h3>
-<ul>
-<li><strong>Data Mesh</strong>: Domain-oriented data ownership and architecture</li>
-<li><strong>Data Lake Design</strong>: Multi-tiered data lake organization (raw, bronze, silver, gold)</li>
-<li><strong>Data Observability</strong>: Monitoring data quality, freshness, and system health</li>
-<li><strong>Incremental Processing</strong>: Efficient handling of data updates and changes</li>
-<li><strong>Schema Evolution</strong>: Managing changing data structures over time</li>
-</ul>
-<h3>Machine Learning</h3>
-<ul>
-<li><strong>ML Project Lifecycle</strong>: From problem definition to deployment and monitoring</li>
-<li><strong>Experiment Tracking</strong>: Systematic recording of ML experiments and results</li>
-<li><strong>Model Evaluation</strong>: Rigorous testing and validation of model performance</li>
-<li><strong>Responsible AI</strong>: Ethical considerations, bias detection and mitigation</li>
-<li><strong>A/B Testing</strong>: Systematic approach to testing model improvements</li>
-</ul>
-<h2>Continuous Learning</h2>
-<p>I&#39;m committed to ongoing professional development. Currently, I&#39;m:</p>
-<ul>
-<li>Deepening my knowledge of MLOps and feature stores</li>
-<li>Exploring federated learning and privacy-preserving ML techniques</li>
-<li>Building agentic systems that operate and improve data platforms</li>
-<li>Participating in advanced data engineering communities and forums</li>
-</ul>
-<h2>Soft Skills</h2>
-<p>Beyond technical capabilities, I bring:</p>
-<ul>
-<li><strong>Problem-solving</strong>: Breaking down complex issues into manageable components</li>
-<li><strong>Communication</strong>: Translating technical concepts for non-technical stakeholders</li>
-<li><strong>Leadership</strong>: Guiding teams and mentoring junior engineers</li>
-<li><strong>Project Management</strong>: Planning, executing, and monitoring technical projects</li>
-<li><strong>Business Acumen</strong>: Understanding how technical solutions drive business value</li>
-<li><strong>Adaptability</strong>: Quickly learning new technologies and approaches</li>
-</ul>
+<h2>Currently learning</h2>
+<p>Databricks certification prep (Data Engineer Associate) · deeper Spark internals ·
+production LLM/agent patterns — logged publicly as I go.</p>
 <hr>
-<p><em>This skills profile is regularly updated as I continue to develop my expertise. If you&#39;re interested in collaborating on projects that require these skills, please <a href="mailto:joaoeduardoblasques@gmail.com">contact me</a>.</em></p>
+<p><em>Updated 2026-07-16 — trimmed to what the public work actually evidences.
+Questions? <a href="mailto:joaoeduardoblasques@gmail.com">Contact me</a>.</em></p>
 </article></div>
     </main>
   </div>

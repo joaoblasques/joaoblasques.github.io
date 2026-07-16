@@ -2,54 +2,41 @@
 
 ## Professional Summary
 
-I am João Blasques, an AI-Enabled Data Engineer with over 3 years of experience in designing, implementing, and optimizing data pipelines and machine learning solutions. I specialize in transforming complex data challenges into actionable insights and automated systems that drive business growth and operational efficiency.
+I'm João Blasques, an AI-enabled Data Engineer. I've worked with data and software since 2009 —
+web development, GIS analysis and BI at Universidade Nova de Lisboa — and I've been doing data
+engineering full-time since 2023. I build data platforms the way software should be built: tested
+transforms, CI/CD, infrastructure as code, and data-quality gates that fail the build instead of
+writing a report nobody reads.
 
-I moved into data engineering from a background in GeoSpatial and Environmental Engineering, after several years working hands-on in wind-turbine blade repair — a deliberate reskilling into a field where I could combine that technical, detail-oriented background with software and data. That foundation is now complemented by deep expertise in artificial intelligence and machine learning applications. I excel at bridging the gap between technical implementations and business objectives, ensuring that data solutions deliver measurable value.
+The unusual part of my CV is the middle: several years repairing wind-turbine blades, on ropes,
+offshore. That was a deliberate chapter — hands-on, high-stakes, detail-or-it-breaks work — and I
+brought its discipline back into software. I document decisions with their trade-offs, I verify
+claims against evidence, and I don't ship things I can't defend.
+
+What "AI-enabled" means concretely: I run an agent-operated development workflow (Claude Code +
+CLI-first infrastructure) and I build AI systems — feature stores, embedding search, LLM-powered
+pipelines — as part of the data platform, not as a separate discipline.
 
 ## Education
 
 - **Master's degree, GeoSpatial Technologies** — NOVA IMS Information Management School (2010–2012)
 - **Bachelor's degree, Environmental Engineering Technology** — Universidade Nova de Lisboa (1995–2001)
 
-## Key Skills & Expertise
-
-### Technical Skills
-- **Data Engineering**: ETL/ELT pipelines, data warehousing, stream processing
-- **Programming Languages**: Python, SQL, Java, Scala
-- **Big Data Technologies**: Spark, Hadoop, Kafka, Airflow
-- **Cloud Platforms**: AWS, Google Cloud Platform, Azure
-- **Machine Learning**: TensorFlow, PyTorch, scikit-learn, natural language processing
-- **MLOps**: ML model deployment, monitoring, and lifecycle management
-- **Data Visualization**: Tableau, PowerBI, D3.js
-- **Containerization & Orchestration**: Docker, Kubernetes
-
-### Soft Skills
-- Strategic problem-solving and analytical thinking
-- Cross-functional team collaboration
-- Technical leadership and mentoring
-- Agile project management
-- Clear technical communication
-- Stakeholder management
-
 ## What I Work On
 
-- Building end-to-end data pipelines for batch and real-time analytics
-- Designing medallion-architecture lakehouses on Databricks, BigQuery and Delta
-- Orchestrating workflows with Airflow, dbt and Kestra
-- Automated data-quality monitoring and anomaly detection
-- Bringing software-engineering discipline — testing, CI/CD, IaC — to data work
+- Medallion lakehouses on Databricks — Unity Catalog, Delta, Asset Bundles, serverless Jobs and
+  Lakeflow/DLT ([Vitals](/projects/), [MBTA](/projects/))
+- Streaming and batch on the same dataset — Spark Structured Streaming, Kafka, Auto Loader
+- Data quality as gates, not reports — Great Expectations and dbt tests wired into CI
+- Cloud data infrastructure on GCP — GCS, Pub/Sub, Cloud Run, Terraform with keyless (WIF) CI
+- ML-adjacent plumbing — Feast feature store, pgvector search, MLflow tracking
+- Agent-operated pipelines: automation that proposes, a human that approves
 
-The [projects](/projects/) and [posts](/posts/) sections show this work in practice,
-with the code public on [GitHub](https://github.com/joaoblasques).
+The [projects](/projects/) and [posts](/posts/) pages show this work with the code public on
+[GitHub](https://github.com/joaoblasques) — every claim above links to something you can read.
 
-## Personal Interests
+## Beyond work
 
-Beyond my professional work, I'm passionate about:
-
-- **Open Source Contributions**: Active contributor to data engineering and ML libraries
-- **AI Ethics**: Researching and advocating for responsible AI development
-- **Teaching & Mentoring**: Conducting workshops on data science and machine learning
-- **Technology Writing**: Publishing articles on emerging trends in AI and data engineering
-- **Hackathons**: Participating in and organizing technical hackathons
-
-I believe in the power of data and AI to solve meaningful problems and create positive impact. I'm always open to discussing new ideas, collaborations, or how these technologies can help address your specific challenges.
+I volunteer time and skills where they're useful — I've done disaster-relief work (2004 Indian
+Ocean tsunami, Tamil Nadu) and long-term social projects in India and the Philippines. These days
+I write about data engineering and AI tooling as I learn it, in public.

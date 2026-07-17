@@ -69,8 +69,13 @@ seems to contradict it; the spec wins).
 
 ## Standing approval log
 
-*(Empty until Jonas gives the first explicit OK. Format: date, who approved, what
-was approved. Do not push unattended before an entry exists here.)*
+- **2026-07-17** — Jonas reviewed the rendered PDF (two review passes: header
+  redesign, clickable contact links, page-break before Education, section
+  spacing) and said "Done, please publish it to the website." First deploy
+  pushed as commit `5b23908`. Future runs — including the unattended Friday
+  launchd job — may commit and push without asking again, subject to Hard
+  Rule 8's override (a render that fails honesty/design/page-count checks
+  is never pushed regardless of this standing approval).
 
 ## Phase 1 — Render
 

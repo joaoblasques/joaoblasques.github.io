@@ -7,7 +7,8 @@
     "test": "node test-posts-validation.js && node check.js",
     "linkcheck": "node linkcheck.js",
     "serve": "node build.js && npx --yes http-server docs -p 8080 -c-1",
-    "refresh": "./refresh-contributions.sh && node build.js && node check.js"
+    "refresh": "./refresh-contributions.sh && node build.js && node check.js",
+    "cv": "node brand/cv/render.js && node check.js"
   },
   "devDependencies": {
     "marked": "^18.0.6"

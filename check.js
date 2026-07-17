@@ -132,5 +132,35 @@ c.weeks.length === 53 ? ok(`53 weeks, ${cells} days, ${c.totalContributions} con
                       : fail(`${c.weeks.length} weeks (want 53)`);
 c.totalContributions > 0 ? ok('total is non-zero') : fail('total is zero — refresh failed?');
 
+console.log('\nCV (docs/cv/) — broken/stale CV fails loudly, same as posts.json');
+const cvSourcePath = path.join(__dirname, 'brand/cv/cv-source.md');
+if (!fs.existsSync(cvSourcePath)) {
+  console.log('  --   brand/cv/cv-source.md not created yet; skipping CV checks');
+} else {
+  const cvPagePath = path.join(OUT, 'cv/index.html');
+  const cvPdfPath = path.join(OUT, 'cv/CV-Joao-Blasques.pdf');
+  if (!exists('cv/index.html')) {
+    fail('docs/cv/index.html missing — run `node brand/cv/render.js`');
+  } else if (!exists('cv/CV-Joao-Blasques.pdf')) {
+    fail('docs/cv/CV-Joao-Blasques.pdf missing — run `node brand/cv/render.js`');
+  } else {
+    const cvSourceMtime = fs.statSync(cvSourcePath).mtimeMs;
+    const cvPageMtime = fs.statSync(cvPagePath).mtimeMs;
+    if (cvPageMtime < cvSourceMtime) {
+      fail('docs/cv/ is older than brand/cv/cv-source.md — re-run `node brand/cv/render.js`');
+    } else {
+      ok('docs/cv/index.html and PDF present and current');
+      const { countPDFPages } = require('./brand/cv/render.js');
+      const pages = countPDFPages(cvPdfPath);
+      pages <= 2 ? ok(`CV PDF is ${pages} page(s) (≤2 target)`)
+                 : fail(`CV PDF is ${pages} pages — spec requires ≤2. Trim brand/cv/cv-source.md.`);
+      const pageHTML = read('cv/index.html');
+      pageHTML.includes('João Blasques') && pageHTML.includes('cv-section')
+        ? ok('CV page body present in raw HTML (server-rendered)')
+        : fail('CV page body missing/empty — render may have crashed');
+    }
+  }
+}
+
 console.log(failures ? `\n✗ ${failures} check(s) failed\n` : '\n✓ all checks passed\n');
 process.exit(failures ? 1 : 0);

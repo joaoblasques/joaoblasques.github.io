@@ -1,9 +1,8 @@
 node_modules/
 
-# /createpost LinkedIn drafts — local only, never published
-.createpost/
-
 # NOTE: docs/ is intentionally NOT ignored — GitHub Pages serves it from main.
+# NOTE: brand/ is intentionally NOT ignored — LinkedIn drafts and brand assets
+# are tracked in git (see brand/README.md).
 
 # OS generated files
 .DS_Store

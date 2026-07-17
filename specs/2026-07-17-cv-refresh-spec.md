@@ -43,6 +43,20 @@ second source of truth — if they ever disagree, this repo copy wins.
 3. Proven headless once; Friday launchd produces the next one unattended.
 4. `npm test` / `check.js` guards extended so a broken cv build fails loudly.
 
+## Launchd job (installed 2026-07-17)
+- `~/Library/LaunchAgents/com.jonas.branding.cv-refresh.plist`, Fridays 17:30, calls
+  `.claude/scripts/cv-refresh.sh` (this repo) → `claude -p --dangerously-skip-permissions
+  "/cv-refresh"`. `--dangerously-skip-permissions` is required for a fully unattended run;
+  the real safety boundary is the skill's own standing-approval gate (SKILL.md Hard Rule 8),
+  not the OS permission layer.
+- Loaded via `launchctl load`, confirmed registered (`launchctl list com.jonas.branding.cv-refresh`).
+- The wrapper script's plumbing (paths, `claude` binary) was dry-run verified
+  (`DRY_RUN=1 .claude/scripts/cv-refresh.sh`) but the actual unattended `/cv-refresh` invocation
+  has not fired yet — first real firing is this Friday. Logs land in `/tmp/cv-refresh-launchd.{out,err}.log`
+  if it needs checking after that.
+- Separate job from the vault's `com.jonas.claudesidian.brain-review` cascade, as required —
+  different plist, different repo, no shared script.
+
 ## Implementation notes (added by the repo-side build, 2026-07-17)
 - The blade-repair contracts (4 separate LinkedIn entries) are condensed to one grouped CV entry
   spanning Apr 2021 – Dec 2024, framed as a deliberate arc — full per-contract detail stays on

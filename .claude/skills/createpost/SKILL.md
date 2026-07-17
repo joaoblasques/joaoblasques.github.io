@@ -48,12 +48,19 @@ Each one is here because it already went wrong on this site.
    | Nora | **private** | `https://nora-bennett.com/` |
 
    No public destination? Say so and ask. Don't link a 404; don't silently drop it.
-4. **Draft only.** No LinkedIn API, no driving a logged-in browser session. Same
-   asymmetry as Nora: the machine drafts, the human sends.
+4. **Draft only. Never publish, even via browser automation.** This skill never opens
+   LinkedIn, never touches a logged-in session, and never calls the LinkedIn API. Same
+   asymmetry as Nora: the machine drafts, the human sends. A separate skill,
+   `/postlinkedin`, is allowed to open the compose box and Featured form and type the
+   approved text in — but it must always stop before the Post/Save click, which stays
+   the human's alone. That's the one narrow, deliberate exception to "no browser
+   session" in this repo; it doesn't license any other automation to go further.
 5. **Never hand-edit `docs/`** — it's generated. Write `data/`, run `npm run build`.
 6. **The GitHub handle is `joaoblasques`**, never `jonasblasques` (the nickname has
    been typo'd into a live link before).
 7. **Never commit or push.** Leave everything unstaged, for the human to review.
+   `brand/` is tracked (not gitignored) — that only means these files *can* be
+   committed once approved, not that this skill commits them itself.
 
 ## Phase 1 — Scan (no questions yet)
 
@@ -121,17 +128,44 @@ The 11 posts are two genres — write the **project post**:
 - `posts.json` entry: `slug`, `title`, `date` (YYYY-MM-DD), `description`, `tags`.
   Insert in date-descending order — the file is sorted newest-first.
 
-### LinkedIn post → `.createpost/<slug>-linkedin.txt`
+### LinkedIn post → `brand/linkedin/posts/<slug>.txt`
 
 - Hook first. 150–250 words. Plain text — LinkedIn strips markdown.
 - Link to the post on joaoblasques.com, not the raw repo: the site is the destination.
+  The route is `https://joaoblasques.com/post/<slug>/` — **not**
+  `https://joaoblasques.com/<slug>/**`. Verify with `npm run build` then check
+  `docs/post/<slug>/` exists, or curl the live URL once merged — don't assume the slug
+  alone is the path.
 - ≤3 hashtags, only real ones. No hashtag spam.
-- Copy to clipboard: `pbcopy < .createpost/<slug>-linkedin.txt`
+- **Run the draft through `/de-aiify-writing` before it's considered done.** A
+  technically-accurate LinkedIn draft still reads as AI-written by default — case-study
+  framing, "That's the bug I want to talk about," pile-up sentences, jargon acronyms
+  that are fine in the website post but not in how a person would actually talk about
+  it out loud. Invoke the skill on the draft, take its rewrite, and only then move to
+  the next step. This is not optional polish; a draft that hasn't been through it isn't
+  finished.
+- Copy to clipboard: `pbcopy < brand/linkedin/posts/<slug>.txt`
 
-### Featured entry → `.createpost/<slug>-linkedin-featured.md`
+### Featured entry → `brand/linkedin/featured/<slug>.md`
 
 Title, one-paragraph description, link — shaped for pasting into LinkedIn's
-Projects/Featured section.
+Projects/Featured section. Same `/post/<slug>/` route as above, same verification. The
+description is shorter and more spec-sheet-like than the post, but it's still prose a
+person is putting their name on — run it through `/de-aiify-writing` too if it reads
+like a product blurb rather than something Jonas would actually write.
+
+### Logo (optional) → `brand/logos/<project>/`
+
+If the project has a distinctive header logo mark on its own site (an SVG/CSS mark,
+not just a generic favicon), it's worth pulling for the Featured entry's thumbnail —
+LinkedIn defaults to your profile photo otherwise. Extract the real mark rather than
+screenshot or approximate it: read the live page's computed styles/inline SVG (a
+`javascript_tool` snippet reading `getComputedStyle` on the logo element works well),
+rebuild it as a standalone SVG at the right colors/proportions, then render to PNG with
+`cairosvg` (`pipx install cairosvg` if not already installed). Match LinkedIn's roughly
+square Featured-thumbnail shape — a wide side-by-side mark+wordmark image gets
+cropped into a sliver; a square, stacked (mark on top, wordmark below) composition
+fits properly.
 
 ## Phase 4 — Build, verify, stop
 

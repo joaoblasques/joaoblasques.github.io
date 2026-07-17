@@ -1,0 +1,14 @@
+I wrote in a design doc that patient IDs would be salted before hashing. The code didn't do that. It just hashed the raw ID.
+
+Found this on Vitals, my healthcare data project. The patient IDs are sequential and guessable, so an unsalted hash is easy to reverse. The "de-identified" data wasn't, really.
+
+No test caught it. No one flagged it. I only found it because I went back and checked the code against what I'd written down, instead of assuming they still matched.
+
+Fixed it with one shared salt applied everywhere the ID gets hashed. Simple fix. The bug surviving that long is the part that stuck with me.
+
+I built Vitals to get good at exactly this kind of problem: turning messy health data into something a care team can trust. It's the kind of data a company like Sword Health works with every day, and that's not an accident.
+
+Vitals takes messy health data (FHIR, claims, wearables, notes) and turns it into three things: analytics tables, an ML feature store, and a search index for clinical notes. Full write-up here:
+https://joaoblasques.com/post/vitals-medallion-lakehouse/
+
+#dataengineering #healthdata #swordhealth

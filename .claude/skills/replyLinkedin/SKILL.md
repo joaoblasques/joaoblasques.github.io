@@ -56,8 +56,8 @@ usually short, and Jonas may prefer not to reply at all.
 
 ## Phase 2 — Ask the steering questions
 
-Use `AskUserQuestion`. Ask all four in one call. Lead each option list with the
-recommendation, per Jonas's standing preference.
+Use `AskUserQuestion`, one call. Lead each option list with the recommendation, per
+Jonas's standing preference.
 
 1. **Intent** — Interested · Not interested · Need more info first · Not now, keep in
    touch. This is the biggest fork; everything else is tone on top of it.
@@ -68,6 +68,18 @@ recommendation, per Jonas's standing preference.
    reply itself.
 4. **Warmth and length** — Warm and brief · Warm and full · Strictly professional and
    brief · Strictly professional and full.
+5. **Language — only when the inbound message is not in English.** Reply in their
+   language · Reply in English · Their language, noting the CV and site are in English.
+   Default to matching the language they wrote in; it reads as natural rather than
+   pointed. Skip this question entirely for English messages — don't spend a slot
+   asking something with one sensible answer.
+
+`AskUserQuestion` allows at most four questions per call. When the language question
+applies, drop **Who they are** and infer it from the message instead — a signature
+line like "IT Business Manager" or "Talent Acquisition" settles it without asking, and
+language changes the draft more than register does. If the sender's role is genuinely
+ambiguous *and* the message isn't in English, ask the four highest-value ones and infer
+the remaining one.
 
 Infer sensible defaults from the message and mark them "(Recommended)" — a recruiter
 with a concrete role and a rate range is a different default than an unsolicited
@@ -85,12 +97,21 @@ Shape:
   their message, so it's visibly not a form response.
 - **Answer the question they asked.** Directly, in the first line or two. Don't bury it.
 - **State the intent** from Phase 2, unambiguously.
-- **Add only what Phase 3 disclosure allows.** Links go in as plain URLs
+- **Add only what Phase 2's disclosure answer allows.** Links go in as plain URLs
   (joaoblasques.com/cv), not markdown — LinkedIn renders them as text.
 - **Close** with a clear next step if there is one, or a clean sign-off if there isn't.
 
 Length: LinkedIn messages are short. Default to under 120 words unless "full" was
 picked. Nobody reads a five-paragraph InMail reply.
+
+**When replying in a language other than English:** match the register they used, not
+just the language. Portuguese `tu` vs `você` is the common case — mirroring `tu` when
+they opened with it keeps the reply natural; switching to `você` reads as a step back.
+Write it natively rather than translating an English draft: translated business prose
+carries its own tells (over-formal stock closers like "Fico ao dispor para qualquer
+esclarecimento", mirror-greetings like "Espero que esteja tudo bem"). The
+`/de-aiify-writing` pass still applies — the goal is text Jonas would have typed
+himself, in whichever language.
 
 Avoid, in addition to the usual `/de-aiify-writing` tells:
 - "I hope this message finds you well" and every variant

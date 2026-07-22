@@ -161,7 +161,7 @@ function buildWebPage(cv, profile, postCount) {
     title: `CV | ${profile.name}`,
     description: 'João Blasques — CV / résumé. AI-Enabled Data Engineer.',
     canonical: `${SITE}/cv/`,
-    active: 'cv', // not a real tab in TABS — CV isn't in the nav, so nothing highlights (correct)
+    active: 'cv', // matches the CV tab in TABS (lib/layout.js) — highlights in the nav
     profile, postCount,
     extraHead: `<style>${CV_CSS}\n.cv-download { display:inline-flex; align-items:center; gap:6px; font-size:13px; margin-bottom:16px; }</style>\n`,
     body: `

@@ -75,6 +75,8 @@ Italy. Web programming, database management, and project implementation.
 ## Certifications
 
 - **Databricks Fundamentals** — Databricks (issued Jun 2025)
+- **Data Engineer in Python** — DataCamp (issued Feb 2025)
+- **Associate Data Engineer in SQL** — DataCamp (issued Jan 2025)
 
 ## Skills
 

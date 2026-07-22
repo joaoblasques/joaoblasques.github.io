@@ -1,5 +1,21 @@
 [
   {
+    "slug": "nora-ai-executive-assistant",
+    "title": "Nora: An AI Executive Assistant That Never Sends as You",
+    "date": "2026-07-18",
+    "description": "An email-native AI executive assistant built on one hard guarantee: she drafts, you send, and every action she takes is cryptographically gated behind DKIM sender verification on the way in and explicit human confirmation on the way out.",
+    "tags": [
+      "AI",
+      "llm",
+      "agentic",
+      "python",
+      "fastapi",
+      "security",
+      "product engineering",
+      "cloudflare"
+    ]
+  },
+  {
     "slug": "vitals-medallion-lakehouse",
     "title": "Vitals: A Governed Medallion Lakehouse for Healthcare Data",
     "date": "2026-07-15",

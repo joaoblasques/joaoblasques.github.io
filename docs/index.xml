@@ -3,11 +3,18 @@
   <channel>
     <title>João Blasques — Posts</title>
     <link>https://joaoblasques.com/</link>
-    <description>AI-enabled Data Engineer — data &amp; software background since 2009, full-time data engineering since 2023. I build governed lakehouses with tested transforms, CI/CD, and data-quality gates.</description>
+    <description>AI-enabled Data Engineer — ~8 years across data &amp; software engineering, 3 of them full-time in data engineering. I build governed lakehouses with tested transforms, CI/CD, and data-quality gates.</description>
     <language>en-us</language>
     <managingEditor>joaoeduardoblasques@gmail.com (João Blasques)</managingEditor>
-    <lastBuildDate>Wed, 15 Jul 2026 10:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jul 2026 10:00:00 GMT</lastBuildDate>
     <atom:link href="https://joaoblasques.com/index.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Nora: An AI Executive Assistant That Never Sends as You</title>
+      <link>https://joaoblasques.com/post/nora-ai-executive-assistant/</link>
+      <pubDate>Sat, 18 Jul 2026 10:00:00 GMT</pubDate>
+      <guid>https://joaoblasques.com/post/nora-ai-executive-assistant/</guid>
+      <description>An email-native AI executive assistant built on one hard guarantee: she drafts, you send, and every action she takes is cryptographically gated behind DKIM sender verification on the way in and explicit human confirmation on the way out.</description>
+    </item>
     <item>
       <title>Vitals: A Governed Medallion Lakehouse for Healthcare Data</title>
       <link>https://joaoblasques.com/post/vitals-medallion-lakehouse/</link>

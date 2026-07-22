@@ -2,8 +2,9 @@
 
 ## Professional Summary
 
-I'm João Blasques, an AI-enabled Data Engineer. I've worked with data and software since 2009 —
-web development, GIS analysis and BI at Universidade Nova de Lisboa — and I've been doing data
+I'm João Blasques, an AI-enabled Data Engineer with around 8 years across data and software
+engineering — starting at the European Commission's Joint Research Centre in 2002, then web
+development, GIS data analysis and BI at Universidade Nova de Lisboa — and I've been doing data
 engineering full-time since 2023. I build data platforms the way software should be built: tested
 transforms, CI/CD, infrastructure as code, and data-quality gates that fail the build instead of
 writing a report nobody reads.

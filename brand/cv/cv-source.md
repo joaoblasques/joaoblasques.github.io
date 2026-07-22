@@ -11,8 +11,8 @@ and data/pages/skills.md — check both when either changes.
 
 # João Blasques
 
-AI-Enabled Data Engineer — data & software background since 2009, full-time data
-engineering since 2023.
+AI-Enabled Data Engineer — ~8 years across data & software engineering, 3 of them
+full-time in data engineering.
 
 Cascais, Portugal · joaoeduardoblasques@gmail.com · joaoblasques.com ·
 github.com/joaoblasques · linkedin.com/in/joaoblasques
@@ -21,9 +21,10 @@ github.com/joaoblasques · linkedin.com/in/joaoblasques
 
 I build data platforms the way software should be built. Tested transforms. CI/CD.
 Infrastructure as code. Data-quality gates that fail the build instead of writing a
-report nobody reads. My data and software background goes back to 2009, at
-Universidade Nova de Lisboa (web development, GIS analysis, BI). I've been doing data
-engineering full-time since 2023.
+report nobody reads. My software and data background goes back to 2002, at the
+European Commission's Joint Research Centre, and continued at Universidade Nova de
+Lisboa (web development, GIS data analysis, BI). I've been doing data engineering
+full-time since 2023.
 
 The chapter in between was several years repairing wind-turbine blades on ropes,
 offshore. That was deliberate, hands-on, high-stakes work where a mistake shows up
@@ -53,6 +54,16 @@ uptower upgrades, de-icing and lightning-protection system commissioning, rope-a
 inspection. The final contract (Global Wind Service, Feb – Dec 2024) overlapped with
 the DataStuff.nl freelance work above — that overlap was the transition period before
 data engineering became full-time.
+
+**Web Developer / GIS Analyst / Project Manager** — Universidade Nova de Lisboa —
+*2009 – Apr 2013*
+Lisbon, Portugal. Ran web development projects end to end — project management,
+analysis, design, implementation, and monitoring. GIS data analysis on spatial
+datasets, alongside the GeoSpatial Technologies master's at NOVA IMS.
+
+**Information Technology Engineer** — European Commission, Joint Research Centre —
+*Feb 2002 – Feb 2003*
+Italy. Web programming, database management, and project implementation.
 
 ## Education
 

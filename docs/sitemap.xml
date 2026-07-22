@@ -6,6 +6,7 @@
   <url><loc>https://joaoblasques.com/skills/</loc></url>
   <url><loc>https://joaoblasques.com/about/</loc></url>
   <url><loc>https://joaoblasques.com/tags/</loc></url>
+  <url><loc>https://joaoblasques.com/post/nora-ai-executive-assistant/</loc></url>
   <url><loc>https://joaoblasques.com/post/vitals-medallion-lakehouse/</loc></url>
   <url><loc>https://joaoblasques.com/post/mbta-otp-lakehouse/</loc></url>
   <url><loc>https://joaoblasques.com/post/customer-analytics-pipeline/</loc></url>
@@ -18,6 +19,14 @@
   <url><loc>https://joaoblasques.com/post/ML-pipeline-design/</loc></url>
   <url><loc>https://joaoblasques.com/post/getting-started-with-data-engineering/</loc></url>
   <url><loc>https://joaoblasques.com/post/welcome/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/ai/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/llm/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/agentic/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/python/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/fastapi/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/security/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/product-engineering/</loc></url>
+  <url><loc>https://joaoblasques.com/tags/cloudflare/</loc></url>
   <url><loc>https://joaoblasques.com/tags/data-engineering/</loc></url>
   <url><loc>https://joaoblasques.com/tags/databricks/</loc></url>
   <url><loc>https://joaoblasques.com/tags/lakehouse/</loc></url>
@@ -31,7 +40,6 @@
   <url><loc>https://joaoblasques.com/tags/structured-streaming/</loc></url>
   <url><loc>https://joaoblasques.com/tags/terraform/</loc></url>
   <url><loc>https://joaoblasques.com/tags/ci-cd/</loc></url>
-  <url><loc>https://joaoblasques.com/tags/agentic/</loc></url>
   <url><loc>https://joaoblasques.com/tags/docker/</loc></url>
   <url><loc>https://joaoblasques.com/tags/iceberg/</loc></url>
   <url><loc>https://joaoblasques.com/tags/analytics/</loc></url>
@@ -53,9 +61,7 @@
   <url><loc>https://joaoblasques.com/tags/kubernetes/</loc></url>
   <url><loc>https://joaoblasques.com/tags/beginners/</loc></url>
   <url><loc>https://joaoblasques.com/tags/kestra/</loc></url>
-  <url><loc>https://joaoblasques.com/tags/python/</loc></url>
   <url><loc>https://joaoblasques.com/tags/postgresql/</loc></url>
-  <url><loc>https://joaoblasques.com/tags/ai/</loc></url>
   <url><loc>https://joaoblasques.com/tags/data-architecture/</loc></url>
   <url><loc>https://joaoblasques.com/tags/innovation/</loc></url>
   <url><loc>https://joaoblasques.com/tags/machine-learning/</loc></url>

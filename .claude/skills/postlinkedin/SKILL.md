@@ -36,18 +36,33 @@ site.
 5. **One dialog/alert risk area: LinkedIn sometimes shows an "unsaved changes" or
    discard-post confirm dialog.** Per the browser-automation guidance, never trigger or
    click through a JS confirm/alert blindly — if one appears, stop and tell the user.
-6. **Type in short chunks and verify each one — don't trust a single long `type` call.**
-   The browser's type action has been observed silently dropping characters and spaces
-   on longer strings in LinkedIn's fields (a URL lost a letter mid-word; a ~450-word
-   description had four separate corruptions — missing letters, missing spaces, words
-   run together). Break any field longer than ~15 words into chunks, and after each
-   chunk, move the cursor to jump to that chunk's boundary (Home/End, or click) and
-   `zoom` on it to visually confirm every character landed — don't just glance at a
-   full screenshot, the errors are easy to miss at normal size. Fix a corruption
-   immediately (double-click the bad word, retype just that word) before typing the
-   next chunk. Never click Post/Save/Add on text that hasn't been chunk-verified this
-   way. This applies to every text field this skill fills — URL, title, description,
-   and the main post body alike.
+6. **Paste long fields, don't type them — the `type` action corrupts text in LinkedIn's
+   fields.** The browser's type action silently drops characters and spaces on longer
+   strings in LinkedIn's inputs — observed repeatedly: a URL lost a letter mid-word; a
+   description dropped a space every few words ("use today"→"usetoday", "she"→"se",
+   "your voice You"→"your voiceYou") on three separate retype attempts, even in short
+   chunks. Chunking reduces it but does not fix it. **Pasting does not corrupt** — the
+   same description that failed three times as typed text landed perfectly via Cmd+V.
+
+   So, for any field longer than a few words (the URL, title, description, and the main
+   post body):
+   - Write the exact text to the clipboard first with `pbcopy` (from the draft file —
+     e.g. `pbcopy < brand/linkedin/posts/<slug>.txt`, or for one field pipe the string:
+     `printf '%s' "…" | pbcopy`).
+   - Click into the target field, then paste with `key` `cmd+v`.
+   - `zoom` on the field afterward to confirm — paste is reliable, but a wrong field
+     focus or a leftover selection can still go wrong, so verify, don't assume.
+   - Fields where you can't reach the clipboard (rare) fall back to the chunked-type
+     method below.
+
+   **Fallback — chunked typing, only when paste isn't possible:** break the text into
+   ≤15-word chunks, and after each chunk `zoom` on it to confirm every character landed
+   (don't glance at a full screenshot — the drops are easy to miss at normal size). Fix
+   a corruption immediately (double-click the bad word, retype just that word) before
+   the next chunk. Expect to retry; this is the lossy path, which is why paste is
+   preferred.
+
+   Either way: never click Post/Save/Add on text that hasn't been zoom-verified.
 7. **Never click from a stale screenshot or a coordinate reused across steps.** The
    page can scroll or reflow between the moment a screenshot was taken and the moment
    the click fires — that's what sent a click meant for "Add section" into the profile
@@ -68,9 +83,10 @@ Resolve `<slug>` (the argument). Read both files:
 - `brand/linkedin/featured/<slug>.md` — title, description, link (format from
   `/createpost` Phase 3: first line is the bold title, then a paragraph, then a bare
   URL on its own line)
-- If a logo exists at `brand/logos/<project>/` (a square, stacked mark+wordmark image
+- If a logo exists at `brand/linkedin/featured/assets/<slug>-*.png` (a square image
   fits LinkedIn's Featured thumbnail best — a wide side-by-side image gets cropped),
-  offer to upload it as the Featured entry's thumbnail in Phase 3.
+  note it for Phase 3. It can't be uploaded by automation (Phase 3 step 5 explains
+  why) — you'll hand the path to the user to select in the native file picker.
 
 If either is missing, stop and say so — don't partially proceed.
 
@@ -91,9 +107,13 @@ not approval to open the browser.
    manually and re-run the command.
 5. Click "Start a post" (or equivalent — use `find`/`read_page` to locate it rather
    than a hardcoded coordinate, since layout shifts).
-6. Click into the compose text area, type the contents of the `.txt` file.
-7. Take a screenshot or read the page to confirm the text landed correctly (no
-   truncation, no stray characters from markdown LinkedIn might auto-format).
+6. Copy the post to the clipboard (`pbcopy < brand/linkedin/posts/<slug>.txt`), click
+   into the compose text area, and paste with `cmd+v` — per Hard Rule 6, paste, don't
+   type.
+7. `zoom` on the field to confirm the text landed correctly (no truncation, no stray
+   characters from markdown LinkedIn might auto-format). If the post was already on the
+   clipboard from `/createpost` Phase 4, re-`pbcopy` here anyway — the clipboard may
+   have been overwritten since.
 8. **Stop.** Tell the user: "Post text is in the compose box on LinkedIn — review it,
    then click Post yourself." Do not click Post. Do not close the tab.
 
@@ -110,19 +130,29 @@ Featured/Projects entry now?"*
    near the profile photo, and a stale coordinate can land on the photo editor instead,
    which has a live Delete control next to it.
 3. Choose "Add a link" (not "Add a post" — this entry isn't tied to a specific feed
-   post). Paste the URL from the featured draft's link line.
-4. Once LinkedIn fetches the link preview, fill in the title and description fields
-   with the drafted title/description if LinkedIn allows editing them (some link-preview
-   flows only let you edit title, not body — fill what's editable, tell the user if a
-   field couldn't be set so they can adjust manually).
-5. If a logo image exists under `brand/logos/<project>/` and the user wants it used:
-   the thumbnail's pencil-edit icon opens a native file picker that browser automation
-   can't click through — instead, `find` the hidden `input[type=file]` element near the
-   thumbnail, take a screenshot to confirm it's the right one, and use `upload_image`
-   with that element's ref. Take a screenshot first with the `computer` tool (not a
-   reused ID from an earlier turn — screenshot IDs don't survive a tab-group reset) so
-   you have a fresh image to pass to `upload_image`, or read the file directly if the
-   tool supports a file path.
+   post). Paste the URL from the featured draft's link line (Rule 6 — paste, don't
+   type). **Which URL:** LinkedIn's link-preview crawler must be able to fetch it, and
+   some sites block that crawler — `nora-bennett.com` was rejected with "please enter a
+   valid link" even though it resolves fine in a browser. The `joaoblasques.com/post/
+   <slug>/` write-up URL is known-good (LinkedIn already renders the other Featured
+   entries from that domain), so prefer it as the Featured link. If the draft's primary
+   link is rejected, fall back to the write-up URL and tell the user.
+4. Once LinkedIn fetches the link preview, it auto-fills the title (usually correct —
+   verify it). The **description** field is the one the `type` action corrupts worst —
+   `pbcopy` the drafted description and paste it (Rule 6), then `zoom` to confirm. Some
+   link-preview flows only let you edit the title, not the body — fill what's editable,
+   tell the user if a field couldn't be set.
+5. **The logo thumbnail can't be uploaded through browser automation — hand it to the
+   user.** LinkedIn's "Choose thumbnail image" / pencil-edit control opens a native OS
+   file picker, and there is **no `input[type=file]` in the DOM** to target (confirmed:
+   `find` returns none; the input is created only after the native dialog is already
+   open, which automation can't see). Do not click the picker button — it leaves a
+   native dialog open that blocks everything. Instead, tell the user the exact file path
+   to select themselves. The Nora asset lives at
+   `brand/linkedin/featured/assets/nora-featured-thumb.png` (804×804, square — fits the
+   thumbnail without cropping); other projects keep theirs alongside the featured draft
+   under `brand/linkedin/featured/assets/`. Everything else on the entry can still be
+   filled by automation; only this one step is manual.
 6. **Stop before Save/Add.** Tell the user: "Featured entry is filled in — review and
    click Save yourself."
 

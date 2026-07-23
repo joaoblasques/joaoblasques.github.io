@@ -1,0 +1,12 @@
+"The AI won't impersonate you" is easy to promise. I wanted it to be structurally true, not just a policy line.
+
+That's the core of Nora, an AI executive assistant I've been building. You forward an email thread to your private Nora address, she reads it and drafts a reply in your voice, and sends it back to you. You send it yourself. There's no code path where a draft goes out as an email without you confirming it first.
+
+Same idea applies coming in. A command only gets trusted if it lands on your registered address and the sender is DKIM-verified as actually you. Checked in code, not assumed from which inbox it showed up in.
+
+Nora is in real use today. Real threads, real drafts, a draft-acceptance rate I actually track. Beyond drafting she can act too: propose a meeting, share a file. Always propose, you confirm, she acts. Always from her own labeled identity, never yours.
+
+Full write-up here:
+https://joaoblasques.com/post/nora-ai-executive-assistant/
+
+#ai #llm #agentic

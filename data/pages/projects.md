@@ -64,7 +64,7 @@ remember to open.
 
 The design constraint that shapes everything: **Nora drafts, the human sends.** That
 asymmetry is the product's trust model — an assistant that can send on your behalf is
-one bad inference away from an incident you can't take back.
+one bad inference away from an incident you can't take back. [Read the write-up →](/post/nora-ai-executive-assistant/)
 
 ## Data Engineering — Open Source
 

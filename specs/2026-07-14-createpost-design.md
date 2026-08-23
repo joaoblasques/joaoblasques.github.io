@@ -198,7 +198,8 @@ Then a harder case: run it against **Corpus** (private repo) and confirm it link
 - The repo's own `CLAUDE.md` and the global one still apply. Relevant here: **Corpus's
   knowledge base (`~/Dev/corpus/corpus/`) is never hand-written.** A post *about*
   Corpus is website content and fine; writing into Corpus's knowledge is not.
-- Don't commit the vault (`~/Dev/second-brain`) from this session — that's a
-  code-repo session, and vault writes belong to the brain session.
+- (Historical note, retired 2026-08-23: this spec previously warned against committing the vault
+  `~/Dev/AIOS` from a code-repo session — that single-writer-era rule was superseded by the
+  Concurrent-Writer Protocol, 2026-07-17.)
 - `pbcopy` is macOS-only. It's present here; if the skill ever needs to run elsewhere,
   fall back to writing the file and printing the path rather than failing.

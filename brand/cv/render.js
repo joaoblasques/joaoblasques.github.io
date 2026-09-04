@@ -275,6 +275,15 @@ function main() {
   fs.copyFileSync(pdfPath, archivePath);
   console.log(`✓ archived ${path.relative(ROOT, archivePath)}`);
 
+  // 5. Mirror into the AIOS vault, which references the CV from job applications.
+  // Skipped silently if the vault isn't on this machine (CI, another checkout).
+  const vaultCV = path.join(
+    process.env.HOME || '', 'Dev', 'AIOS', '30_Resources', 'CV', PDF_NAME);
+  if (fs.existsSync(path.dirname(vaultCV))) {
+    fs.copyFileSync(pdfPath, vaultCV);
+    console.log(`✓ mirrored to vault 30_Resources/CV/${PDF_NAME}`);
+  }
+
   return { pageCount, pdfPath, archivePath };
 }
 

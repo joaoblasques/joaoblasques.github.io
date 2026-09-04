@@ -66,9 +66,59 @@ The design constraint that shapes everything: **Nora drafts, the human sends.** 
 asymmetry is the product's trust model — an assistant that can send on your behalf is
 one bad inference away from an incident you can't take back. [Read the write-up →](/post/nora-ai-executive-assistant/)
 
+## Craft
+
+### Terminal-Craft — tmux & nvim Fluency for AI-Coding Work
+
+**Site**: [joaoblasques.com/terminal-craft](https://joaoblasques.com/terminal-craft/)  
+**Code**: [joaoblasques/terminal-craft](https://github.com/joaoblasques/terminal-craft)  
+**Technologies**: tmux, nvim, zsh, LSP, dotfiles
+
+**The bottleneck in AI-coding work is the keyboard, not the model.**
+
+A ten-lesson curriculum I built and drilled on myself: tmux for running several agents
+side by side, nvim for fast review of long generated diffs, plus shell and dotfiles. No
+plugin manager and no IDE rebuild — nine of the ten lessons ran on an untouched baseline
+config, and the one that needed real setup took 44 lines.
+
+Every lesson starts from a real scenario and ends with a live drill, and the site logs
+what went wrong as well as what worked: the lesson that taught macros before it taught
+undo, a claim I got wrong and caught mid-drill, and a type-checker that caught a planted
+bug instantly while never once flagging the file's real one.
+
+*Status: 10/10 complete. The repo then ended by deleting its own configs — they belonged
+in my dotfiles repo, and a learning project shouldn't quietly become a config project.*
+[Read the write-up →](/post/terminal-craft/)
+
 ## Data Engineering — Open Source
 
 The pipeline work underneath. All public, each with a write-up.
+
+### tabby-dwh — What One Modelling Decision Costs
+
+**GitHub**: [joaoblasques/tabby-dwh](https://github.com/joaoblasques/tabby-dwh)  
+**Technologies**: BigQuery, dbt, Airflow, Python
+
+Saudi Arabia's central bank requires credit-risk staging at the level of the
+**borrower**, not the loan: "a single exposure to a borrower should not be split
+between stages" (SAMA Circular 42022533 §3.4). Buy-now-pay-later breaks against
+that rule harder than most lending, because one customer holds several small
+concurrent orders — so the obvious warehouse grain, one row per order staged on
+its own arrears, splits a borrower across stages by construction.
+
+It reconciles. It passes every test you would think to write. It also
+**under-provisions by 30%**.
+
+This builds the same synthetic book both ways — identical DPD source, identical
+five-sub-stage ladder, the grain as the only variable — and measures the gap:
+30.1% overall, 53.5% in the smallest market, with 16.2% of exposures sitting in
+a better stage than their borrower deserves. Partitioning and clustering on the
+regulation's own grain cut bytes scanned 23.8×. Two of the tests carry the
+argument: one proves the compliant model never splits a borrower, its inverse
+proves the naive one does, so a book that stopped exercising the rule fails the
+build instead of quietly producing a comparison that proves nothing.
+
+---
 
 ### MBTA On-Time-Performance Lakehouse
 

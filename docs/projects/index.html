@@ -45,7 +45,7 @@
           </a><a class="unav-item" href="/posts/">
             <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg></span>
             <span>Posts</span>
-            <span class="counter">13</span>
+            <span class="counter">14</span>
           </a><a class="unav-item" href="/projects/" aria-current="page">
             <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path></svg></span>
             <span>Projects</span>
@@ -165,8 +165,42 @@ remember to open.</p>
 <p>The design constraint that shapes everything: <strong>Nora drafts, the human sends.</strong> That
 asymmetry is the product&#39;s trust model — an assistant that can send on your behalf is
 one bad inference away from an incident you can&#39;t take back. <a href="/post/nora-ai-executive-assistant/">Read the write-up →</a></p>
+<h2>Craft</h2>
+<h3>Terminal-Craft — tmux &amp; nvim Fluency for AI-Coding Work</h3>
+<p><strong>Site</strong>: <a href="https://joaoblasques.com/terminal-craft/">joaoblasques.com/terminal-craft</a><br><strong>Code</strong>: <a href="https://github.com/joaoblasques/terminal-craft">joaoblasques/terminal-craft</a><br><strong>Technologies</strong>: tmux, nvim, zsh, LSP, dotfiles</p>
+<p><strong>The bottleneck in AI-coding work is the keyboard, not the model.</strong></p>
+<p>A ten-lesson curriculum I built and drilled on myself: tmux for running several agents
+side by side, nvim for fast review of long generated diffs, plus shell and dotfiles. No
+plugin manager and no IDE rebuild — nine of the ten lessons ran on an untouched baseline
+config, and the one that needed real setup took 44 lines.</p>
+<p>Every lesson starts from a real scenario and ends with a live drill, and the site logs
+what went wrong as well as what worked: the lesson that taught macros before it taught
+undo, a claim I got wrong and caught mid-drill, and a type-checker that caught a planted
+bug instantly while never once flagging the file&#39;s real one.</p>
+<p><em>Status: 10/10 complete. The repo then ended by deleting its own configs — they belonged
+in my dotfiles repo, and a learning project shouldn&#39;t quietly become a config project.</em>
+<a href="/post/terminal-craft/">Read the write-up →</a></p>
 <h2>Data Engineering — Open Source</h2>
 <p>The pipeline work underneath. All public, each with a write-up.</p>
+<h3>tabby-dwh — What One Modelling Decision Costs</h3>
+<p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/tabby-dwh">joaoblasques/tabby-dwh</a><br><strong>Technologies</strong>: BigQuery, dbt, Airflow, Python</p>
+<p>Saudi Arabia&#39;s central bank requires credit-risk staging at the level of the
+<strong>borrower</strong>, not the loan: &quot;a single exposure to a borrower should not be split
+between stages&quot; (SAMA Circular 42022533 §3.4). Buy-now-pay-later breaks against
+that rule harder than most lending, because one customer holds several small
+concurrent orders — so the obvious warehouse grain, one row per order staged on
+its own arrears, splits a borrower across stages by construction.</p>
+<p>It reconciles. It passes every test you would think to write. It also
+<strong>under-provisions by 30%</strong>.</p>
+<p>This builds the same synthetic book both ways — identical DPD source, identical
+five-sub-stage ladder, the grain as the only variable — and measures the gap:
+30.1% overall, 53.5% in the smallest market, with 16.2% of exposures sitting in
+a better stage than their borrower deserves. Partitioning and clustering on the
+regulation&#39;s own grain cut bytes scanned 23.8×. Two of the tests carry the
+argument: one proves the compliant model never splits a borrower, its inverse
+proves the naive one does, so a book that stopped exercising the rule fails the
+build instead of quietly producing a comparison that proves nothing.</p>
+<hr>
 <h3>MBTA On-Time-Performance Lakehouse</h3>
 <p><strong>GitHub</strong>: <a href="https://github.com/joaoblasques/mbta-on-time-lakehouse">joaoblasques/mbta-on-time-lakehouse</a><br><strong>Technologies</strong>: Databricks, GCP, Spark Structured Streaming, Terraform, CI/CD</p>
 <p>A self-managing lakehouse answering &quot;is the MBTA late, and where?&quot; — it ingests

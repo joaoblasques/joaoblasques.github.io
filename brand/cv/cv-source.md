@@ -91,11 +91,12 @@ CI/CD & IaC (GitHub Actions, Terraform, keyless WIF/OIDC) · Cost discipline (DB
 attribution, budget alerts)
 
 **Working — shipped with it, still deepening:** Spark Structured Streaming (Auto
-Loader, Kafka) · GCP data stack (GCS, Pub/Sub, Cloud Run, Cloud Scheduler) · Airflow ·
-Feast feature store · pgvector / embeddings · MLflow · Agentic/LLM pipeline patterns ·
-Docker
+Loader, Kafka) · GCP data stack (BigQuery — external tables, partitioning, clustering,
+cost tuning · GCS · Pub/Sub · Cloud Run · Cloud Scheduler) · Airflow · Dimensional
+modelling (star schema) · Feast feature store · pgvector / embeddings · MLflow ·
+Agentic/LLM pipeline patterns · Docker
 
-**Familiar — used, not claiming depth:** DuckDB & Postgres · BigQuery · Azure/AWS
+**Familiar — used, not claiming depth:** DuckDB & Postgres · Azure/AWS
 fundamentals · Kubernetes basics · Scala/Java (read comfortably) · Tableau/PowerBI
 basics
 

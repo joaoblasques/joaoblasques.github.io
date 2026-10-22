@@ -1,5 +1,21 @@
 [
   {
+    "slug": "terminal-craft",
+    "title": "Terminal-Craft: Learning tmux and nvim on Purpose, Friction Included",
+    "date": "2026-08-08",
+    "description": "A ten-lesson curriculum built to fix the real bottleneck in AI-coding work — the keyboard, not the model — with the failures logged rather than edited out, including the lesson that taught macros before it taught undo.",
+    "tags": [
+      "tmux",
+      "neovim",
+      "terminal",
+      "developer experience",
+      "AI",
+      "learning",
+      "dotfiles",
+      "productivity"
+    ]
+  },
+  {
     "slug": "nora-ai-executive-assistant",
     "title": "Nora: An AI Executive Assistant That Never Sends as You",
     "date": "2026-07-18",

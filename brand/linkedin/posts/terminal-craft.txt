@@ -1,0 +1,14 @@
+I spent two days learning tmux and nvim properly. The lesson I got the most out of was the one that fell apart.
+
+Lesson 4 was macros. It broke about a minute in, because I'd never covered mode-switching or undo. Both are more basic than anything the lesson was about. My terminal was covering up vim's mode indicator, so I couldn't even tell which mode I was in, and I hit a real "I have no idea how to undo this" moment. The fix was one keystroke. I stopped there and picked it up later with undo taught first.
+
+I left all of that in the write-up. A curriculum that puts macros before undo has a real problem, and the only way to find it was to run the lesson live and fail at it.
+
+Why bother in 2026, when AI writes most of the code? Because the model isn't what slows me down. Reading a 400-line diff with arrow keys is. Three agents running at once, big files, long diffs. That's terminal fluency, and the tools for it have been around for thirty years.
+
+Ten lessons, all drilled live. The repo then ended by deleting its own configs, because they belonged in my dotfiles repo. That's the right ending for a learning project.
+
+The failures are still on the site, including a claim I got wrong and caught mid-lesson:
+https://joaoblasques.com/post/terminal-craft/
+
+#tmux #neovim #developerexperience

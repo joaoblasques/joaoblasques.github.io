@@ -6,8 +6,15 @@
     <description>AI-enabled Data Engineer — ~8 years across data &amp; software engineering, 3 of them full-time in data engineering. I build governed lakehouses with tested transforms, CI/CD, and data-quality gates.</description>
     <language>en-us</language>
     <managingEditor>joaoeduardoblasques@gmail.com (João Blasques)</managingEditor>
-    <lastBuildDate>Sat, 18 Jul 2026 10:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 08 Aug 2026 10:00:00 GMT</lastBuildDate>
     <atom:link href="https://joaoblasques.com/index.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Terminal-Craft: Learning tmux and nvim on Purpose, Friction Included</title>
+      <link>https://joaoblasques.com/post/terminal-craft/</link>
+      <pubDate>Sat, 08 Aug 2026 10:00:00 GMT</pubDate>
+      <guid>https://joaoblasques.com/post/terminal-craft/</guid>
+      <description>A ten-lesson curriculum built to fix the real bottleneck in AI-coding work — the keyboard, not the model — with the failures logged rather than edited out, including the lesson that taught macros before it taught undo.</description>
+    </item>
     <item>
       <title>Nora: An AI Executive Assistant That Never Sends as You</title>
       <link>https://joaoblasques.com/post/nora-ai-executive-assistant/</link>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <rect width="1200" height="1200" fill="#ffffff"/>
+
+  <defs>
+    <clipPath id="win">
+      <rect x="300" y="170" width="600" height="600" rx="150"/>
+    </clipPath>
+  </defs>
+
+  <!-- rounded terminal window, matching the site's dark surface -->
+  <rect x="300" y="170" width="600" height="600" rx="150" fill="#12151a"/>
+
+  <!-- tmux-style status bar across the top, clipped to the window's corners -->
+  <g clip-path="url(#win)">
+    <rect x="300" y="290" width="600" height="4" fill="#2a303c"/>
+  </g>
+  <rect x="352" y="232" width="132" height="34" rx="8" fill="#1f8f5c"/>
+  <rect x="508" y="240" width="60" height="18" rx="6" fill="#3d4657"/>
+  <rect x="592" y="240" width="60" height="18" rx="6" fill="#3d4657"/>
+
+  <!-- prompt chevron + cursor block: the site's hero mark -->
+  <g stroke="#1f8f5c" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <polyline points="424,438 508,512 424,586"/>
+  </g>
+  <rect x="560" y="556" width="118" height="34" rx="6" fill="#1f8f5c"/>
+
+  <!-- wordmark -->
+  <text x="600" y="960" text-anchor="middle"
+        font-family="Menlo"
+        font-size="126" font-weight="700" fill="#12151a" letter-spacing="-2">terminal</text>
+  <text x="600" y="1092" text-anchor="middle"
+        font-family="Menlo"
+        font-size="126" font-weight="700" fill="#1f8f5c" letter-spacing="-2">craft</text>
+</svg>

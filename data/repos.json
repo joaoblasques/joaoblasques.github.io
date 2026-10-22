@@ -21,6 +21,13 @@
     "badge": "Site"
   },
   {
+    "name": "terminal-craft",
+    "url": "https://joaoblasques.com/terminal-craft/",
+    "lang": "tmux / nvim",
+    "desc": "A ten-lesson curriculum for tmux and nvim fluency in AI-coding work, drilled live with the friction logged — including the lesson that taught macros before it taught undo.",
+    "badge": "Site"
+  },
+  {
     "name": "mbta-on-time-lakehouse",
     "url": "https://github.com/joaoblasques/mbta-on-time-lakehouse",
     "lang": "Python",

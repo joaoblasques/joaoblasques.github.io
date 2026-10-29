@@ -108,7 +108,7 @@
 <article class="mb pylon">
 <section id="verdict" class="pylon-sec pylon-verdict" aria-labelledby="verdict-h">
 <h1 id="verdict-h">Pylon: an AWS runtime for internal AI agents</h1>
-<p class="pylon-lede">I built Pylon to answer Swisscom&#39;s AI Platform Engineer job post, one point at a time. It is built to run an AI agent on Fargate behind Entra sign-in, write an audit record for every query and alarm on its SLOs. A per-user token quota guards spend, and a budget alarm scales the agent to zero if spend runs past the cap.</p>
+<p class="pylon-lede">I built Pylon to answer Swisscom&#39;s AI Platform Engineer job post, one point at a time. It is built to run an AI agent on Fargate behind Entra sign-in, write an audit record for every query and alarm on its SLOs. A per-user token quota guards spend, and a budget alarm on a separate USD 33 budget (D-37) scales the agent to zero if spend runs past the cap.</p>
 <p class="pylon-lede">The code and its tests pass offline. No row has live evidence yet: live tests are in progress. Each row below has a badge that says which state it&#39;s in.</p>
 <p class="pylon-cta"><a class="pylon-btn pylon-btn--primary" href="#demo">Watch the 3-minute demo</a> <a class="pylon-btn" href="#matrix">Read the evidence</a></p>
 <div class="pylon-cols">
@@ -152,7 +152,7 @@
 <p>One row per point in the job post. Open a row to see the proof and the decisions behind it.</p>
 <dl class="pylon-legend">
 <dt><span class="pylon-badge pylon-badge--live">Verified live</span></dt><dd>ran in AWS, evidence linked</dd>
-<dt><span class="pylon-badge pylon-badge--offline">Offline-tested</span></dt><dd>code and tests pass on my machine and in CI. Nothing in this row has been checked in AWS.</dd>
+<dt><span class="pylon-badge pylon-badge--offline">Offline-tested</span></dt><dd>tests and plans pass; no live evidence is linked yet</dd>
 <dt><span class="pylon-badge pylon-badge--planned">Planned</span></dt><dd>not built yet</dd>
 <dt><span class="pylon-badge pylon-badge--not-covered">Not covered</span></dt><dd>this project cannot show it</dd>
 </dl>
@@ -456,7 +456,7 @@
 <li>On-call history. Pylon is a showcase deployment, and no row has live evidence yet, so there is no on-call record to show.</li>
 <li>Pairing with security teams. A solo project cannot show it. The STRIDE threat model is the closest artefact.</li>
 <li>Swisscom&#39;s own standards. I don&#39;t know them. Every Swisscom-specific guess is in the assumptions file.</li>
-<li>Live evidence. Nothing is verified in AWS yet. Live tests are in progress, and a badge changes only when its evidence is linked.</li>
+<li>Live evidence. No row has live evidence linked yet. Live tests are in progress, and a badge changes only when its evidence is linked.</li>
 </ul>
 </section>
 <section id="contact" class="pylon-sec" aria-labelledby="contact-h">

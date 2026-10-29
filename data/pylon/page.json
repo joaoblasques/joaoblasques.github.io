@@ -4,7 +4,7 @@
   "verdict": {
     "headline": "Pylon: an AWS runtime for internal AI agents",
     "lede": [
-      "I built Pylon to answer Swisscom's AI Platform Engineer job post, one point at a time. It is built to run an AI agent on Fargate behind Entra sign-in, write an audit record for every query and alarm on its SLOs. A per-user token quota guards spend, and a budget alarm scales the agent to zero if spend runs past the cap.",
+      "I built Pylon to answer Swisscom's AI Platform Engineer job post, one point at a time. It is built to run an AI agent on Fargate behind Entra sign-in, write an audit record for every query and alarm on its SLOs. A per-user token quota guards spend, and a budget alarm on a separate USD 33 budget (D-37) scales the agent to zero if spend runs past the cap.",
       "The code and its tests pass offline. No row has live evidence yet: live tests are in progress. Each row below has a badge that says which state it's in."
     ],
     "demoLabel": "Watch the 3-minute demo",
@@ -38,7 +38,7 @@
     "intro": "One row per point in the job post. Open a row to see the proof and the decisions behind it.",
     "legend": {
       "live": "ran in AWS, evidence linked",
-      "offline": "code and tests pass on my machine and in CI. Nothing in this row has been checked in AWS.",
+      "offline": "tests and plans pass; no live evidence is linked yet",
       "planned": "not built yet",
       "not-covered": "this project cannot show it"
     },
@@ -151,7 +151,7 @@
       "On-call history. Pylon is a showcase deployment, and no row has live evidence yet, so there is no on-call record to show.",
       "Pairing with security teams. A solo project cannot show it. The STRIDE threat model is the closest artefact.",
       "Swisscom's own standards. I don't know them. Every Swisscom-specific guess is in the assumptions file.",
-      "Live evidence. Nothing is verified in AWS yet. Live tests are in progress, and a badge changes only when its evidence is linked."
+      "Live evidence. No row has live evidence linked yet. Live tests are in progress, and a badge changes only when its evidence is linked."
     ]
   },
   "contact": {

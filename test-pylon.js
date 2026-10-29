@@ -64,4 +64,20 @@ assert.ok(docs('pylon/index.html').includes('<meta name="robots" content="noinde
 for (const f of ['sitemap.xml', 'search.json', 'index.xml']) assert.ok(!docs(f).includes('/pylon/'), `${f} omits pylon`);
 assert.ok(!docs('index.html').includes('href="/pylon/"'), 'no nav link in draft');
 
+// publish build: Pylon tab on every page emitted before the Pylon page; none in draft
+const siteFile = path.join(__dirname, 'data/pylon/site.json');
+const orig = fs.readFileSync(siteFile, 'utf8');
+const build = () => execFileSync('node', ['build.js'], { cwd: __dirname, stdio: 'pipe' });
+try {
+  fs.writeFileSync(siteFile, JSON.stringify({ ...JSON.parse(orig), draft: false }));
+  build();
+  for (const f of ['index.html', 'posts/index.html', 'projects/index.html', 'pylon/index.html']) {
+    assert.ok(docs(f).includes('href="/pylon/"'), `${f} has Pylon tab in publish`);
+  }
+} finally {
+  fs.writeFileSync(siteFile, orig);
+  build();
+}
+assert.ok(!docs('index.html').includes('href="/pylon/"') && !docs('posts/index.html').includes('href="/pylon/"'), 'draft restored');
+
 console.log('test-pylon: all passed');

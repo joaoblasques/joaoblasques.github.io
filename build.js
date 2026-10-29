@@ -56,6 +56,12 @@ const posts = validatePosts(readJSON('data/posts.json'));
 const contrib = readJSON('data/contributions.json');
 const N = posts.length;
 
+// Pylon data and draft flag first: the nav tab must exist before any page is emitted.
+const pyl = Object.fromEntries(['matrix', 'evidence', 'site', 'page'].map((f) => [f, readJSON(`data/pylon/${f}.json`)]));
+const draft = pyl.site.draft !== false;
+validatePylon({ ...pyl, mode: draft ? 'draft' : 'publish' });
+if (!draft) TABS.push({ key: 'pylon', label: 'Pylon', icon: 'project', href: '/pylon/' });
+
 /* ---------- components ---------- */
 
 const card = (inner, pad = 24) => `<div class="card" style="padding:${pad}px;">${inner}</div>`;
@@ -206,10 +212,6 @@ for (const [slug, active, title] of [
 }
 
 // Pylon page. Draft: noindex, no nav tab, absent from sitemap/search. Publish: validated, indexed.
-const pyl = Object.fromEntries(['matrix', 'evidence', 'site', 'page'].map((f) => [f, readJSON(`data/pylon/${f}.json`)]));
-const draft = pyl.site.draft !== false;
-validatePylon({ ...pyl, mode: draft ? 'draft' : 'publish' });
-if (!draft) TABS.push({ key: 'pylon', label: 'Pylon', icon: 'project', href: '/pylon/' });
 emit('pylon/index.html', page({
   title: `${pyl.page.title} | ${profile.name}`,
   description: pyl.page.intro,

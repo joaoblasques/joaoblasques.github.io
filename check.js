@@ -23,6 +23,7 @@ const DATA_INPUTS = [
   ...['posts', 'profile', 'repos', 'contributions'].map((f) => `data/${f}.json`),
   ...fs.readdirSync(path.join(__dirname, 'data/posts')).map((f) => `data/posts/${f}`),
   ...fs.readdirSync(path.join(__dirname, 'data/pages')).map((f) => `data/pages/${f}`),
+  ...fs.readdirSync(path.join(__dirname, 'data/pylon')).filter((f) => !f.startsWith('.')).map((f) => `data/pylon/${f}`),
 ];
 const newestData = DATA_INPUTS
   .map((f) => fs.statSync(path.join(__dirname, f)).mtimeMs)
@@ -92,6 +93,20 @@ for (const p of pages) {
 if (!h1Bad) ok(`every page has exactly one <h1> (${pages.length} pages)`);
 if (!titleBad) ok('every page has a <title>');
 if (!canonBad) ok('every page has a canonical URL');
+
+console.log('\nPylon page (noindex pages are skipped above, so check it here)');
+if (!exists('pylon/index.html')) fail('pylon/index.html missing');
+else {
+  const h = read('pylon/index.html');
+  const pylSite = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/pylon/site.json'), 'utf8'));
+  (h.match(/<h1[\s>]/g) || []).length === 1 ? ok('pylon: one <h1>') : fail('pylon: want exactly 1 <h1>');
+  /<title>.+<\/title>/.test(h) ? ok('pylon: <title>') : fail('pylon: no <title>');
+  /rel="canonical"/.test(h) ? ok('pylon: canonical') : fail('pylon: no canonical');
+  const noindex = h.includes('name="robots" content="noindex"');
+  pylSite.draft !== false
+    ? (noindex ? ok('pylon: noindex while draft') : fail('pylon: draft page lacks noindex'))
+    : (noindex ? fail('pylon: published page still has noindex') : ok('pylon: indexable'));
+}
 
 console.log('\nContent is server-rendered (the reason we build)');
 const post = read('post/mbta-otp-lakehouse/index.html');

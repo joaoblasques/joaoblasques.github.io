@@ -11,7 +11,9 @@
 const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
-const { page, esc, fmtDate, LANG_COLOR } = require('./lib/layout');
+const { page, esc, fmtDate, LANG_COLOR, TABS } = require('./lib/layout');
+const { validatePylon, renderPylon } = require('./lib/pylon');
+const { scanDir, loadExtra } = require('./lib/redact');
 const { icon } = require('./lib/icons');
 const { validatePosts } = require('./build-lib');
 
@@ -203,6 +205,20 @@ for (const [slug, active, title] of [
   }));
 }
 
+// Pylon page. Draft: noindex, no nav tab, absent from sitemap/search. Publish: validated, indexed.
+const pyl = Object.fromEntries(['matrix', 'evidence', 'site', 'page'].map((f) => [f, readJSON(`data/pylon/${f}.json`)]));
+const draft = pyl.site.draft !== false;
+validatePylon({ ...pyl, mode: draft ? 'draft' : 'publish' });
+if (!draft) TABS.push({ key: 'pylon', label: 'Pylon', icon: 'project', href: '/pylon/' });
+emit('pylon/index.html', page({
+  title: `${pyl.page.title} | ${profile.name}`,
+  description: pyl.page.intro,
+  canonical: `${SITE}/pylon/`,
+  active: 'pylon', profile, postCount: N,
+  extraHead: draft ? '<meta name="robots" content="noindex">\n' : '',
+  body: renderPylon({ ...pyl, profile }),
+}));
+
 // Individual posts — same URL shape Hugo emitted, so nothing 404s.
 for (const p of posts) {
   const ld = {
@@ -319,6 +335,7 @@ ${posts.map((p) => `    <item>
 
 const urls = [
   `${SITE}/`, `${SITE}/posts/`, `${SITE}/projects/`, `${SITE}/skills/`, `${SITE}/about/`, `${SITE}/tags/`,
+  ...(draft ? [] : [`${SITE}/pylon/`]),
   ...posts.map((p) => `${SITE}/post/${p.slug}/`),
   ...[...tags.keys()].map((t) => `${SITE}/tags/${t}/`),
 ];
@@ -332,8 +349,16 @@ write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`)
 
 // Search index — powers the header search box.
 write('search.json', JSON.stringify(
-  posts.map((p) => ({ t: p.title, u: `/post/${p.slug}/`, d: p.description, g: p.tags }))
+  [...posts.map((p) => ({ t: p.title, u: `/post/${p.slug}/`, d: p.description, g: p.tags })),
+    ...(draft ? [] : [{ t: pyl.page.title, u: '/pylon/', d: pyl.page.intro, g: [] }])]
 ));
+
+// Redaction gate: no identifiers in any file name or text under docs/pylon/.
+const leaks = scanDir(path.join(OUT, 'pylon'), loadExtra(path.join(ROOT, 'data/pylon/.redact.local')));
+if (leaks.length) {
+  console.error(`✗ redaction gate: ${leaks.length} leak(s) in docs/pylon/\n  ${leaks.join('\n  ')}`);
+  process.exit(1);
+}
 
 copy('CNAME', 'CNAME');           // custom domain — must survive every build
 copyDir('assets', 'assets');

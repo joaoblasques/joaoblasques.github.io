@@ -1,1 +1,166 @@
-{"title": "Pylon (placeholder)", "intro": "Placeholder text. Copy comes in Task 3."}
+{
+  "title": "Pylon: an AWS platform for AI agents",
+  "intro": "Pylon is an AWS runtime for internal AI agents, built in Terraform and mapped to each point of Swisscom's AI Platform Engineer job post. The code passes its tests offline; live tests are in progress.",
+  "verdict": {
+    "headline": "Pylon: an AWS runtime for internal AI agents",
+    "lede": [
+      "I built Pylon to answer Swisscom's AI Platform Engineer job post, one point at a time. It runs an AI agent on Fargate behind Entra sign-in, writes an audit record for every query, alarms on its SLOs and scales itself to zero at a EUR 30 monthly cap.",
+      "The code and its tests pass offline. Nothing is verified live in AWS yet: live tests are in progress. Each row below has a badge that says which state it's in."
+    ],
+    "demoLabel": "Watch the 3-minute demo",
+    "evidenceLabel": "Read the evidence",
+    "adoptHeading": "What you can adopt on day one",
+    "adopt": [
+      "Nine Terraform modules (network, KMS, edge, agent service, tools, audit, observability, chaos, FinOps), composed into dev, staging and prod roots, each with its own state.",
+      "A front door with no load balancer and no NAT gateway: CloudFront and WAF, an HTTP API that checks the Entra token, then a VPC Link to the agent on Fargate.",
+      "A model gateway to Bedrock with a second model as fallback, and a canned answer when both fail.",
+      "One audit record per query in an S3 Object Lock bucket, queryable in Athena.",
+      "Six alarms on five SLIs, with the error-budget math written out in the SLO document.",
+      "A per-user daily token quota, a daily cost report by team, and a budget kill switch that scales the agent to zero.",
+      "Five runbooks and a STRIDE threat model over five trust boundaries."
+    ],
+    "adaptHeading": "What you must adapt",
+    "adapt": [
+      "Identity: point the JWT authorizer at your Entra tenant, audience and roles claim. Mine is a free test tenant.",
+      "Network: dev runs in one availability zone on public subnets. The prod setting (private subnets, two zones, VPC endpoints) exists in code and has never been applied.",
+      "Deploys: my AWS Organization blocks GitHub OIDC, so I deploy from my terminal (D-44). The OIDC roles are written and tested behind one flag. Turn it on if your organization allows it.",
+      "Region and models: I picked eu-north-1 because of Bedrock availability (D-19). Check which models your account can call.",
+      "SLO targets: these are my starting values for a dev demo, not contracted levels.",
+      "Standards: I don't know Swisscom's security, compliance or network rules. Every guess I made is in the assumptions file."
+    ]
+  },
+  "proof": {
+    "heading": "Numbers",
+    "intro": "Each number here is counted from the repo, not measured on a running system. Cost and latency need the live stack, so they stay off this page until the live tests run."
+  },
+  "matrix": {
+    "heading": "The job post, point by point",
+    "intro": "One row per point in the job post. Open a row to see the proof and the decisions behind it.",
+    "legend": {
+      "live": "ran in AWS, evidence linked",
+      "offline": "code and tests pass on my machine and in CI. Nothing ran in AWS.",
+      "planned": "not built yet",
+      "not-covered": "this project cannot show it"
+    },
+    "groups": {
+      "WYD": "What you'll do",
+      "REQ": "Requirements",
+      "NICE": "Nice to have"
+    },
+    "source": "Source: the posting map in the Pylon repo",
+    "sourceHref": "docs/posting-map.md"
+  },
+  "path": {
+    "heading": "Request path",
+    "intro": "What happens to one query, from the user's Entra token to the audit record.",
+    "caption": "The agent calls at most one tool, then the model once (D-28). Every query the agent handles writes one audit record."
+  },
+  "demo": {
+    "heading": "Demo",
+    "intro": "The recording doesn't exist yet. It will be about three minutes, captured against the dev stack in one session. Then I scale the stack back to zero. It will show:",
+    "pending": "pending: captured in the live evidence session",
+    "items": [
+      "Smoke test through the edge: 200 with an Entra token, 401 without one",
+      "X-Ray trace of that request, found by its request ID",
+      "Athena query that returns the audit record, and a denied delete on the Object Lock bucket",
+      "Dashboard with its six alarms",
+      "Chaos run that trips the degraded-rate alarm",
+      "Kill-switch drill and the first daily cost report",
+      "Golden-set eval run against dev",
+      "Each runbook exercised once",
+      "Load test result and the bill to date against the EUR 30 cap"
+    ],
+    "requestIntro": "There's no public live demo, because visitors would spend my AWS budget. Email me and I'll scale the agent up for a call.",
+    "requestLabel": "Request a live demo",
+    "requestSubject": "Pylon live demo"
+  },
+  "decisions": {
+    "heading": "Decisions and runbooks",
+    "intro": "Every choice has an entry in the decision log: what, why, the alternatives I rejected, and which point of the job post it answers. The eight below shape this page.",
+    "items": [
+      {
+        "id": "D-04",
+        "title": "Runtime: ECS Fargate agent plus Lambda tools"
+      },
+      {
+        "id": "D-05",
+        "title": "Model access: AWS Bedrock behind a thin gateway"
+      },
+      {
+        "id": "D-14",
+        "title": "Networking: no managed NAT gateway"
+      },
+      {
+        "id": "D-16",
+        "title": "Front door: CloudFront and WAF, then HTTP API, VPC link, Cloud Map, Fargate. No ALB."
+      },
+      {
+        "id": "D-23",
+        "title": "Audit trail storage"
+      },
+      {
+        "id": "D-24",
+        "title": "Hard dev budget cap: EUR 30 per month"
+      },
+      {
+        "id": "D-34",
+        "title": "SLO targets and multi-window burn-rate alarms (dev demo)"
+      },
+      {
+        "id": "D-44",
+        "title": "Deploys are manual: the Organization SCP blocks GitHub OIDC"
+      }
+    ],
+    "logLabel": "Full decision log",
+    "logHref": "docs/decision-log.md",
+    "runbooksIntro": "Each runbook ends with the date it was last run in dev. None has run yet.",
+    "runbooks": [
+      {
+        "file": "docs/runbooks/failed-deploy.md",
+        "title": "Failed deploy",
+        "exercised": "not yet"
+      },
+      {
+        "file": "docs/runbooks/bedrock-outage.md",
+        "title": "Bedrock outage",
+        "exercised": "not yet"
+      },
+      {
+        "file": "docs/runbooks/cost-spike.md",
+        "title": "Cost spike",
+        "exercised": "not yet"
+      },
+      {
+        "file": "docs/runbooks/audit-recovery.md",
+        "title": "Audit bucket inaccessible",
+        "exercised": "not yet"
+      },
+      {
+        "file": "docs/runbooks/rotate-secret.md",
+        "title": "Rotate the tools API key",
+        "exercised": "not yet"
+      }
+    ]
+  },
+  "gaps": {
+    "heading": "What this project cannot show",
+    "intro": "These are the limits of a solo project that matter for this role.",
+    "items": [
+      "Kubernetes. I chose ECS Fargate over EKS on cost (D-04). Pylon has no Kubernetes in it.",
+      "High availability. Dev runs in a single availability zone by design (D-14). The two-zone prod setting is code only.",
+      "On-call history. Pylon has never served real users, so there's no on-call record to show.",
+      "Pairing with security teams. I wrote the threat model alone. No security team has reviewed it.",
+      "Swisscom's own standards. I don't know them. Every Swisscom-specific guess is in the assumptions file.",
+      "Live evidence. Nothing is verified in AWS yet. Live tests are in progress, and a badge changes only when its evidence is linked."
+    ]
+  },
+  "contact": {
+    "heading": "Contact",
+    "lines": [
+      "I am available for on-call once the platform is in service.",
+      "Hybrid Lisbon, 2 office days."
+    ],
+    "requestLabel": "Request a live demo",
+    "cvLabel": "My CV"
+  }
+}

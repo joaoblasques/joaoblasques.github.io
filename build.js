@@ -58,6 +58,7 @@ const N = posts.length;
 
 // Pylon data and draft flag first: the nav tab must exist before any page is emitted.
 const pyl = Object.fromEntries(['matrix', 'evidence', 'site', 'page'].map((f) => [f, readJSON(`data/pylon/${f}.json`)]));
+pyl.proofStrip = readJSON('data/pylon/proof-strip.json');
 const draft = pyl.site.draft !== false;
 validatePylon({ ...pyl, mode: draft ? 'draft' : 'publish' });
 if (!draft) TABS.push({ key: 'pylon', label: 'Pylon', icon: 'project', href: '/pylon/' });

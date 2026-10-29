@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pylon (placeholder) | João Blasques</title>
-<meta name="description" content="Placeholder text. Copy comes in Task 3.">
+<title>Pylon: an AWS platform for AI agents | João Blasques</title>
+<meta name="description" content="Pylon is an AWS runtime for internal AI agents, built in Terraform and mapped to each point of Swisscom&#39;s AI Platform Engineer job post. The code passes its tests offline; live tests are in progress.">
 <meta name="author" content="João Blasques">
 <link rel="canonical" href="https://joaoblasques.com/pylon/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Pylon (placeholder) | João Blasques">
-<meta property="og:description" content="Placeholder text. Copy comes in Task 3.">
+<meta property="og:title" content="Pylon: an AWS platform for AI agents | João Blasques">
+<meta property="og:description" content="Pylon is an AWS runtime for internal AI agents, built in Terraform and mapped to each point of Swisscom&#39;s AI Platform Engineer job post. The code passes its tests offline; live tests are in progress.">
 <meta property="og:url" content="https://joaoblasques.com/pylon/">
 <meta property="og:image" content="https://joaoblasques.com/images/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -105,42 +105,368 @@
   </div>
 </aside>
     <main class="maincol">
-<article class="mb">
-<h1>Pylon (placeholder)</h1>
-<p>Placeholder text. Copy comes in Task 3.</p>
-<p>Source: Pylon repository</p>
-<h2>Matrix</h2>
+<article class="mb pylon">
+<section id="verdict" class="pylon-sec pylon-verdict" aria-labelledby="verdict-h">
+<h1 id="verdict-h">Pylon: an AWS runtime for internal AI agents</h1>
+<p class="pylon-lede">I built Pylon to answer Swisscom&#39;s AI Platform Engineer job post, one point at a time. It runs an AI agent on Fargate behind Entra sign-in, writes an audit record for every query, alarms on its SLOs and scales itself to zero at a EUR 30 monthly cap.</p>
+<p class="pylon-lede">The code and its tests pass offline. Nothing is verified live in AWS yet: live tests are in progress. Each row below has a badge that says which state it&#39;s in.</p>
+<p class="pylon-cta"><a class="pylon-btn pylon-btn--primary" href="#demo">Watch the 3-minute demo</a> <a class="pylon-btn" href="#matrix">Read the evidence</a></p>
+<div class="pylon-cols">
+<div><h2>What you can adopt on day one</h2>
 <ul>
-<li id="WYD-1"><strong>WYD-1</strong> Cloud foundation <em>Offline-tested</em>: Network and KMS modules pass 6 Terraform tests. Gateway to Bedrock tested with a fake client. Agent service passes 7 Terraform tests offline (circuit breaker, ECR immutable+KMS+scan, Fargate 256/512 shape, env contract, Cloud Map, KMS log group); `deploy.yml` builds → trivy-scans → pushes a SHA-tagged image (gated).</li>
-<li id="WYD-2"><strong>WYD-2</strong> Secure by design <em>Offline-tested</em>: Task 17: one CI role per env, trust `StringEquals` on `environment:&lt;env&gt;`, inline policy scoped to `pylon-&lt;env&gt;-*`, no admin, no `iam:*` (bootstrap tftest 7/7, checkov 0 failures; never applied). STRIDE threat model in `threat-model.md`. Task SG accepts only the VPC link (test). Missing or forged identity returns 401/403 and is audited (tests). Task-role inline policy asserted wildcard-free and grant-for-grant scoped to the input ARNs (7/7 tftest).</li>
-<li id="WYD-3"><strong>WYD-3</strong> Automate everything <em>Offline-tested</em>: CI workflows written, actions pinned by SHA, the same Terraform loop passes locally. Task 15: `deploy.yml` → reusable `env-promote.yml` (plan → apply → image push → deploy → smoke → rollback to the SSM last-good task definition), actionlint clean (`deploy.yml`, `env-promote.yml`).</li>
-<li id="WYD-4"><strong>WYD-4</strong> Manage environments <em>Offline-tested</em>: `infra/envs/{dev,staging,prod}` validate and lint clean; each composes all nine modules with its own state key and `pylon-&lt;env&gt;` prefix (ADR-002). `scripts/teardown.sh` refuses dev and is idempotent (offline checks only).</li>
-<li id="WYD-5"><strong>WYD-5</strong> Observable, with audit trail <em>Offline-tested</em>: Audit record model and S3 sink tested (round trip, fail-closed on write error, UTF-8-safe excerpts). Spans and EMF metric lines tested. Audit module offline-verified: Object Lock bucket (GOVERNANCE/COMPLIANCE via var, 6/6 tftest), TLS + unencrypted-upload deny policy, SSE-KMS CMK, Glue table with dt projection (no crawler), Athena workgroup with enforced managed results location; `scripts/audit_query.sh` bytes-scanned cutoff (R-18); `prevent_destroy` CI-grepped (R-19).</li>
-<li id="WYD-6"><strong>WYD-6</strong> Reliable, SLIs, degradation <em>Offline-tested</em>: Primary-to-secondary fallback, degraded canned answer, chaos modes: 11 gateway tests. Task 12 (offline): `docs/slo.md` with targets and error-budget math; observability module with six alarms (fast and slow burn-rate, p95, error rate, cost per query, degraded rate) on one SNS topic and a six-widget dashboard, 7/7 tftest, tflint and checkov clean; `scripts/load.py` 3/3 unit tests. Task 13 (offline): `infra/modules/chaos` (SSM String, `ignore_changes`, tftest 4/4), agent `ChaosSwitch` with a 10 s cache that fails to off (4 new tests), `scripts/chaos.sh`, `smoke.py --chaos`. Status stays 🟡. Open: live alarm firing, dashboard screenshot and the chaos run that trips the degraded-rate alarm (R-29, R-36).</li>
-<li id="WYD-7"><strong>WYD-7</strong> Run the AI platform <em>Offline-tested</em>: Atomic per-user daily quota (including 20-thread concurrency test), cost from a price table, guardrail parameter, prompt version on every audit row. Task 14 (offline): `infra/modules/finops` (quota table with TTL, daily Athena cost report to S3 and `CostUSD` per team, Budgets 100% to SNS to kill switch, scoped `ecs:UpdateService`), `app/finops/` (`build_report`, kill switch handler), `scripts/resume.sh`; 12/12 pytest, 6/6 tftest, tflint clean, checkov 0 failures. Task 19 (offline): `evals/golden.jsonl` (7 cases), `evals/run.py` (`score`, per-case floor 0.8, D-41), `eval` job in `deploy.yml` between dev and staging; 16 pytest incl. dropped-fact-fails-threshold.</li>
-<li id="WYD-8"><strong>WYD-8</strong> Stay compliant <em>Offline-tested</em>: Task 17: STRIDE threat model over five trust boundaries, each threat linked to a control file and a test or the plain words &quot;no test&quot; ([`threat-model.md`](threat-model.md)).</li>
-<li id="WYD-9"><strong>WYD-9</strong> Grow know-how <em>Offline-tested</em>: Modular layout, decision log, ADRs, this map. Pairing with external specialists cannot be shown by a solo project.</li>
-<li id="WYD-10"><strong>WYD-10</strong> Support production <em>Offline-tested</em>: Task 18: five runbooks in `docs/runbooks/` (symptom, check, action, escalation, verification), commands checked against the code. All marked `Exercised on: never — UNVERIFIED`. Alarms (Task 12) are written, not applied. On-call itself cannot be demonstrated here. See REQ-SOFT-5.</li>
-<li id="REQ-CLOUD-1"><strong>REQ-CLOUD-1</strong> Hands-on AWS <em>Planned</em>: Proof is a running account. The honest current state: no AWS resource exists yet.</li>
-<li id="REQ-CLOUD-2"><strong>REQ-CLOUD-2</strong> IaC, networking, IAM, secrets, encryption <em>Offline-tested</em>: Terraform bootstrap, network and KMS modules, checkov clean (justified skips are inline).</li>
-<li id="REQ-CLOUD-3"><strong>REQ-CLOUD-3</strong> Containers, serverless <em>Offline-tested</em>: Container image builds and serves `/healthz`; three Lambda handlers tested.</li>
-<li id="REQ-DEVOPS-1"><strong>REQ-DEVOPS-1</strong> CI/CD <em>Offline-tested</em>: See WYD-3.</li>
-<li id="REQ-DEVOPS-2"><strong>REQ-DEVOPS-2</strong> Operating prod services <em>Planned</em></li>
-<li id="REQ-DEVOPS-3"><strong>REQ-DEVOPS-3</strong> Secure delivery and change practice <em>Offline-tested</em>: OIDC with no stored keys, SHA-pinned actions (artifact actions added in Task 15, R-49), GitHub Environments with reviewers on staging and prod (set in GitHub, not in code). Live gate `PYLON_DEPLOY_ENABLED` (R-45). Least-privilege per-env OIDC roles (D-43, R-56; workflow variable wiring is a follow-up).</li>
-<li id="REQ-SCRIPT-1"><strong>REQ-SCRIPT-1</strong> Python and shell <em>Offline-tested</em>: Python application (56 tests). Shell scripts arrive in Tasks 9, 13, 14, 15.</li>
-<li id="REQ-SOFT-1"><strong>REQ-SOFT-1</strong> English communication <em>Offline-tested</em>: This documentation set. Spec, plan and logs are written in plain English.</li>
-<li id="REQ-SOFT-2"><strong>REQ-SOFT-2</strong> Reliability ownership, incidents into learning <em>Offline-tested</em>: Task 18: runbooks carry an honest `Exercised on` line (never, unverified). ✅ needs one live run per runbook in dev, plus post-chaos notes.</li>
-<li id="REQ-SOFT-3"><strong>REQ-SOFT-3</strong> Collaboration with security teams <em>Offline-tested</em>: Not demonstrable alone. [`threat-model.md`](threat-model.md) is the closest artefact.</li>
-<li id="REQ-SOFT-4"><strong>REQ-SOFT-4</strong> Knowledge sharing <em>Offline-tested</em>: Public documentation, decision log, runbooks. Repository is private until D-30 is settled.</li>
-<li id="REQ-SOFT-5"><strong>REQ-SOFT-5</strong> On-call availability <em>Not covered</em>: A statement in the application, not a build item.</li>
-<li id="NICE-1"><strong>NICE-1</strong> GenAI and agentic platforms <em>Offline-tested</em>: The whole project.</li>
-<li id="NICE-2"><strong>NICE-2</strong> Bedrock, CloudWatch, API Gateway, Lambda, S3, CloudFront, WAF, Secrets Manager <em>Offline-tested</em>: Per service: Bedrock (gateway), Lambda (tools), S3 (audit sink), Secrets Manager (tools key), CloudWatch (EMF). Edge module passes 7 Terraform tests offline (JWT authorizer on Entra issuer and audience, `POST /v1/query` gated, claim overwrite on the integration, VPC Link to Cloud Map, CloudFront to HTTP API with `/v1/*` behaviour, WAF with common, known-bad-inputs and per-IP rate rules); checkov 0 failures, tflint clean. Live apply and `smoke.py` wait for `aws login` and the dev stack (R-27).</li>
-<li id="NICE-3"><strong>NICE-3</strong> Kubernetes, OpenTelemetry <em>Not covered</em>: OpenTelemetry covered (traces tested). **Kubernetes is deliberately not covered**: EKS was rejected on cost (D-04).</li>
-<li id="NICE-4"><strong>NICE-4</strong> Entra ID with OIDC <em>Planned</em></li>
-<li id="NICE-5"><strong>NICE-5</strong> FinOps <em>Offline-tested</em>: Cost model, quota, budget alarms at 50/80/100% (Terraform-tested).</li>
-<li id="NICE-6"><strong>NICE-6</strong> Telecom, network operations, HA <em>Offline-tested</em>: Dummy tools themed on network operations. **High availability is not claimed**: dev is single-AZ by design (D-14).</li>
+<li>Nine Terraform modules (network, KMS, edge, agent service, tools, audit, observability, chaos, FinOps), composed into dev, staging and prod roots, each with its own state.</li>
+<li>A front door with no load balancer and no NAT gateway: CloudFront and WAF, an HTTP API that checks the Entra token, then a VPC Link to the agent on Fargate.</li>
+<li>A model gateway to Bedrock with a second model as fallback, and a canned answer when both fail.</li>
+<li>One audit record per query in an S3 Object Lock bucket, queryable in Athena.</li>
+<li>Six alarms on five SLIs, with the error-budget math written out in the SLO document.</li>
+<li>A per-user daily token quota, a daily cost report by team, and a budget kill switch that scales the agent to zero.</li>
+<li>Five runbooks and a STRIDE threat model over five trust boundaries.</li>
+</ul></div>
+<div><h2>What you must adapt</h2>
+<ul>
+<li>Identity: point the JWT authorizer at your Entra tenant, audience and roles claim. Mine is a free test tenant.</li>
+<li>Network: dev runs in one availability zone on public subnets. The prod setting (private subnets, two zones, VPC endpoints) exists in code and has never been applied.</li>
+<li>Deploys: my AWS Organization blocks GitHub OIDC, so I deploy from my terminal (D-44). The OIDC roles are written and tested behind one flag. Turn it on if your organization allows it.</li>
+<li>Region and models: I picked eu-north-1 because of Bedrock availability (D-19). Check which models your account can call.</li>
+<li>SLO targets: these are my starting values for a dev demo, not contracted levels.</li>
+<li>Standards: I don&#39;t know Swisscom&#39;s security, compliance or network rules. Every guess I made is in the assumptions file.</li>
+</ul></div>
+</div>
+</section>
+<section id="proof" class="pylon-sec" aria-labelledby="proof-h">
+<h2 id="proof-h">Numbers</h2>
+<p>Each number here is counted from the repo, not measured on a running system. Cost and latency need the live stack, so they stay off this page until the live tests run.</p>
+<ul class="pylon-strip">
+<li>
+<span class="pylon-stat-v">9</span>
+<span class="pylon-stat-l">Terraform modules</span>
+<span class="pylon-stat-n">offline, counted from the repo: one folder each under infra/modules. Source: infra/modules</span></li>
+<li>
+<span class="pylon-stat-v">81</span>
+<span class="pylon-stat-l">Python tests passing</span>
+<span class="pylon-stat-n">offline, counted from the repo: full pytest suite at Task 14, as recorded in the posting map; later tasks add more. Source: docs/posting-map.md</span></li>
 </ul>
+</section>
+<section id="matrix" class="pylon-sec" aria-labelledby="matrix-h">
+<h2 id="matrix-h">The job post, point by point</h2>
+<p>One row per point in the job post. Open a row to see the proof and the decisions behind it.</p>
+<dl class="pylon-legend">
+<dt><span class="pylon-badge pylon-badge--live">Verified live</span></dt><dd>ran in AWS, evidence linked</dd>
+<dt><span class="pylon-badge pylon-badge--offline">Offline-tested</span></dt><dd>code and tests pass on my machine and in CI. Nothing ran in AWS.</dd>
+<dt><span class="pylon-badge pylon-badge--planned">Planned</span></dt><dd>not built yet</dd>
+<dt><span class="pylon-badge pylon-badge--not-covered">Not covered</span></dt><dd>this project cannot show it</dd>
+</dl>
+<h3>What you&#39;ll do</h3>
+<details class="pylon-row" data-badge="offline" id="WYD-1">
+<summary><span class="pylon-id">WYD-1</span> <span class="pylon-title">Cloud foundation</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Network and KMS modules pass 6 Terraform tests. Gateway to Bedrock tested with a fake client. Agent service passes 7 Terraform tests offline (circuit breaker, ECR immutable+KMS+scan, Fargate 256/512 shape, env contract, Cloud Map, KMS log group); <code>deploy.yml</code> builds → trivy-scans → pushes a SHA-tagged image (gated).</p>
+<p class="pylon-meta">Decisions: D-04, D-05, D-14, D-16, D-19</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-2">
+<summary><span class="pylon-id">WYD-2</span> <span class="pylon-title">Secure by design</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 17: one CI role per env, trust <code>StringEquals</code> on <code>environment:&lt;env&gt;</code>, inline policy scoped to <code>pylon-&lt;env&gt;-*</code>, no admin, no <code>iam:*</code> (bootstrap tftest 7/7, checkov 0 failures; never applied). STRIDE threat model in <code>threat-model.md</code>. Task SG accepts only the VPC link (test). Missing or forged identity returns 401/403 and is audited (tests). Task-role inline policy asserted wildcard-free and grant-for-grant scoped to the input ARNs (7/7 tftest).</p>
+<p class="pylon-meta">Decisions: D-07, D-14, D-16, D-17, D-26, D-43</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-3">
+<summary><span class="pylon-id">WYD-3</span> <span class="pylon-title">Automate everything</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>CI workflows written, actions pinned by SHA, the same Terraform loop passes locally. Task 15: <code>deploy.yml</code> → reusable <code>env-promote.yml</code> (plan → apply → image push → deploy → smoke → rollback to the SSM last-good task definition), actionlint clean (<code>deploy.yml</code>, <code>env-promote.yml</code>).</p>
+<p class="pylon-meta">Decisions: D-03, D-15, D-22, D-39</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-4">
+<summary><span class="pylon-id">WYD-4</span> <span class="pylon-title">Manage environments</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p><code>infra/envs/{dev,staging,prod}</code> validate and lint clean; each composes all nine modules with its own state key and <code>pylon-&lt;env&gt;</code> prefix (ADR-002). <code>scripts/teardown.sh</code> refuses dev and is idempotent (offline checks only).</p>
+<p class="pylon-meta">Decisions: D-06, D-20, D-38, D-40</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-5">
+<summary><span class="pylon-id">WYD-5</span> <span class="pylon-title">Observable, with audit trail</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Audit record model and S3 sink tested (round trip, fail-closed on write error, UTF-8-safe excerpts). Spans and EMF metric lines tested. Audit module offline-verified: Object Lock bucket (GOVERNANCE/COMPLIANCE via var, 6/6 tftest), TLS + unencrypted-upload deny policy, SSE-KMS CMK, Glue table with dt projection (no crawler), Athena workgroup with enforced managed results location; <code>scripts/audit_query.sh</code> bytes-scanned cutoff (R-18); <code>prevent_destroy</code> CI-grepped (R-19).</p>
+<p class="pylon-meta">Decisions: D-02, D-13, D-22, D-23</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-6">
+<summary><span class="pylon-id">WYD-6</span> <span class="pylon-title">Reliable, SLIs, degradation</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Primary-to-secondary fallback, degraded canned answer, chaos modes: 11 gateway tests. Task 12 (offline): <code>docs/slo.md</code> with targets and error-budget math; observability module with six alarms (fast and slow burn-rate, p95, error rate, cost per query, degraded rate) on one SNS topic and a six-widget dashboard, 7/7 tftest, tflint and checkov clean; <code>scripts/load.py</code> 3/3 unit tests. Task 13 (offline): <code>infra/modules/chaos</code> (SSM String, <code>ignore_changes</code>, tftest 4/4), agent <code>ChaosSwitch</code> with a 10 s cache that fails to off (4 new tests), <code>scripts/chaos.sh</code>, <code>smoke.py --chaos</code>. Status stays 🟡. Open: live alarm firing, dashboard screenshot and the chaos run that trips the degraded-rate alarm (R-29, R-36).</p>
+<p class="pylon-meta">Decisions: D-02, D-05, D-34, D-35, D-36</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-7">
+<summary><span class="pylon-id">WYD-7</span> <span class="pylon-title">Run the AI platform</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Atomic per-user daily quota (including 20-thread concurrency test), cost from a price table, guardrail parameter, prompt version on every audit row. Task 14 (offline): <code>infra/modules/finops</code> (quota table with TTL, daily Athena cost report to S3 and <code>CostUSD</code> per team, Budgets 100% to SNS to kill switch, scoped <code>ecs:UpdateService</code>), <code>app/finops/</code> (<code>build_report</code>, kill switch handler), <code>scripts/resume.sh</code>; 12/12 pytest, 6/6 tftest, tflint clean, checkov 0 failures. Task 19 (offline): <code>evals/golden.jsonl</code> (7 cases), <code>evals/run.py</code> (<code>score</code>, per-case floor 0.8, D-41), <code>eval</code> job in <code>deploy.yml</code> between dev and staging; 16 pytest incl. dropped-fact-fails-threshold.</p>
+<p class="pylon-meta">Decisions: D-05, D-21, D-24, D-37</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-8">
+<summary><span class="pylon-id">WYD-8</span> <span class="pylon-title">Stay compliant</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 17: STRIDE threat model over five trust boundaries, each threat linked to a control file and a test or the plain words &quot;no test&quot; (<code>threat-model.md</code>).</p>
+<p class="pylon-meta">Decisions: D-23, D-43</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-9">
+<summary><span class="pylon-id">WYD-9</span> <span class="pylon-title">Grow know-how</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Modular layout, decision log, ADRs, this map. Pairing with external specialists cannot be shown by a solo project.</p>
+<p class="pylon-meta">Decisions: D-09</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-10">
+<summary><span class="pylon-id">WYD-10</span> <span class="pylon-title">Support production</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 18: five runbooks in <code>docs/runbooks/</code> (symptom, check, action, escalation, verification), commands checked against the code. All marked <code>Exercised on: never — UNVERIFIED</code>. Alarms (Task 12) are written, not applied. On-call itself cannot be demonstrated here. See REQ-SOFT-5.</p>
+<p class="pylon-meta">Decisions: D-18, D-42</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<h3>Requirements</h3>
+<details class="pylon-row" data-badge="planned" id="REQ-CLOUD-1">
+<summary><span class="pylon-id">REQ-CLOUD-1</span> <span class="pylon-title">Hands-on AWS</span> <span class="pylon-badge pylon-badge--planned">Planned</span></summary>
+<div class="pylon-detail">
+<p>Proof is a running account. The honest current state: no AWS resource exists yet.</p>
+<p class="pylon-meta">Decisions: D-08</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-CLOUD-2">
+<summary><span class="pylon-id">REQ-CLOUD-2</span> <span class="pylon-title">IaC, networking, IAM, secrets, encryption</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Terraform bootstrap, network and KMS modules, checkov clean (justified skips are inline).</p>
+<p class="pylon-meta">Decisions: D-03, D-14, D-26</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-CLOUD-3">
+<summary><span class="pylon-id">REQ-CLOUD-3</span> <span class="pylon-title">Containers, serverless</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Container image builds and serves <code>/healthz</code>; three Lambda handlers tested.</p>
+<p class="pylon-meta">Decisions: D-04</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-DEVOPS-1">
+<summary><span class="pylon-id">REQ-DEVOPS-1</span> <span class="pylon-title">CI/CD</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>See WYD-3.</p>
+<p class="pylon-meta">Decisions: D-15, D-39</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="planned" id="REQ-DEVOPS-2">
+<summary><span class="pylon-id">REQ-DEVOPS-2</span> <span class="pylon-title">Operating prod services</span> <span class="pylon-badge pylon-badge--planned">Planned</span></summary>
+<div class="pylon-detail">
+<p class="pylon-meta">Decisions: D-02, D-13</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-DEVOPS-3">
+<summary><span class="pylon-id">REQ-DEVOPS-3</span> <span class="pylon-title">Secure delivery and change practice</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>OIDC with no stored keys, SHA-pinned actions (artifact actions added in Task 15, R-49), GitHub Environments with reviewers on staging and prod (set in GitHub, not in code). Live gate <code>PYLON_DEPLOY_ENABLED</code> (R-45). Least-privilege per-env OIDC roles (D-43, R-56; workflow variable wiring is a follow-up).</p>
+<p class="pylon-meta">Decisions: D-15, D-22, D-39, D-40, D-43</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SCRIPT-1">
+<summary><span class="pylon-id">REQ-SCRIPT-1</span> <span class="pylon-title">Python and shell</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Python application (56 tests). Shell scripts arrive in Tasks 9, 13, 14, 15.</p>
+<p class="pylon-meta">Decisions: D-15</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SOFT-1">
+<summary><span class="pylon-id">REQ-SOFT-1</span> <span class="pylon-title">English communication</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>This documentation set. Spec, plan and logs are written in plain English.</p>
+<p class="pylon-meta">Decisions: D-09</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SOFT-2">
+<summary><span class="pylon-id">REQ-SOFT-2</span> <span class="pylon-title">Reliability ownership, incidents into learning</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 18: runbooks carry an honest <code>Exercised on</code> line (never, unverified). ✅ needs one live run per runbook in dev, plus post-chaos notes.</p>
+<p class="pylon-meta">Decisions: D-02, D-42</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="not-covered" id="REQ-SOFT-3">
+<summary><span class="pylon-id">REQ-SOFT-3</span> <span class="pylon-title">Collaboration with security teams</span> <span class="pylon-badge pylon-badge--not-covered">Not covered</span></summary>
+<div class="pylon-detail">
+<p>Not demonstrable alone. <code>threat-model.md</code> is the closest artefact.</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SOFT-4">
+<summary><span class="pylon-id">REQ-SOFT-4</span> <span class="pylon-title">Knowledge sharing</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Public documentation, decision log, runbooks. Repository is private until D-30 is settled.</p>
+<p class="pylon-meta">Decisions: D-09, D-18</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="not-covered" id="REQ-SOFT-5">
+<summary><span class="pylon-id">REQ-SOFT-5</span> <span class="pylon-title">On-call availability</span> <span class="pylon-badge pylon-badge--not-covered">Not covered</span></summary>
+<div class="pylon-detail">
+<p>A statement in the application, not a build item.</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<h3>Nice to have</h3>
+<details class="pylon-row" data-badge="offline" id="NICE-1">
+<summary><span class="pylon-id">NICE-1</span> <span class="pylon-title">GenAI and agentic platforms</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>The whole project.</p>
+<p class="pylon-meta">Decisions: D-01, D-02</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="NICE-2">
+<summary><span class="pylon-id">NICE-2</span> <span class="pylon-title">Bedrock, CloudWatch, API Gateway, Lambda, S3, CloudFront, WAF, Secrets Manager</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Per service: Bedrock (gateway), Lambda (tools), S3 (audit sink), Secrets Manager (tools key), CloudWatch (EMF). Edge module passes 7 Terraform tests offline (JWT authorizer on Entra issuer and audience, <code>POST /v1/query</code> gated, claim overwrite on the integration, VPC Link to Cloud Map, CloudFront to HTTP API with <code>/v1/*</code> behaviour, WAF with common, known-bad-inputs and per-IP rate rules); checkov 0 failures, tflint clean. Live apply and <code>smoke.py</code> wait for <code>aws login</code> and the dev stack (R-27).</p>
+<p class="pylon-meta">Decisions: D-05, D-13, D-16, D-26</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="not-covered" id="NICE-3">
+<summary><span class="pylon-id">NICE-3</span> <span class="pylon-title">Kubernetes, OpenTelemetry</span> <span class="pylon-badge pylon-badge--not-covered">Not covered</span></summary>
+<div class="pylon-detail">
+<p>OpenTelemetry covered (traces tested). <strong>Kubernetes is deliberately not covered</strong>: EKS was rejected on cost (D-04).</p>
+<p class="pylon-meta">Decisions: D-04, D-13</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="planned" id="NICE-4">
+<summary><span class="pylon-id">NICE-4</span> <span class="pylon-title">Entra ID with OIDC</span> <span class="pylon-badge pylon-badge--planned">Planned</span></summary>
+<div class="pylon-detail">
+<p class="pylon-meta">Decisions: D-07, D-17</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="NICE-5">
+<summary><span class="pylon-id">NICE-5</span> <span class="pylon-title">FinOps</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Cost model, quota, budget alarms at 50/80/100% (Terraform-tested).</p>
+<p class="pylon-meta">Decisions: D-06, D-14, D-16, D-21, D-24</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="NICE-6">
+<summary><span class="pylon-id">NICE-6</span> <span class="pylon-title">Telecom, network operations, HA</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Dummy tools themed on network operations. <strong>High availability is not claimed</strong>: dev is single-AZ by design (D-14).</p>
+<p class="pylon-meta">Decisions: D-27</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+</section>
+<section id="path" class="pylon-sec" aria-labelledby="path-h">
+<h2 id="path-h">Request path</h2>
+<p>What happens to one query, from the user&#39;s Entra token to the audit record.</p>
+<figure class="pylon-fig">
+<svg class="pylon-svg" viewBox="0 0 360 460" role="img" aria-labelledby="pylon-path-title pylon-path-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="pylon-path-title">Pylon request path</title>
+  <desc id="pylon-path-desc">A user sends a query with an Entra ID token. It passes CloudFront and WAF, then the API Gateway HTTP API, whose JWT authorizer checks the token issuer and audience. A VPC Link forwards it to the agent on ECS Fargate. The agent calls Bedrock, with a fallback model, and the Lambda tools, and writes an audit record to an S3 Object Lock bucket.</desc>
+  <defs><marker id="pylon-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="pylon-svg-head" d="M0 0L10 5L0 10z" fill="#888"/></marker></defs>
+  <g><rect class="pylon-svg-box" x="50" y="10" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="31" text-anchor="middle">User with Entra token</text><text class="pylon-svg-s" x="180" y="48" text-anchor="middle">bearer JWT from the tenant</text></g>
+  <g><rect class="pylon-svg-box" x="50" y="85" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="106" text-anchor="middle">CloudFront + WAF</text><text class="pylon-svg-s" x="180" y="123" text-anchor="middle">managed and per-IP rate rules</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="60" x2="180" y2="82" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="160" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="181" text-anchor="middle">API Gateway HTTP API</text><text class="pylon-svg-s" x="180" y="198" text-anchor="middle">JWT authorizer: issuer, audience</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="135" x2="180" y2="157" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="235" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="256" text-anchor="middle">VPC Link</text><text class="pylon-svg-s" x="180" y="273" text-anchor="middle">to Cloud Map, no load balancer</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="210" x2="180" y2="232" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="310" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="331" text-anchor="middle">Fargate agent</text><text class="pylon-svg-s" x="180" y="348" text-anchor="middle">quota, tracing, one tool call</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="285" x2="180" y2="307" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="4" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="60" y="421" text-anchor="middle">Bedrock</text><text class="pylon-svg-s" x="60" y="438" text-anchor="middle">primary + fallback</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="60" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="124" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="421" text-anchor="middle">Lambda tools</text><text class="pylon-svg-s" x="180" y="438" text-anchor="middle">network-ops dummies</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="180" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="244" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="300" y="421" text-anchor="middle">Audit sink</text><text class="pylon-svg-s" x="300" y="438" text-anchor="middle">S3 Object Lock</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="300" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+</svg>
+<figcaption>The agent calls at most one tool, then the model once (D-28). Every query the agent handles writes one audit record.</figcaption>
+</figure>
+</section>
+<section id="demo" class="pylon-sec" aria-labelledby="demo-h">
+<h2 id="demo-h">Demo</h2>
+<p>The recording doesn&#39;t exist yet. It will be about three minutes, captured against the dev stack in one session. Then I scale the stack back to zero. It will show:</p>
+<ul>
+<li>Smoke test through the edge: 200 with an Entra token, 401 without one <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>X-Ray trace of that request, found by its request ID <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Athena query that returns the audit record, and a denied delete on the Object Lock bucket <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Dashboard with its six alarms <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Chaos run that trips the degraded-rate alarm <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Kill-switch drill and the first daily cost report <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Golden-set eval run against dev <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Each runbook exercised once <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Load test result and the bill to date against the EUR 30 cap <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+</ul>
+<p>There&#39;s no public live demo, because visitors would spend my AWS budget. Email me and I&#39;ll scale the agent up for a call.</p>
+<p><a class="pylon-btn pylon-btn--primary" href="mailto:joaoeduardoblasques@gmail.com?subject=Pylon%20live%20demo">Request a live demo</a></p>
+</section>
+<section id="decisions" class="pylon-sec" aria-labelledby="decisions-h">
+<h2 id="decisions-h">Decisions and runbooks</h2>
+<p>Every choice has an entry in the decision log: what, why, the alternatives I rejected, and which point of the job post it answers. The eight below shape this page.</p>
+<ul>
+<li><strong>D-04</strong> Runtime: ECS Fargate agent plus Lambda tools</li>
+<li><strong>D-05</strong> Model access: AWS Bedrock behind a thin gateway</li>
+<li><strong>D-14</strong> Networking: no managed NAT gateway</li>
+<li><strong>D-16</strong> Front door: CloudFront and WAF, then HTTP API, VPC link, Cloud Map, Fargate. No ALB.</li>
+<li><strong>D-23</strong> Audit trail storage</li>
+<li><strong>D-24</strong> Hard dev budget cap: EUR 30 per month</li>
+<li><strong>D-34</strong> SLO targets and multi-window burn-rate alarms (dev demo)</li>
+<li><strong>D-44</strong> Deploys are manual: the Organization SCP blocks GitHub OIDC</li>
+</ul>
+<p>Full decision log</p>
+<p>Each runbook ends with the date it was last run in dev. None has run yet.</p>
+<ul>
+<li>Failed deploy. Exercised on: not yet</li>
+<li>Bedrock outage. Exercised on: not yet</li>
+<li>Cost spike. Exercised on: not yet</li>
+<li>Audit bucket inaccessible. Exercised on: not yet</li>
+<li>Rotate the tools API key. Exercised on: not yet</li>
+</ul>
+</section>
+<section id="gaps" class="pylon-sec" aria-labelledby="gaps-h">
+<h2 id="gaps-h">What this project cannot show</h2>
+<p>These are the limits of a solo project that matter for this role.</p>
+<ul>
+<li>Kubernetes. I chose ECS Fargate over EKS on cost (D-04). Pylon has no Kubernetes in it.</li>
+<li>High availability. Dev runs in a single availability zone by design (D-14). The two-zone prod setting is code only.</li>
+<li>On-call history. Pylon has never served real users, so there&#39;s no on-call record to show.</li>
+<li>Pairing with security teams. I wrote the threat model alone. No security team has reviewed it.</li>
+<li>Swisscom&#39;s own standards. I don&#39;t know them. Every Swisscom-specific guess is in the assumptions file.</li>
+<li>Live evidence. Nothing is verified in AWS yet. Live tests are in progress, and a badge changes only when its evidence is linked.</li>
+</ul>
+</section>
+<section id="contact" class="pylon-sec" aria-labelledby="contact-h">
+<h2 id="contact-h">Contact</h2>
+<p>I am available for on-call once the platform is in service.</p>
+<p>Hybrid Lisbon, 2 office days.</p>
+<p class="pylon-cta"><a class="pylon-btn pylon-btn--primary" href="mailto:joaoeduardoblasques@gmail.com?subject=Pylon%20live%20demo">Request a live demo</a> <a class="pylon-btn" href="/cv/">My CV</a></p>
+</section>
 </article>
+<script src="/assets/pylon.js" defer></script>
     </main>
   </div>
 </div>

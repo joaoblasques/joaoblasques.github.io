@@ -1,0 +1,20 @@
+<svg class="pylon-svg" viewBox="0 0 360 460" role="img" aria-labelledby="pylon-path-title pylon-path-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="pylon-path-title">Pylon request path</title>
+  <desc id="pylon-path-desc">A user sends a query with an Entra ID token. It passes CloudFront and WAF, then the API Gateway HTTP API, whose JWT authorizer checks the token issuer and audience. A VPC Link forwards it to the agent on ECS Fargate. The agent calls Bedrock, with a fallback model, and the Lambda tools, and writes an audit record to an S3 Object Lock bucket.</desc>
+  <defs><marker id="pylon-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="pylon-svg-head" d="M0 0L10 5L0 10z" fill="#888"/></marker></defs>
+  <g><rect class="pylon-svg-box" x="50" y="10" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="31" text-anchor="middle">User with Entra token</text><text class="pylon-svg-s" x="180" y="48" text-anchor="middle">bearer JWT from the tenant</text></g>
+  <g><rect class="pylon-svg-box" x="50" y="85" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="106" text-anchor="middle">CloudFront + WAF</text><text class="pylon-svg-s" x="180" y="123" text-anchor="middle">managed and per-IP rate rules</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="60" x2="180" y2="82" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="160" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="181" text-anchor="middle">API Gateway HTTP API</text><text class="pylon-svg-s" x="180" y="198" text-anchor="middle">JWT authorizer: issuer, audience</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="135" x2="180" y2="157" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="235" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="256" text-anchor="middle">VPC Link</text><text class="pylon-svg-s" x="180" y="273" text-anchor="middle">to Cloud Map, no load balancer</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="210" x2="180" y2="232" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="310" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="331" text-anchor="middle">Fargate agent</text><text class="pylon-svg-s" x="180" y="348" text-anchor="middle">quota, tracing, one tool call</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="285" x2="180" y2="307" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="4" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="60" y="421" text-anchor="middle">Bedrock</text><text class="pylon-svg-s" x="60" y="438" text-anchor="middle">primary + fallback</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="60" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="124" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="421" text-anchor="middle">Lambda tools</text><text class="pylon-svg-s" x="180" y="438" text-anchor="middle">network-ops dummies</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="180" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="244" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="300" y="421" text-anchor="middle">Audit sink</text><text class="pylon-svg-s" x="300" y="438" text-anchor="middle">S3 Object Lock</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="300" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+</svg>

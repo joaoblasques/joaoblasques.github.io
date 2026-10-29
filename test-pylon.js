@@ -49,13 +49,61 @@ assert.ok(/a\.html/.test(hits) && /corp\.example/.test(hits), 'alt text leak fou
 fs.rmSync(tmp, { recursive: true });
 
 // repoPublic false renders code links as plain text
-const page = { title: 'P', intro: 'i' };
-const args = { matrix, evidence: good, page, profile: {} };
+const page = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/pylon/page.json'), 'utf8'));
+const args = { matrix, evidence: good, page, profile: {}, proofStrip: [] };
 const priv = renderPylon({ ...args, site: { ...site, repoUrl: 'https://github.com/o/pylon' } });
 assert.ok(!priv.includes('https://github.com/o/pylon'), 'no link when repo is private');
 const pub = renderPylon({ ...args, site: { ...site, repoPublic: true, repoUrl: 'https://github.com/o/pylon' } });
-assert.ok(pub.includes('href="https://github.com/o/pylon"'));
+assert.ok(pub.includes('href="https://github.com/o/pylon/'), 'repo links when public');
 assert.strictEqual((priv.match(/<h1[\s>]/g) || []).length, 1);
+
+// ---- Task 3: sections, no-JS matrix, proof strip, contact, gaps ----
+const realPage = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/pylon/page.json'), 'utf8'));
+const fx = {
+  matrix: { rows: [{ ...row('WYD-1', 'live'), proof: 'Has `code` proof.', decisions: ['D-04'] }, row('REQ-1', 'planned')] },
+  evidence: good, site, page: realPage, profile: { email: 'me@x.test' },
+  proofStrip: [
+    { label: 'Terraform modules', value: 9, note: 'n', href: 'infra/modules' },
+    { label: 'Monthly cost', value: null, note: 'needs live', href: null },
+  ],
+};
+const html = renderPylon(fx);
+const IDS = ['verdict', 'proof', 'matrix', 'path', 'demo', 'decisions', 'gaps', 'contact'];
+const pos = IDS.map((id) => html.indexOf(`id="${id}"`));
+assert.ok(pos.every((p) => p >= 0), `all section ids present: ${pos}`);
+assert.deepStrictEqual([...pos].sort((a, b) => a - b), pos, 'section ids in order');
+const section = (id) => html.slice(html.indexOf(`id="${id}"`), html.indexOf('</section>', html.indexOf(`id="${id}"`)));
+
+// matrix rows: <details> with badge text inside <summary>, readable with no script
+const rows = section('matrix').match(/<details[\s\S]*?<\/details>/g) || [];
+assert.strictEqual(rows.length, 2, 'one <details> per row');
+assert.ok(/<summary>[\s\S]*Verified live[\s\S]*<\/summary>/.test(rows[0]), 'live badge in summary');
+assert.ok(/<summary>[\s\S]*Planned[\s\S]*<\/summary>/.test(rows[1]), 'planned badge in summary');
+assert.ok(!/<details[^>]*hidden/.test(html) && !/display:\s*none/.test(section('matrix')), 'rows visible without JS');
+assert.ok(rows[0].includes('<code>code</code>'), 'proof backticks render as code');
+
+// empty proof renders no empty element
+assert.ok(!/<(p|li|div)[^>]*>\s*<\/\1>/.test(html), 'no empty p/li/div');
+
+// proof strip: null values omitted, not shown as 0 or n/a
+const ps = section('proof');
+assert.ok(ps.includes('Terraform modules') && ps.includes('>9<'), 'measured number shown');
+assert.ok(!ps.includes('Monthly cost') && !/n\/a/.test(ps), 'null value omitted');
+
+// contact: fixed sentences (D-45), mailto from profile, CV link
+const ct = section('contact');
+assert.ok(ct.includes('I am available for on-call once the platform is in service.'), 'on-call sentence');
+assert.ok(ct.includes('Hybrid Lisbon, 2 office days'), 'hybrid sentence');
+assert.ok(ct.includes('href="mailto:me@x.test') && ct.includes('href="/cv/"'), 'mailto and CV');
+
+// gaps: the five items
+const gp = section('gaps');
+for (const re of [/Kubernetes/, /D-04/, /high availability/i, /D-14/, /on-call/i, /security team/i, /Swisscom(&#39;|'|’)s own standards/i]) {
+  assert.ok(re.test(gp), `gaps mentions ${re}`);
+}
+
+// never claim what is not shown
+assert.ok(!/high availability is (provided|supported)|on-call history:|Kubernetes experience/i.test(html));
 
 // draft build: noindex, and /pylon/ absent from sitemap, search, RSS
 execFileSync('node', ['build.js'], { cwd: __dirname, stdio: 'pipe' });

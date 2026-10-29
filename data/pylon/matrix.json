@@ -122,7 +122,7 @@
       "id": "REQ-CLOUD-1",
       "title": "Hands-on AWS",
       "badge": "planned",
-      "proof": "Proof is a running account. The honest current state: no AWS resource exists yet.",
+      "proof": "Proof is a running account with live evidence. None is linked yet.",
       "decisions": [
         "D-08"
       ]

@@ -1,6 +1,26 @@
 [
-  {"label": "Terraform modules", "value": 9, "note": "offline, counted from the repo: one folder each under infra/modules", "href": "infra/modules"},
-  {"label": "Python tests passing", "value": 81, "note": "offline, counted from the repo: full pytest suite at Task 14, as recorded in the posting map; later tasks add more", "href": "docs/posting-map.md"},
-  {"label": "Monthly cost against the EUR 30 cap", "value": null, "note": "needs the live bill", "href": null},
-  {"label": "p95 query latency", "value": null, "note": "needs the live load test", "href": null}
+  {
+    "label": "Terraform modules",
+    "value": 9,
+    "note": "offline, counted from the repo at commit e3daed9: one folder each under infra/modules",
+    "href": "infra/modules"
+  },
+  {
+    "label": "pytest tests collected",
+    "value": 97,
+    "note": "offline, pytest tests collected, counted from the repo at commit e3daed9 (uv run pytest --collect-only)",
+    "href": "tests"
+  },
+  {
+    "label": "Monthly cost against the EUR 30 cap",
+    "value": null,
+    "note": "needs the live bill",
+    "href": null
+  },
+  {
+    "label": "p95 query latency",
+    "value": null,
+    "note": "needs the live load test",
+    "href": null
+  }
 ]

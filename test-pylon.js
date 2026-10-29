@@ -112,6 +112,15 @@ assert.ok(docs('pylon/index.html').includes('<meta name="robots" content="noinde
 for (const f of ['sitemap.xml', 'search.json', 'index.xml']) assert.ok(!docs(f).includes('/pylon/'), `${f} omits pylon`);
 assert.ok(!docs('index.html').includes('href="/pylon/"'), 'no nav link in draft');
 
+// built page: no false AWS-state or cost-cap phrasing
+for (const bad of ['Nothing ran in AWS', 'EUR 30 monthly cap', 'no AWS resource exists']) {
+  assert.ok(!docs('pylon/index.html').toLowerCase().includes(bad.toLowerCase()), `built page must not say "${bad}"`);
+}
+// every shown proof-strip number is labelled as counted and has a source
+for (const s of JSON.parse(fs.readFileSync(path.join(__dirname, 'data/pylon/proof-strip.json'), 'utf8')).filter((x) => x.value !== null)) {
+  assert.ok(s.note.includes('counted from the repo') && s.href, `${s.label}: note and source href`);
+}
+
 // publish build: Pylon tab on every page emitted before the Pylon page; none in draft
 const siteFile = path.join(__dirname, 'data/pylon/site.json');
 const orig = fs.readFileSync(siteFile, 'utf8');

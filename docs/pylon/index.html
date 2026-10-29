@@ -108,8 +108,8 @@
 <article class="mb pylon">
 <section id="verdict" class="pylon-sec pylon-verdict" aria-labelledby="verdict-h">
 <h1 id="verdict-h">Pylon: an AWS runtime for internal AI agents</h1>
-<p class="pylon-lede">I built Pylon to answer Swisscom&#39;s AI Platform Engineer job post, one point at a time. It runs an AI agent on Fargate behind Entra sign-in, writes an audit record for every query, alarms on its SLOs and scales itself to zero at a EUR 30 monthly cap.</p>
-<p class="pylon-lede">The code and its tests pass offline. Nothing is verified live in AWS yet: live tests are in progress. Each row below has a badge that says which state it&#39;s in.</p>
+<p class="pylon-lede">I built Pylon to answer Swisscom&#39;s AI Platform Engineer job post, one point at a time. It is built to run an AI agent on Fargate behind Entra sign-in, write an audit record for every query and alarm on its SLOs. A per-user token quota guards spend, and a budget alarm scales the agent to zero if spend runs past the cap.</p>
+<p class="pylon-lede">The code and its tests pass offline. No row has live evidence yet: live tests are in progress. Each row below has a badge that says which state it&#39;s in.</p>
 <p class="pylon-cta"><a class="pylon-btn pylon-btn--primary" href="#demo">Watch the 3-minute demo</a> <a class="pylon-btn" href="#matrix">Read the evidence</a></p>
 <div class="pylon-cols">
 <div><h2>What you can adopt on day one</h2>
@@ -140,11 +140,11 @@
 <li>
 <span class="pylon-stat-v">9</span>
 <span class="pylon-stat-l">Terraform modules</span>
-<span class="pylon-stat-n">offline, counted from the repo: one folder each under infra/modules. Source: infra/modules</span></li>
+<span class="pylon-stat-n">offline, counted from the repo at commit e3daed9: one folder each under infra/modules. Source: infra/modules</span></li>
 <li>
-<span class="pylon-stat-v">81</span>
-<span class="pylon-stat-l">Python tests passing</span>
-<span class="pylon-stat-n">offline, counted from the repo: full pytest suite at Task 14, as recorded in the posting map; later tasks add more. Source: docs/posting-map.md</span></li>
+<span class="pylon-stat-v">97</span>
+<span class="pylon-stat-l">pytest tests collected</span>
+<span class="pylon-stat-n">offline, pytest tests collected, counted from the repo at commit e3daed9 (uv run pytest --collect-only). Source: tests</span></li>
 </ul>
 </section>
 <section id="matrix" class="pylon-sec" aria-labelledby="matrix-h">
@@ -152,7 +152,7 @@
 <p>One row per point in the job post. Open a row to see the proof and the decisions behind it.</p>
 <dl class="pylon-legend">
 <dt><span class="pylon-badge pylon-badge--live">Verified live</span></dt><dd>ran in AWS, evidence linked</dd>
-<dt><span class="pylon-badge pylon-badge--offline">Offline-tested</span></dt><dd>code and tests pass on my machine and in CI. Nothing ran in AWS.</dd>
+<dt><span class="pylon-badge pylon-badge--offline">Offline-tested</span></dt><dd>code and tests pass on my machine and in CI. Nothing in this row has been checked in AWS.</dd>
 <dt><span class="pylon-badge pylon-badge--planned">Planned</span></dt><dd>not built yet</dd>
 <dt><span class="pylon-badge pylon-badge--not-covered">Not covered</span></dt><dd>this project cannot show it</dd>
 </dl>
@@ -241,7 +241,7 @@
 <details class="pylon-row" data-badge="planned" id="REQ-CLOUD-1">
 <summary><span class="pylon-id">REQ-CLOUD-1</span> <span class="pylon-title">Hands-on AWS</span> <span class="pylon-badge pylon-badge--planned">Planned</span></summary>
 <div class="pylon-detail">
-<p>Proof is a running account. The honest current state: no AWS resource exists yet.</p>
+<p>Proof is a running account with live evidence. None is linked yet.</p>
 <p class="pylon-meta">Decisions: D-08</p>
 <p class="pylon-meta">Source: the posting map in the Pylon repo</p>
 </div>
@@ -453,8 +453,8 @@
 <ul>
 <li>Kubernetes. I chose ECS Fargate over EKS on cost (D-04). Pylon has no Kubernetes in it.</li>
 <li>High availability. Dev runs in a single availability zone by design (D-14). The two-zone prod setting is code only.</li>
-<li>On-call history. Pylon has never served real users, so there&#39;s no on-call record to show.</li>
-<li>Pairing with security teams. I wrote the threat model alone. No security team has reviewed it.</li>
+<li>On-call history. Pylon is a showcase deployment, and no row has live evidence yet, so there is no on-call record to show.</li>
+<li>Pairing with security teams. A solo project cannot show it. The STRIDE threat model is the closest artefact.</li>
 <li>Swisscom&#39;s own standards. I don&#39;t know them. Every Swisscom-specific guess is in the assumptions file.</li>
 <li>Live evidence. Nothing is verified in AWS yet. Live tests are in progress, and a badge changes only when its evidence is linked.</li>
 </ul>

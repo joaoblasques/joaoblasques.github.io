@@ -268,7 +268,11 @@ a:hover { text-decoration:underline; }
 }
 .pylon-filter button[aria-pressed="true"] { background:var(--subtle); border-color:var(--accent); font-weight:600; }
 .pylon-row { border:1px solid var(--border-muted); border-radius:6px; margin-bottom:6px; }
-.pylon-row > summary { cursor:pointer; padding:8px 12px; display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; }
+.pylon-row > summary { cursor:pointer; padding:8px 12px; display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; list-style:none; }
+.pylon-row > summary::-webkit-details-marker { display:none; }
+/* flex hides the native triangle; this chevron replaces it and turns when open */
+.pylon-row > summary::before { content:'\25B8'; content:'\25B8' / ''; color:var(--muted); display:inline-block; width:1em; transition:transform .15s ease; }
+.pylon-row[open] > summary::before { transform:rotate(90deg); }
 .pylon-row[open] > summary { background:var(--subtle); border-bottom:1px solid var(--border-muted); }
 .pylon-id { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; color:var(--muted); }
 .pylon-title { font-weight:600; flex:1; min-width:10em; }

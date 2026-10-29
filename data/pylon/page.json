@@ -60,15 +60,42 @@
     "intro": "The recording doesn't exist yet. It will be about three minutes, captured against the dev stack in one session. Then I scale the stack back to zero. It will show:",
     "pending": "pending: captured in the live evidence session",
     "items": [
-      "Smoke test through the edge: 200 with an Entra token, 401 without one",
-      "X-Ray trace of that request, found by its request ID",
-      "Athena query that returns the audit record, and a denied delete on the Object Lock bucket",
-      "Dashboard with its six alarms",
-      "Chaos run that trips the degraded-rate alarm",
-      "Kill-switch drill and the first daily cost report",
-      "Golden-set eval run against dev",
-      "Each runbook exercised once",
-      "Load test result and the bill to date against the EUR 30 cap"
+      {
+        "label": "Smoke test through the edge: 200 with an Entra token, 401 without one",
+        "href": null
+      },
+      {
+        "label": "X-Ray trace of that request, found by its request ID",
+        "href": null
+      },
+      {
+        "label": "Athena query that returns the audit record, and a denied delete on the Object Lock bucket",
+        "href": null
+      },
+      {
+        "label": "Dashboard with its six alarms",
+        "href": null
+      },
+      {
+        "label": "Chaos run that trips the degraded-rate alarm",
+        "href": null
+      },
+      {
+        "label": "Kill-switch drill and the first daily cost report",
+        "href": null
+      },
+      {
+        "label": "Golden-set eval run against dev",
+        "href": null
+      },
+      {
+        "label": "Each runbook exercised once",
+        "href": null
+      },
+      {
+        "label": "Load test result and the bill to date against the EUR 30 cap",
+        "href": null
+      }
     ],
     "requestIntro": "There's no public live demo, because visitors would spend my AWS budget. Email me and I'll scale the agent up for a call.",
     "requestLabel": "Request a live demo",
@@ -118,27 +145,27 @@
       {
         "file": "docs/runbooks/failed-deploy.md",
         "title": "Failed deploy",
-        "exercised": "not yet"
+        "exercised": null
       },
       {
         "file": "docs/runbooks/bedrock-outage.md",
         "title": "Bedrock outage",
-        "exercised": "not yet"
+        "exercised": null
       },
       {
         "file": "docs/runbooks/cost-spike.md",
         "title": "Cost spike",
-        "exercised": "not yet"
+        "exercised": null
       },
       {
         "file": "docs/runbooks/audit-recovery.md",
         "title": "Audit bucket inaccessible",
-        "exercised": "not yet"
+        "exercised": null
       },
       {
         "file": "docs/runbooks/rotate-secret.md",
         "title": "Rotate the tools API key",
-        "exercised": "not yet"
+        "exercised": null
       }
     ]
   },

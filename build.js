@@ -13,12 +13,14 @@ const path = require('path');
 const { marked } = require('marked');
 const { page, esc, fmtDate, LANG_COLOR, TABS } = require('./lib/layout');
 const { validatePylon, renderPylon } = require('./lib/pylon');
-const { scanDir, loadExtra } = require('./lib/redact');
+const { scanDir, loadExtra, findLeaks } = require('./lib/redact');
 const { icon } = require('./lib/icons');
 const { validatePosts } = require('./build-lib');
 
 const ROOT = __dirname;
-const OUT = path.join(ROOT, 'docs');
+const OUT = process.env.SITE_OUT ? path.resolve(process.env.SITE_OUT) : path.join(ROOT, 'docs');
+// Tests point this at a throwaway copy so they never edit the real data/pylon.
+const PYLON_DATA = process.env.PYLON_DATA_DIR ? path.resolve(process.env.PYLON_DATA_DIR) : path.join(ROOT, 'data/pylon');
 const SITE = 'https://joaoblasques.com';
 
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -57,9 +59,15 @@ const contrib = readJSON('data/contributions.json');
 const N = posts.length;
 
 // Pylon data and draft flag first: the nav tab must exist before any page is emitted.
-const pyl = Object.fromEntries(['matrix', 'evidence', 'site', 'page'].map((f) => [f, readJSON(`data/pylon/${f}.json`)]));
-pyl.proofStrip = readJSON('data/pylon/proof-strip.json');
+const readPylon = (f) => JSON.parse(fs.readFileSync(path.join(PYLON_DATA, `${f}.json`), 'utf8'));
+const pyl = Object.fromEntries(['matrix', 'evidence', 'site', 'page'].map((f) => [f, readPylon(f)]));
+pyl.proofStrip = readPylon('proof-strip');
 const draft = pyl.site.draft !== false;
+const redactFile = path.join(PYLON_DATA, '.redact.local');
+if (!fs.existsSync(redactFile)) {
+  if (!draft) { console.error(`✗ redaction gate: ${redactFile} missing; publish needs the local identifier list`); process.exit(1); }
+  console.warn(`! redaction gate: ${path.basename(redactFile)} absent, generic patterns only (draft)`);
+}
 validatePylon({ ...pyl, mode: draft ? 'draft' : 'publish' });
 if (!draft) TABS.push({ key: 'pylon', label: 'Pylon', icon: 'project', href: '/pylon/' });
 
@@ -356,16 +364,25 @@ write('search.json', JSON.stringify(
     ...(draft ? [] : [{ t: pyl.page.title, u: '/pylon/', d: pyl.page.intro, g: [] }])]
 ));
 
-// Redaction gate: no identifiers in any file name or text under docs/pylon/.
-const leaks = scanDir(path.join(OUT, 'pylon'), loadExtra(path.join(ROOT, 'data/pylon/.redact.local')));
-if (leaks.length) {
-  console.error(`✗ redaction gate: ${leaks.length} leak(s) in docs/pylon/\n  ${leaks.join('\n  ')}`);
-  process.exit(1);
-}
-
 copy('CNAME', 'CNAME');           // custom domain — must survive every build
 copyDir('assets', 'assets');
 copyDir('assets/img', 'images');  // /images/* paths are baked into old inbound links
+
+// Redaction gate, after the copy: file names and text under docs/pylon/ and docs/assets/pylon*.
+const extra = loadExtra(redactFile);
+const leaks = [
+  ...scanDir(path.join(OUT, 'pylon'), extra).map((l) => `pylon/${l}`),
+  ...fs.readdirSync(path.join(OUT, 'assets')).filter((n) => n.startsWith('pylon')).flatMap((n) => {
+    const p = path.join(OUT, 'assets', n);
+    return fs.statSync(p).isDirectory()
+      ? [...findLeaks(n, extra).map((h) => `assets/${n} (file name): ${h}`), ...scanDir(p, extra).map((l) => `assets/${n}/${l}`)]
+      : [...findLeaks(n, extra).map((h) => `assets/${n} (file name): ${h}`), ...findLeaks(fs.readFileSync(p, 'utf8'), extra).map((h) => `assets/${n}: ${h}`)];
+  }),
+];
+if (leaks.length) {
+  console.error(`✗ redaction gate: ${leaks.length} leak(s)\n  ${leaks.join('\n  ')}`);
+  process.exit(1);
+}
 
 console.log(`✓ ${built.length} pages → docs/`);
 console.log(`  ${posts.length} posts · ${tags.size} tags · ${repos.length} pinned repos`);

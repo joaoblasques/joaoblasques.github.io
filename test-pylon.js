@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Pylon page gates. Inline fixtures only; never reads the real matrix.json.
+// Pylon page gates. Unit tests use inline fixtures; builds use a temp copy of data/pylon and a temp output dir.
 const assert = require('assert');
 const fs = require('fs');
 const os = require('os');
@@ -105,9 +105,45 @@ for (const re of [/Kubernetes/, /D-04/, /high availability/i, /D-14/, /on-call/i
 // never claim what is not shown
 assert.ok(!/high availability is (provided|supported)|on-call history:|Kubernetes experience/i.test(html));
 
-// draft build: noindex, and /pylon/ absent from sitemap, search, RSS
-execFileSync('node', ['build.js'], { cwd: __dirname, stdio: 'pipe' });
-const docs = (f) => fs.readFileSync(path.join(__dirname, 'docs', f), 'utf8');
+// ---- Final wave: typo guard (D), publish pending gate (C), hyphenated account ID (A) ----
+assert.throws(() => v({ site: { ...site, overrides: { 'WYD-9X': 'not-covered' } } }), /WYD-9X/, 'unknown override key');
+assert.throws(() => v({ evidence: { ...good, 'REQ-1X': [] } }), /REQ-1X/, 'unknown evidence key');
+const pubPage = { demo: { items: [{ label: 'trace', href: null }, { label: 'dash', href: 'https://x.test/d' }] },
+  decisions: { runbooks: [{ title: 'Cost spike', exercised: null }, { title: 'Ok', exercised: '2026-11-01' }] } };
+const pubStrip = [{ label: 'p95', value: null }, { label: 'mods', value: 9 }];
+assert.doesNotThrow(() => v({ page: pubPage, proofStrip: pubStrip }), 'draft tolerates pending page items');
+assert.throws(() => v({ page: pubPage, proofStrip: pubStrip, mode: 'publish' }),
+  (e) => /trace/.test(e.message) && /Cost spike/.test(e.message) && /p95/.test(e.message) && !/dash|mods|\bOk\b/.test(e.message),
+  'publish lists each pending demo item, runbook and unmeasured number');
+assert.strictEqual(findLeaks('acct 1234-5678-9012 x', []).length, 1, 'hyphenated account ID');
+assert.deepStrictEqual(findLeaks('date 2026-10-29', []), [], 'dates are not account IDs');
+
+// (E) summary keeps a visible disclosure marker
+assert.ok(/\.pylon-row > summary::before\s*\{[^}]*content:/.test(fs.readFileSync(path.join(__dirname, 'assets/styles.css'), 'utf8')), 'summary marker');
+
+// ---- Builds run on a throwaway copy of data/pylon into a temp output dir (never touch real site.json/docs) ----
+const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'pylon-build-'));
+const mkData = (name, edit) => {
+  const dir = path.join(tmpRoot, name);
+  fs.cpSync(path.join(__dirname, 'data/pylon'), dir, { recursive: true });
+  const j = (f) => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+  const w = (f, o) => fs.writeFileSync(path.join(dir, f), JSON.stringify(o));
+  edit({ dir, j, w });
+  return dir;
+};
+const buildWith = (data, out) => execFileSync('node', ['build.js'], {
+  cwd: __dirname, stdio: 'pipe', env: { ...process.env, PYLON_DATA_DIR: data, SITE_OUT: out } }).toString();
+const buildFails = (data, out) => {
+  try { buildWith(data, out); } catch (e) { return String(e.stderr) + String(e.stdout); }
+  assert.fail('build should have failed');
+};
+const outFile = (out, f) => fs.readFileSync(path.join(out, f), 'utf8');
+
+// draft build (forced draft regardless of the real site.json)
+const draftData = mkData('draft', ({ j, w }) => w('site.json', { ...j('site.json'), draft: true }));
+const draftOut = path.join(tmpRoot, 'out-draft');
+buildWith(draftData, draftOut);
+const docs = (f) => outFile(draftOut, f);
 assert.ok(docs('pylon/index.html').includes('<meta name="robots" content="noindex">'));
 for (const f of ['sitemap.xml', 'search.json', 'index.xml']) assert.ok(!docs(f).includes('/pylon/'), `${f} omits pylon`);
 assert.ok(!docs('index.html').includes('href="/pylon/"'), 'no nav link in draft');
@@ -125,20 +161,41 @@ for (const s of JSON.parse(fs.readFileSync(path.join(__dirname, 'data/pylon/proo
   assert.ok(s.note.includes('counted from the repo') && s.href, `${s.label}: note and source href`);
 }
 
-// publish build: Pylon tab on every page emitted before the Pylon page; none in draft
-const siteFile = path.join(__dirname, 'data/pylon/site.json');
-const orig = fs.readFileSync(siteFile, 'utf8');
-const build = () => execFileSync('node', ['build.js'], { cwd: __dirname, stdio: 'pipe' });
-try {
-  fs.writeFileSync(siteFile, JSON.stringify({ ...JSON.parse(orig), draft: false }));
-  build();
-  for (const f of ['index.html', 'posts/index.html', 'projects/index.html', 'pylon/index.html']) {
-    assert.ok(docs(f).includes('href="/pylon/"'), `${f} has Pylon tab in publish`);
-  }
-} finally {
-  fs.writeFileSync(siteFile, orig);
-  build();
+// (A) redaction scan covers copied docs/assets/pylon* (file text), after the copy
+const leakData = mkData('leak', ({ dir, j, w }) => {
+  w('site.json', { ...j('site.json'), draft: true });
+  fs.writeFileSync(path.join(dir, '.redact.local'), 'Filter rows by status\nnetwork-ops dummies\n');
+});
+const leakErr = buildFails(leakData, path.join(tmpRoot, 'out-leak'));
+assert.ok(/assets\/pylon\.js/.test(leakErr) && /request-path\.svg/.test(leakErr), `leak in assets found: ${leakErr}`);
+
+// (A) publish without .redact.local fails; (C) publish with pending items fails
+const pubRaw = mkData('pub-raw', ({ j, w }) => w('site.json', { ...j('site.json'), draft: false }));
+const rawErr = buildFails(pubRaw, path.join(tmpRoot, 'out-raw'));
+assert.ok(/redact\.local/.test(rawErr), 'publish needs .redact.local');
+const pubPend = mkData('pub-pend', ({ dir, j, w }) => {
+  w('site.json', { ...j('site.json'), draft: false });
+  fs.writeFileSync(path.join(dir, '.redact.local'), 'zz-no-such-string-zz\n');
+});
+const pendErr = buildFails(pubPend, path.join(tmpRoot, 'out-pend'));
+assert.ok(/still pending/.test(pendErr) && /demo: "Smoke test/.test(pendErr) && /runbook: "Cost spike"/.test(pendErr), `publish lists pending: ${pendErr}`);
+
+// publish build with everything filled: Pylon tab on every page emitted before the Pylon page
+const pubData = mkData('pub', ({ dir, j, w }) => {
+  w('site.json', { ...j('site.json'), draft: false });
+  const pg = j('page.json');
+  pg.demo.items = pg.demo.items.map((i) => ({ ...i, href: 'https://x.test/e' }));
+  pg.decisions.runbooks = pg.decisions.runbooks.map((r) => ({ ...r, exercised: '2026-11-01' }));
+  w('page.json', pg);
+  w('proof-strip.json', j('proof-strip.json').filter((x) => x.value !== null));
+  fs.writeFileSync(path.join(dir, '.redact.local'), 'zz-no-such-string-zz\n');
+});
+const pubOut = path.join(tmpRoot, 'out-pub');
+buildWith(pubData, pubOut);
+for (const f of ['index.html', 'posts/index.html', 'projects/index.html', 'pylon/index.html']) {
+  assert.ok(outFile(pubOut, f).includes('href="/pylon/"'), `${f} has Pylon tab in publish`);
 }
-assert.ok(!docs('index.html').includes('href="/pylon/"') && !docs('posts/index.html').includes('href="/pylon/"'), 'draft restored');
+assert.ok(!outFile(pubOut, 'pylon/index.html').includes('noindex'), 'publish is indexable');
+fs.rmSync(tmpRoot, { recursive: true });
 
 console.log('test-pylon: all passed');

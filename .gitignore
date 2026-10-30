@@ -20,3 +20,6 @@ Thumbs.db
 *.swo
 *~
 .superpowers/
+
+# Pylon page: local redaction patterns (account, tenant, domain)
+data/pylon/.redact.local

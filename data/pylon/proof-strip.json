@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Terraform modules",
+    "value": 9,
+    "note": "offline, counted from the repo at commit e3daed9: one folder each under infra/modules",
+    "href": "infra/modules"
+  },
+  {
+    "label": "pytest tests collected",
+    "value": 97,
+    "note": "offline, pytest tests collected, counted from the repo at commit e3daed9 (uv run pytest --collect-only)",
+    "href": "tests"
+  },
+  {
+    "label": "Monthly cost against the EUR 30 cap",
+    "value": null,
+    "note": "needs the live bill",
+    "href": null
+  },
+  {
+    "label": "p95 query latency",
+    "value": null,
+    "note": "needs the live load test",
+    "href": null
+  }
+]

@@ -229,3 +229,62 @@ a:hover { text-decoration:underline; }
 .foot-brand { display:flex; align-items:center; gap:8px; }
 .foot-links { display:flex; gap:16px; flex-wrap:wrap; }
 .foot-links a { color:var(--muted); }
+
+/* ---------- Pylon showcase page (/pylon/) ---------- */
+.pylon { --pylon-live:#1a7f37; --pylon-offline:#9a6700; --pylon-planned:#59636e; --pylon-not-covered:#cf222e; }
+[data-theme="dark"] .pylon { --pylon-live:#3fb950; --pylon-offline:#d29922; --pylon-planned:#9198a1; --pylon-not-covered:#f85149; }
+.pylon-sec { margin-bottom:40px; scroll-margin-top:64px; }
+.pylon-lede { font-size:18px; line-height:1.5; }
+.pylon-cta { display:flex; flex-wrap:wrap; gap:8px; }
+.pylon-btn {
+  display:inline-block; padding:5px 16px; border-radius:6px; font-size:14px; font-weight:500;
+  border:1px solid var(--border); background:var(--subtle); color:var(--fg);
+}
+.pylon-btn:hover { text-decoration:none; border-color:var(--accent); }
+.pylon-btn--primary { background:var(--btn-primary); border-color:var(--btn-primary); color:#fff; }
+.pylon-btn--primary:hover { background:var(--btn-primary-hover); }
+.pylon-cols { display:grid; grid-template-columns:1fr; gap:0 24px; }
+@media (min-width:1012px){ .pylon-cols { grid-template-columns:1fr 1fr; } }
+.pylon-cols h2 { font-size:1.15em; }
+.pylon-strip { list-style:none; padding:0 !important; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+.pylon-strip > li { border:1px solid var(--border); border-radius:6px; padding:12px; display:flex; flex-direction:column; gap:4px; margin:0 !important; }
+.pylon-strip .pylon-stat-v { font-size:32px; font-weight:600; line-height:1; }
+.pylon-stat-l { font-weight:600; }
+.pylon-stat-n { font-size:12px; color:var(--muted); }
+.pylon-legend { display:grid; grid-template-columns:auto 1fr; gap:6px 12px; align-items:center; font-size:14px; margin:0 0 16px; }
+.pylon-legend dd { margin:0; color:var(--muted); }
+.pylon-badge {
+  display:inline-block; font-size:12px; font-weight:600; line-height:18px; padding:0 8px;
+  border:1px solid currentColor; border-radius:2em; white-space:nowrap;
+}
+.pylon-badge--live { color:var(--pylon-live); }
+.pylon-badge--offline { color:var(--pylon-offline); }
+.pylon-badge--planned { color:var(--pylon-planned); }
+.pylon-badge--not-covered { color:var(--pylon-not-covered); }
+.pylon-filter { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.pylon-filter button {
+  font:inherit; font-size:12px; padding:3px 10px; border-radius:2em; cursor:pointer;
+  border:1px solid var(--border); background:var(--canvas); color:var(--fg);
+}
+.pylon-filter button[aria-pressed="true"] { background:var(--subtle); border-color:var(--accent); font-weight:600; }
+.pylon-row { border:1px solid var(--border-muted); border-radius:6px; margin-bottom:6px; }
+.pylon-row > summary { cursor:pointer; padding:8px 12px; display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; list-style:none; }
+.pylon-row > summary::-webkit-details-marker { display:none; }
+/* flex hides the native triangle; this chevron replaces it and turns when open */
+.pylon-row > summary::before { content:'\25B8'; content:'\25B8' / ''; color:var(--muted); display:inline-block; width:1em; transition:transform .15s ease; }
+.pylon-row[open] > summary::before { transform:rotate(90deg); }
+.pylon-row[open] > summary { background:var(--subtle); border-bottom:1px solid var(--border-muted); }
+.pylon-id { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; color:var(--muted); }
+.pylon-title { font-weight:600; flex:1; min-width:10em; }
+.pylon-detail { padding:12px; font-size:14px; overflow-wrap:anywhere; }
+.pylon-detail p:last-child { margin-bottom:0; }
+.pylon-meta { color:var(--muted); font-size:13px; }
+.pylon-fig { margin:0 0 16px; }
+.pylon-svg { width:100%; max-width:420px; height:auto; display:block; margin:0 auto; }
+.pylon-svg-box { fill:var(--subtle); stroke:var(--border); }
+.pylon-svg-t { fill:var(--fg); font-size:14px; font-weight:600; }
+.pylon-svg-s { fill:var(--muted); font-size:11px; }
+.pylon-svg-arrow { stroke:var(--muted); stroke-width:1.5; }
+.pylon-svg-head { fill:var(--muted); }
+.pylon-fig figcaption { font-size:14px; color:var(--muted); text-align:center; margin-top:8px; }
+.pylon-pending { color:var(--muted); font-size:13px; }

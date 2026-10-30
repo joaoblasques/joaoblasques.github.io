@@ -11,12 +11,16 @@
 const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
-const { page, esc, fmtDate, LANG_COLOR } = require('./lib/layout');
+const { page, esc, fmtDate, LANG_COLOR, TABS } = require('./lib/layout');
+const { validatePylon, renderPylon } = require('./lib/pylon');
+const { scanDir, loadExtra, findLeaks } = require('./lib/redact');
 const { icon } = require('./lib/icons');
 const { validatePosts } = require('./build-lib');
 
 const ROOT = __dirname;
-const OUT = path.join(ROOT, 'docs');
+const OUT = process.env.SITE_OUT ? path.resolve(process.env.SITE_OUT) : path.join(ROOT, 'docs');
+// Tests point this at a throwaway copy so they never edit the real data/pylon.
+const PYLON_DATA = process.env.PYLON_DATA_DIR ? path.resolve(process.env.PYLON_DATA_DIR) : path.join(ROOT, 'data/pylon');
 const SITE = 'https://joaoblasques.com';
 
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -53,6 +57,19 @@ const repos = readJSON('data/repos.json');
 const posts = validatePosts(readJSON('data/posts.json'));
 const contrib = readJSON('data/contributions.json');
 const N = posts.length;
+
+// Pylon data and draft flag first: the nav tab must exist before any page is emitted.
+const readPylon = (f) => JSON.parse(fs.readFileSync(path.join(PYLON_DATA, `${f}.json`), 'utf8'));
+const pyl = Object.fromEntries(['matrix', 'evidence', 'site', 'page'].map((f) => [f, readPylon(f)]));
+pyl.proofStrip = readPylon('proof-strip');
+const draft = pyl.site.draft !== false;
+const redactFile = path.join(PYLON_DATA, '.redact.local');
+if (!fs.existsSync(redactFile)) {
+  if (!draft) { console.error(`✗ redaction gate: ${redactFile} missing; publish needs the local identifier list`); process.exit(1); }
+  console.warn(`! redaction gate: ${path.basename(redactFile)} absent, generic patterns only (draft)`);
+}
+validatePylon({ ...pyl, mode: draft ? 'draft' : 'publish' });
+if (!draft) TABS.push({ key: 'pylon', label: 'Pylon', icon: 'project', href: '/pylon/' });
 
 /* ---------- components ---------- */
 
@@ -203,6 +220,16 @@ for (const [slug, active, title] of [
   }));
 }
 
+// Pylon page. Draft: noindex, no nav tab, absent from sitemap/search. Publish: validated, indexed.
+emit('pylon/index.html', page({
+  title: `${pyl.page.title} | ${profile.name}`,
+  description: pyl.page.intro,
+  canonical: `${SITE}/pylon/`,
+  active: 'pylon', profile, postCount: N,
+  extraHead: draft ? '<meta name="robots" content="noindex">\n' : '',
+  body: renderPylon({ ...pyl, profile }),
+}));
+
 // Individual posts — same URL shape Hugo emitted, so nothing 404s.
 for (const p of posts) {
   const ld = {
@@ -319,6 +346,7 @@ ${posts.map((p) => `    <item>
 
 const urls = [
   `${SITE}/`, `${SITE}/posts/`, `${SITE}/projects/`, `${SITE}/skills/`, `${SITE}/about/`, `${SITE}/tags/`,
+  ...(draft ? [] : [`${SITE}/pylon/`]),
   ...posts.map((p) => `${SITE}/post/${p.slug}/`),
   ...[...tags.keys()].map((t) => `${SITE}/tags/${t}/`),
 ];
@@ -332,12 +360,29 @@ write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`)
 
 // Search index — powers the header search box.
 write('search.json', JSON.stringify(
-  posts.map((p) => ({ t: p.title, u: `/post/${p.slug}/`, d: p.description, g: p.tags }))
+  [...posts.map((p) => ({ t: p.title, u: `/post/${p.slug}/`, d: p.description, g: p.tags })),
+    ...(draft ? [] : [{ t: pyl.page.title, u: '/pylon/', d: pyl.page.intro, g: [] }])]
 ));
 
 copy('CNAME', 'CNAME');           // custom domain — must survive every build
 copyDir('assets', 'assets');
 copyDir('assets/img', 'images');  // /images/* paths are baked into old inbound links
+
+// Redaction gate, after the copy: file names and text under docs/pylon/ and docs/assets/pylon*.
+const extra = loadExtra(redactFile);
+const leaks = [
+  ...scanDir(path.join(OUT, 'pylon'), extra).map((l) => `pylon/${l}`),
+  ...fs.readdirSync(path.join(OUT, 'assets')).filter((n) => n.startsWith('pylon')).flatMap((n) => {
+    const p = path.join(OUT, 'assets', n);
+    return fs.statSync(p).isDirectory()
+      ? [...findLeaks(n, extra).map((h) => `assets/${n} (file name): ${h}`), ...scanDir(p, extra).map((l) => `assets/${n}/${l}`)]
+      : [...findLeaks(n, extra).map((h) => `assets/${n} (file name): ${h}`), ...findLeaks(fs.readFileSync(p, 'utf8'), extra).map((h) => `assets/${n}: ${h}`)];
+  }),
+];
+if (leaks.length) {
+  console.error(`✗ redaction gate: ${leaks.length} leak(s)\n  ${leaks.join('\n  ')}`);
+  process.exit(1);
+}
 
 console.log(`✓ ${built.length} pages → docs/`);
 console.log(`  ${posts.length} posts · ${tags.size} tags · ${repos.length} pinned repos`);

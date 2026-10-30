@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pylon: an AWS platform for AI agents | João Blasques</title>
+<meta name="description" content="Pylon is an AWS runtime for internal AI agents, built in Terraform and mapped to each point of Swisscom&#39;s AI Platform Engineer job post. The code passes its tests offline; live tests are in progress.">
+<meta name="author" content="João Blasques">
+<link rel="canonical" href="https://joaoblasques.com/pylon/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pylon: an AWS platform for AI agents | João Blasques">
+<meta property="og:description" content="Pylon is an AWS runtime for internal AI agents, built in Terraform and mapped to each point of Swisscom&#39;s AI Platform Engineer job post. The code passes its tests offline; live tests are in progress.">
+<meta property="og:url" content="https://joaoblasques.com/pylon/">
+<meta property="og:image" content="https://joaoblasques.com/images/avatar.jpg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="João Blasques — Posts" href="/index.xml">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('jb-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
+<link rel="stylesheet" href="/assets/styles.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+
+<header class="gh-header">
+  <a href="/" class="iconbtn" style="flex-shrink:0;" aria-label="Home">
+    <span class="dotwrap"><svg viewBox="0 0 16 16" width="32" height="32" style="fill:var(--header-fg)" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg><span class="dot"></span></span>
+  </a>
+  <label class="gh-search">
+    <svg viewBox="0 0 16 16" width="16" height="16" style="fill:var(--header-muted)" aria-hidden="true"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
+    <input type="text" placeholder="Search or jump to…" aria-label="Search posts" id="search" autocomplete="off">
+  </label>
+  <div style="flex:1;"></div>
+  <button class="theme-btn iconbtn" id="theme-toggle" aria-label="Toggle theme"></button>
+</header>
+
+<div class="navbar">
+  <div class="wrap">
+    <div class="layout" style="gap:0;">
+      <div class="sidebar hide-sm" style="margin-top:0;"></div>
+      <div class="maincol">
+        <nav class="unav" aria-label="Main">
+          <a class="unav-item" href="/">
+            <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.744 3.744 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13H.75a.75.75 0 01-.75-.75V1.75zm8.755 3a2.25 2.25 0 012.25-2.25H14.5v9h-3.757c-.71 0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324l.004-5.073-.002-2.253A2.25 2.25 0 005.003 2.5H1.5v9h3.757a3.75 3.75 0 011.994.574z"></path></svg></span>
+            <span>Overview</span>
+            
+          </a><a class="unav-item" href="/posts/">
+            <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg></span>
+            <span>Posts</span>
+            <span class="counter">14</span>
+          </a><a class="unav-item" href="/projects/">
+            <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path></svg></span>
+            <span>Projects</span>
+            
+          </a><a class="unav-item" href="/skills/">
+            <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.429 1.525a6.593 6.593 0 011.142 0c.036.003.108.036.137.146l.289 1.105c.147.56.55.967.997 1.189.174.086.341.183.501.29.417.278.97.423 1.53.27l1.102-.303c.11-.03.175.016.195.046.219.31.41.641.573.989.014.031.022.11-.059.19l-.815.806c-.411.406-.562.957-.53 1.456a4.588 4.588 0 010 .582c-.032.499.119 1.05.53 1.456l.815.806c.081.08.073.159.059.19a6.494 6.494 0 01-.573.989c-.02.03-.085.076-.195.046l-1.102-.303c-.56-.153-1.113-.008-1.53.27-.16.107-.327.204-.5.29-.448.222-.851.628-.998 1.189l-.289 1.105c-.029.11-.101.143-.137.146a6.613 6.613 0 01-1.142 0c-.036-.003-.108-.037-.137-.146l-.289-1.105c-.147-.56-.55-.967-.997-1.189a4.502 4.502 0 01-.501-.29c-.417-.278-.97-.423-1.53-.27l-1.102.303c-.11.03-.175-.016-.195-.046a6.492 6.492 0 01-.573-.989c-.014-.031-.022-.11.059-.19l.815-.806c.411-.406.562-.957.53-1.456a4.587 4.587 0 010-.582c.032-.499-.119-1.05-.53-1.456l-.815-.806c-.081-.08-.073-.159-.059-.19a6.44 6.44 0 01.573-.989c.02-.03.085-.076.195-.046l1.102.303c.56.153 1.113.008 1.53-.27.16-.107.327-.204.5-.29.448-.222.851-.628.998-1.189l.289-1.105c.029-.11.101-.143.137-.146zM8 0c-.236 0-.47.01-.701.03-.743.065-1.29.615-1.458 1.261l-.29 1.106c-.017.066-.078.158-.211.224a5.994 5.994 0 00-.668.386c-.123.082-.233.09-.3.071L3.27 2.776c-.644-.177-1.392.02-1.82.63a7.977 7.977 0 00-.704 1.217c-.315.675-.111 1.422.363 1.891l.815.806c.05.048.098.147.088.294a6.084 6.084 0 000 .772c.01.147-.038.246-.088.294l-.815.806c-.474.469-.678 1.216-.363 1.891.2.428.436.835.704 1.218.428.609 1.176.806 1.82.63l1.103-.303c.066-.019.176-.011.299.071.213.143.436.272.668.386.133.066.194.158.212.224l.289 1.106c.169.646.715 1.196 1.458 1.26a8.094 8.094 0 001.402 0c.743-.064 1.29-.614 1.458-1.26l.29-1.106c.017-.066.078-.158.211-.224a5.98 5.98 0 00.668-.386c.123-.082.233-.09.3-.071l1.102.302c.644.177 1.392-.02 1.82-.63.268-.382.505-.789.704-1.217.315-.675.111-1.422-.364-1.891l-.814-.806c-.05-.048-.098-.147-.088-.294a6.1 6.1 0 000-.772c-.01-.147.039-.246.088-.294l.814-.806c.475-.469.679-1.216.364-1.891a7.992 7.992 0 00-.704-1.218c-.428-.609-1.176-.806-1.82-.63l-1.102.303c-.067.019-.177.011-.3-.071a5.99 5.99 0 00-.668-.386c-.133-.066-.194-.158-.211-.224L10.16 1.29C9.99.645 9.444.095 8.701.031A8.094 8.094 0 008 0zm1.5 8a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path></svg></span>
+            <span>Skills</span>
+            
+          </a><a class="unav-item" href="/about/">
+            <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path d="M10.561 8.073a6.005 6.005 0 013.432 5.142.75.75 0 11-1.498.07 4.5 4.5 0 00-8.99 0 .75.75 0 01-1.498-.07 6.004 6.004 0 013.431-5.142 3.999 3.999 0 115.123 0zM10.5 5a2.5 2.5 0 10-5 0 2.5 2.5 0 005 0z"></path></svg></span>
+            <span>About</span>
+            
+          </a><a class="unav-item" href="/cv/">
+            <span style="display:inline-flex;"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></span>
+            <span>CV</span>
+            
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wrap content">
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="sm-inline">
+    <div class="avatarwrap">
+      <img class="avatar" src="/images/avatar.jpg" alt="João Blasques" width="260" height="260">
+    </div>
+    <div style="padding-top:8px;">
+      <div class="vname">João Blasques <span>(Jonas)</span></div>
+      <div class="vlogin">joaoblasques</div>
+      <p class="vbio">AI-Enabled Data Engineer turning complex data challenges into reliable pipelines and AI-ready systems.</p>
+    </div>
+  </div>
+  <a class="btn-primary" href="mailto:joaoeduardoblasques@gmail.com">Get in touch</a>
+  <ul class="vlist">
+    <li><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path d="M2 5.5a3.5 3.5 0 115.898 2.549 5.507 5.507 0 013.034 4.084.75.75 0 11-1.482.235 4.001 4.001 0 00-7.9 0 .75.75 0 01-1.482-.236A5.507 5.507 0 013.102 8.05 3.49 3.49 0 012 5.5zM11 4a3.001 3.001 0 012.22 5.018 5.01 5.01 0 012.56 3.012.749.749 0 01-.885.954.752.752 0 01-.549-.514 3.507 3.507 0 00-2.522-2.372.75.75 0 01-.574-.73v-.352a.75.75 0 01.416-.672A1.5 1.5 0 0011 5.5.75.75 0 0111 4z"></path></svg> Cascais, Portugal</li>
+    <li><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path></svg> <a href="mailto:joaoeduardoblasques@gmail.com">joaoeduardoblasques@gmail.com</a></li>
+    <li><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg> <a rel="nofollow me" href="https://joaoblasques.com">joaoblasques.com</a></li>
+    <li><svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor" aria-hidden="true"><path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6.001h2.275v1.042h.032c.317-.6 1.091-1.234 2.246-1.234 2.4 0 2.845 1.58 2.845 3.637v4.189zM3.558 4.955a1.376 1.376 0 11-.001-2.751 1.376 1.376 0 01.001 2.751zm1.187 8.68h-2.37V6.001h2.37v7.634zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.483.528 16 1.18 16h13.635c.652 0 1.185-.517 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"></path></svg> <a href="https://www.linkedin.com/in/joaoblasques">in/joaoblasques</a></li>
+  </ul>
+  <div class="vsection hide-sm">
+    <h2>Highlights</h2>
+    <div class="chip"><svg viewBox="0 0 16 16" width="16" height="16" style="fill:var(--btn-primary);flex-shrink:0" aria-hidden="true"><path fill-rule="evenodd" d="M9.585.52a.75.75 0 00-1.17 0L6.643 2.717a.75.75 0 01-.502.28l-2.795.31a.75.75 0 00-.575.99l1.11 2.575a.75.75 0 010 .592l-1.11 2.576a.75.75 0 00.575.99l2.795.31a.75.75 0 01.502.28l1.772 2.196a.75.75 0 001.17 0l1.772-2.196a.75.75 0 01.502-.28l2.795-.31a.75.75 0 00.575-.99l-1.11-2.576a.75.75 0 010-.592l1.11-2.575a.75.75 0 00-.575-.99l-2.795-.31a.75.75 0 01-.502-.28L9.585.52z"></path></svg> AI-Enabled Data Engineer</div>
+  </div>
+  <div class="vsection hide-sm">
+    <h2>Connect</h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="https://github.com/joaoblasques" aria-label="GitHub" class="iconbtn" style="position:relative;">
+        <svg viewBox="0 0 16 16" width="26" height="26" style="fill:var(--fg)" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg><span class="dot dot--canvas"></span>
+      </a>
+      <a href="https://www.linkedin.com/in/joaoblasques" aria-label="LinkedIn" class="iconbtn"><svg viewBox="0 0 16 16" width="26" height="26" style="fill:#0a66c2" aria-hidden="true"><path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6.001h2.275v1.042h.032c.317-.6 1.091-1.234 2.246-1.234 2.4 0 2.845 1.58 2.845 3.637v4.189zM3.558 4.955a1.376 1.376 0 11-.001-2.751 1.376 1.376 0 01.001 2.751zm1.187 8.68h-2.37V6.001h2.37v7.634zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.483.528 16 1.18 16h13.635c.652 0 1.185-.517 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"></path></svg></a>
+    </div>
+  </div>
+</aside>
+    <main class="maincol">
+<article class="mb pylon">
+<section id="verdict" class="pylon-sec pylon-verdict" aria-labelledby="verdict-h">
+<h1 id="verdict-h">Pylon: an AWS runtime for internal AI agents</h1>
+<p class="pylon-lede">I built Pylon to answer Swisscom&#39;s AI Platform Engineer job post, one point at a time. It is built to run an AI agent on Fargate behind Entra sign-in, write an audit record for every query and alarm on its SLOs. A per-user token quota guards spend, and a budget alarm on a separate USD 33 budget (D-37) scales the agent to zero if spend runs past the cap.</p>
+<p class="pylon-lede">The code and its tests pass offline. No row has live evidence yet: live tests are in progress. Each row below has a badge that says which state it&#39;s in.</p>
+<p class="pylon-cta"><a class="pylon-btn pylon-btn--primary" href="#demo">Watch the 3-minute demo</a> <a class="pylon-btn" href="#matrix">Read the evidence</a></p>
+<div class="pylon-cols">
+<div><h2>What you can adopt on day one</h2>
+<ul>
+<li>Nine Terraform modules (network, KMS, edge, agent service, tools, audit, observability, chaos, FinOps), composed into dev, staging and prod roots, each with its own state.</li>
+<li>A front door with no load balancer and no NAT gateway: CloudFront and WAF, an HTTP API that checks the Entra token, then a VPC Link to the agent on Fargate.</li>
+<li>A model gateway to Bedrock with a second model as fallback, and a canned answer when both fail.</li>
+<li>One audit record per query in an S3 Object Lock bucket, queryable in Athena.</li>
+<li>Six alarms on five SLIs, with the error-budget math written out in the SLO document.</li>
+<li>A per-user daily token quota, a daily cost report by team, and a budget kill switch that scales the agent to zero.</li>
+<li>Five runbooks and a STRIDE threat model over five trust boundaries.</li>
+</ul></div>
+<div><h2>What you must adapt</h2>
+<ul>
+<li>Identity: point the JWT authorizer at your Entra tenant, audience and roles claim. Mine is a free test tenant.</li>
+<li>Network: dev runs in one availability zone on public subnets. The prod setting (private subnets, two zones, VPC endpoints) exists in code and has never been applied.</li>
+<li>Deploys: my AWS Organization blocks GitHub OIDC, so I deploy from my terminal (D-44). The OIDC roles are written and tested behind one flag. Turn it on if your organization allows it.</li>
+<li>Region and models: I picked eu-north-1 because of Bedrock availability (D-19). Check which models your account can call.</li>
+<li>SLO targets: these are my starting values for a dev demo, not contracted levels.</li>
+<li>Standards: I don&#39;t know Swisscom&#39;s security, compliance or network rules. Every guess I made is in the assumptions file.</li>
+</ul></div>
+</div>
+</section>
+<section id="proof" class="pylon-sec" aria-labelledby="proof-h">
+<h2 id="proof-h">Numbers</h2>
+<p>Each number here is counted from the repo, not measured on a running system. Cost and latency need the live stack, so they stay off this page until the live tests run.</p>
+<ul class="pylon-strip">
+<li>
+<span class="pylon-stat-v">9</span>
+<span class="pylon-stat-l">Terraform modules</span>
+<span class="pylon-stat-n">offline, counted from the repo at commit e3daed9: one folder each under infra/modules. Source: infra/modules</span></li>
+<li>
+<span class="pylon-stat-v">97</span>
+<span class="pylon-stat-l">pytest tests collected</span>
+<span class="pylon-stat-n">offline, pytest tests collected, counted from the repo at commit e3daed9 (uv run pytest --collect-only). Source: tests</span></li>
+</ul>
+</section>
+<section id="matrix" class="pylon-sec" aria-labelledby="matrix-h">
+<h2 id="matrix-h">The job post, point by point</h2>
+<p>One row per point in the job post. Open a row to see the proof and the decisions behind it.</p>
+<dl class="pylon-legend">
+<dt><span class="pylon-badge pylon-badge--live">Verified live</span></dt><dd>ran in AWS, evidence linked</dd>
+<dt><span class="pylon-badge pylon-badge--offline">Offline-tested</span></dt><dd>tests and plans pass; no live evidence is linked yet</dd>
+<dt><span class="pylon-badge pylon-badge--planned">Planned</span></dt><dd>not built yet</dd>
+<dt><span class="pylon-badge pylon-badge--not-covered">Not covered</span></dt><dd>this project cannot show it</dd>
+</dl>
+<h3>What you&#39;ll do</h3>
+<details class="pylon-row" data-badge="offline" id="WYD-1">
+<summary><span class="pylon-id">WYD-1</span> <span class="pylon-title">Cloud foundation</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Network and KMS modules pass 6 Terraform tests. Gateway to Bedrock tested with a fake client. Agent service passes 7 Terraform tests offline (circuit breaker, ECR immutable+KMS+scan, Fargate 256/512 shape, env contract, Cloud Map, KMS log group); <code>deploy.yml</code> builds → trivy-scans → pushes a SHA-tagged image (gated).</p>
+<p class="pylon-meta">Decisions: D-04, D-05, D-14, D-16, D-19</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-2">
+<summary><span class="pylon-id">WYD-2</span> <span class="pylon-title">Secure by design</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 17: one CI role per env, trust <code>StringEquals</code> on <code>environment:&lt;env&gt;</code>, inline policy scoped to <code>pylon-&lt;env&gt;-*</code>, no admin, no <code>iam:*</code> (bootstrap tftest 7/7, checkov 0 failures; never applied). STRIDE threat model in <code>threat-model.md</code>. Task SG accepts only the VPC link (test). Missing or forged identity returns 401/403 and is audited (tests). Task-role inline policy asserted wildcard-free and grant-for-grant scoped to the input ARNs (7/7 tftest).</p>
+<p class="pylon-meta">Decisions: D-07, D-14, D-16, D-17, D-26, D-43</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-3">
+<summary><span class="pylon-id">WYD-3</span> <span class="pylon-title">Automate everything</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>CI workflows written, actions pinned by SHA, the same Terraform loop passes locally. Task 15: <code>deploy.yml</code> → reusable <code>env-promote.yml</code> (plan → apply → image push → deploy → smoke → rollback to the SSM last-good task definition), actionlint clean (<code>deploy.yml</code>, <code>env-promote.yml</code>).</p>
+<p class="pylon-meta">Decisions: D-03, D-15, D-22, D-39</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-4">
+<summary><span class="pylon-id">WYD-4</span> <span class="pylon-title">Manage environments</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p><code>infra/envs/{dev,staging,prod}</code> validate and lint clean; each composes all nine modules with its own state key and <code>pylon-&lt;env&gt;</code> prefix (ADR-002). <code>scripts/teardown.sh</code> refuses dev and is idempotent (offline checks only).</p>
+<p class="pylon-meta">Decisions: D-06, D-20, D-38, D-40</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-5">
+<summary><span class="pylon-id">WYD-5</span> <span class="pylon-title">Observable, with audit trail</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Audit record model and S3 sink tested (round trip, fail-closed on write error, UTF-8-safe excerpts). Spans and EMF metric lines tested. Audit module offline-verified: Object Lock bucket (GOVERNANCE/COMPLIANCE via var, 6/6 tftest), TLS + unencrypted-upload deny policy, SSE-KMS CMK, Glue table with dt projection (no crawler), Athena workgroup with enforced managed results location; <code>scripts/audit_query.sh</code> bytes-scanned cutoff (R-18); <code>prevent_destroy</code> CI-grepped (R-19).</p>
+<p class="pylon-meta">Decisions: D-02, D-13, D-22, D-23</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-6">
+<summary><span class="pylon-id">WYD-6</span> <span class="pylon-title">Reliable, SLIs, degradation</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Primary-to-secondary fallback, degraded canned answer, chaos modes: 11 gateway tests. Task 12 (offline): <code>docs/slo.md</code> with targets and error-budget math; observability module with six alarms (fast and slow burn-rate, p95, error rate, cost per query, degraded rate) on one SNS topic and a six-widget dashboard, 7/7 tftest, tflint and checkov clean; <code>scripts/load.py</code> 3/3 unit tests. Task 13 (offline): <code>infra/modules/chaos</code> (SSM String, <code>ignore_changes</code>, tftest 4/4), agent <code>ChaosSwitch</code> with a 10 s cache that fails to off (4 new tests), <code>scripts/chaos.sh</code>, <code>smoke.py --chaos</code>. Status stays 🟡. Open: live alarm firing, dashboard screenshot and the chaos run that trips the degraded-rate alarm (R-29, R-36).</p>
+<p class="pylon-meta">Decisions: D-02, D-05, D-34, D-35, D-36</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-7">
+<summary><span class="pylon-id">WYD-7</span> <span class="pylon-title">Run the AI platform</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Atomic per-user daily quota (including 20-thread concurrency test), cost from a price table, guardrail parameter, prompt version on every audit row. Task 14 (offline): <code>infra/modules/finops</code> (quota table with TTL, daily Athena cost report to S3 and <code>CostUSD</code> per team, Budgets 100% to SNS to kill switch, scoped <code>ecs:UpdateService</code>), <code>app/finops/</code> (<code>build_report</code>, kill switch handler), <code>scripts/resume.sh</code>; 12/12 pytest, 6/6 tftest, tflint clean, checkov 0 failures. Task 19 (offline): <code>evals/golden.jsonl</code> (7 cases), <code>evals/run.py</code> (<code>score</code>, per-case floor 0.8, D-41), <code>eval</code> job in <code>deploy.yml</code> between dev and staging; 16 pytest incl. dropped-fact-fails-threshold.</p>
+<p class="pylon-meta">Decisions: D-05, D-21, D-24, D-37</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-8">
+<summary><span class="pylon-id">WYD-8</span> <span class="pylon-title">Stay compliant</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 17: STRIDE threat model over five trust boundaries, each threat linked to a control file and a test or the plain words &quot;no test&quot; (<code>threat-model.md</code>).</p>
+<p class="pylon-meta">Decisions: D-23, D-43</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-9">
+<summary><span class="pylon-id">WYD-9</span> <span class="pylon-title">Grow know-how</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Modular layout, decision log, ADRs, this map. Pairing with external specialists cannot be shown by a solo project.</p>
+<p class="pylon-meta">Decisions: D-09</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="WYD-10">
+<summary><span class="pylon-id">WYD-10</span> <span class="pylon-title">Support production</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 18: five runbooks in <code>docs/runbooks/</code> (symptom, check, action, escalation, verification), commands checked against the code. All marked <code>Exercised on: never — UNVERIFIED</code>. Alarms (Task 12) are written, not applied. On-call itself cannot be demonstrated here. See REQ-SOFT-5.</p>
+<p class="pylon-meta">Decisions: D-18, D-42</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<h3>Requirements</h3>
+<details class="pylon-row" data-badge="planned" id="REQ-CLOUD-1">
+<summary><span class="pylon-id">REQ-CLOUD-1</span> <span class="pylon-title">Hands-on AWS</span> <span class="pylon-badge pylon-badge--planned">Planned</span></summary>
+<div class="pylon-detail">
+<p>Proof is a running account with live evidence. None is linked yet.</p>
+<p class="pylon-meta">Decisions: D-08</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-CLOUD-2">
+<summary><span class="pylon-id">REQ-CLOUD-2</span> <span class="pylon-title">IaC, networking, IAM, secrets, encryption</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Terraform bootstrap, network and KMS modules, checkov clean (justified skips are inline).</p>
+<p class="pylon-meta">Decisions: D-03, D-14, D-26</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-CLOUD-3">
+<summary><span class="pylon-id">REQ-CLOUD-3</span> <span class="pylon-title">Containers, serverless</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Container image builds and serves <code>/healthz</code>; three Lambda handlers tested.</p>
+<p class="pylon-meta">Decisions: D-04</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-DEVOPS-1">
+<summary><span class="pylon-id">REQ-DEVOPS-1</span> <span class="pylon-title">CI/CD</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>See WYD-3.</p>
+<p class="pylon-meta">Decisions: D-15, D-39</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="planned" id="REQ-DEVOPS-2">
+<summary><span class="pylon-id">REQ-DEVOPS-2</span> <span class="pylon-title">Operating prod services</span> <span class="pylon-badge pylon-badge--planned">Planned</span></summary>
+<div class="pylon-detail">
+<p class="pylon-meta">Decisions: D-02, D-13</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-DEVOPS-3">
+<summary><span class="pylon-id">REQ-DEVOPS-3</span> <span class="pylon-title">Secure delivery and change practice</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>OIDC with no stored keys, SHA-pinned actions (artifact actions added in Task 15, R-49), GitHub Environments with reviewers on staging and prod (set in GitHub, not in code). Live gate <code>PYLON_DEPLOY_ENABLED</code> (R-45). Least-privilege per-env OIDC roles (D-43, R-56; workflow variable wiring is a follow-up).</p>
+<p class="pylon-meta">Decisions: D-15, D-22, D-39, D-40, D-43</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SCRIPT-1">
+<summary><span class="pylon-id">REQ-SCRIPT-1</span> <span class="pylon-title">Python and shell</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Python application (56 tests). Shell scripts arrive in Tasks 9, 13, 14, 15.</p>
+<p class="pylon-meta">Decisions: D-15</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SOFT-1">
+<summary><span class="pylon-id">REQ-SOFT-1</span> <span class="pylon-title">English communication</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>This documentation set. Spec, plan and logs are written in plain English.</p>
+<p class="pylon-meta">Decisions: D-09</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SOFT-2">
+<summary><span class="pylon-id">REQ-SOFT-2</span> <span class="pylon-title">Reliability ownership, incidents into learning</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Task 18: runbooks carry an honest <code>Exercised on</code> line (never, unverified). ✅ needs one live run per runbook in dev, plus post-chaos notes.</p>
+<p class="pylon-meta">Decisions: D-02, D-42</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="not-covered" id="REQ-SOFT-3">
+<summary><span class="pylon-id">REQ-SOFT-3</span> <span class="pylon-title">Collaboration with security teams</span> <span class="pylon-badge pylon-badge--not-covered">Not covered</span></summary>
+<div class="pylon-detail">
+<p>Not demonstrable alone. <code>threat-model.md</code> is the closest artefact.</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="REQ-SOFT-4">
+<summary><span class="pylon-id">REQ-SOFT-4</span> <span class="pylon-title">Knowledge sharing</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Public documentation, decision log, runbooks. Repository is private until D-30 is settled.</p>
+<p class="pylon-meta">Decisions: D-09, D-18</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="not-covered" id="REQ-SOFT-5">
+<summary><span class="pylon-id">REQ-SOFT-5</span> <span class="pylon-title">On-call availability</span> <span class="pylon-badge pylon-badge--not-covered">Not covered</span></summary>
+<div class="pylon-detail">
+<p>A statement in the application, not a build item.</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<h3>Nice to have</h3>
+<details class="pylon-row" data-badge="offline" id="NICE-1">
+<summary><span class="pylon-id">NICE-1</span> <span class="pylon-title">GenAI and agentic platforms</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>The whole project.</p>
+<p class="pylon-meta">Decisions: D-01, D-02</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="NICE-2">
+<summary><span class="pylon-id">NICE-2</span> <span class="pylon-title">Bedrock, CloudWatch, API Gateway, Lambda, S3, CloudFront, WAF, Secrets Manager</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Per service: Bedrock (gateway), Lambda (tools), S3 (audit sink), Secrets Manager (tools key), CloudWatch (EMF). Edge module passes 7 Terraform tests offline (JWT authorizer on Entra issuer and audience, <code>POST /v1/query</code> gated, claim overwrite on the integration, VPC Link to Cloud Map, CloudFront to HTTP API with <code>/v1/*</code> behaviour, WAF with common, known-bad-inputs and per-IP rate rules); checkov 0 failures, tflint clean. Live apply and <code>smoke.py</code> wait for <code>aws login</code> and the dev stack (R-27).</p>
+<p class="pylon-meta">Decisions: D-05, D-13, D-16, D-26</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="not-covered" id="NICE-3">
+<summary><span class="pylon-id">NICE-3</span> <span class="pylon-title">Kubernetes, OpenTelemetry</span> <span class="pylon-badge pylon-badge--not-covered">Not covered</span></summary>
+<div class="pylon-detail">
+<p>OpenTelemetry covered (traces tested). <strong>Kubernetes is deliberately not covered</strong>: EKS was rejected on cost (D-04).</p>
+<p class="pylon-meta">Decisions: D-04, D-13</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="planned" id="NICE-4">
+<summary><span class="pylon-id">NICE-4</span> <span class="pylon-title">Entra ID with OIDC</span> <span class="pylon-badge pylon-badge--planned">Planned</span></summary>
+<div class="pylon-detail">
+<p class="pylon-meta">Decisions: D-07, D-17</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="NICE-5">
+<summary><span class="pylon-id">NICE-5</span> <span class="pylon-title">FinOps</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Cost model, quota, budget alarms at 50/80/100% (Terraform-tested).</p>
+<p class="pylon-meta">Decisions: D-06, D-14, D-16, D-21, D-24</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+<details class="pylon-row" data-badge="offline" id="NICE-6">
+<summary><span class="pylon-id">NICE-6</span> <span class="pylon-title">Telecom, network operations, HA</span> <span class="pylon-badge pylon-badge--offline">Offline-tested</span></summary>
+<div class="pylon-detail">
+<p>Dummy tools themed on network operations. <strong>High availability is not claimed</strong>: dev is single-AZ by design (D-14).</p>
+<p class="pylon-meta">Decisions: D-27</p>
+<p class="pylon-meta">Source: the posting map in the Pylon repo</p>
+</div>
+</details>
+</section>
+<section id="path" class="pylon-sec" aria-labelledby="path-h">
+<h2 id="path-h">Request path</h2>
+<p>What happens to one query, from the user&#39;s Entra token to the audit record.</p>
+<figure class="pylon-fig">
+<svg class="pylon-svg" viewBox="0 0 360 460" role="img" aria-labelledby="pylon-path-title pylon-path-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="pylon-path-title">Pylon request path</title>
+  <desc id="pylon-path-desc">A user sends a query with an Entra ID token. It passes CloudFront and WAF, then the API Gateway HTTP API, whose JWT authorizer checks the token issuer and audience. A VPC Link forwards it to the agent on ECS Fargate. The agent calls Bedrock, with a fallback model, and the Lambda tools, and writes an audit record to an S3 Object Lock bucket.</desc>
+  <defs><marker id="pylon-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="pylon-svg-head" d="M0 0L10 5L0 10z" fill="#888"/></marker></defs>
+  <g><rect class="pylon-svg-box" x="50" y="10" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="31" text-anchor="middle">User with Entra token</text><text class="pylon-svg-s" x="180" y="48" text-anchor="middle">bearer JWT from the tenant</text></g>
+  <g><rect class="pylon-svg-box" x="50" y="85" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="106" text-anchor="middle">CloudFront + WAF</text><text class="pylon-svg-s" x="180" y="123" text-anchor="middle">managed and per-IP rate rules</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="60" x2="180" y2="82" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="160" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="181" text-anchor="middle">API Gateway HTTP API</text><text class="pylon-svg-s" x="180" y="198" text-anchor="middle">JWT authorizer: issuer, audience</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="135" x2="180" y2="157" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="235" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="256" text-anchor="middle">VPC Link</text><text class="pylon-svg-s" x="180" y="273" text-anchor="middle">to Cloud Map, no load balancer</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="210" x2="180" y2="232" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="50" y="310" width="260" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="331" text-anchor="middle">Fargate agent</text><text class="pylon-svg-s" x="180" y="348" text-anchor="middle">quota, tracing, one tool call</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="285" x2="180" y2="307" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="4" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="60" y="421" text-anchor="middle">Bedrock</text><text class="pylon-svg-s" x="60" y="438" text-anchor="middle">primary + fallback</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="60" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="124" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="180" y="421" text-anchor="middle">Lambda tools</text><text class="pylon-svg-s" x="180" y="438" text-anchor="middle">network-ops dummies</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="180" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+  <g><rect class="pylon-svg-box" x="244" y="400" width="112" height="50" rx="6" fill="none" stroke="#888"/><text class="pylon-svg-t" x="300" y="421" text-anchor="middle">Audit sink</text><text class="pylon-svg-s" x="300" y="438" text-anchor="middle">S3 Object Lock</text></g>
+  <line class="pylon-svg-arrow" x1="180" y1="360" x2="300" y2="397" stroke="#888" marker-end="url(#pylon-arrow)"/>
+</svg>
+<figcaption>The agent calls at most one tool, then the model once (D-28). Every query the agent handles writes one audit record.</figcaption>
+</figure>
+</section>
+<section id="demo" class="pylon-sec" aria-labelledby="demo-h">
+<h2 id="demo-h">Demo</h2>
+<p>The recording doesn&#39;t exist yet. It will be about three minutes, captured against the dev stack in one session. Then I scale the stack back to zero. It will show:</p>
+<ul>
+<li>Smoke test through the edge: 200 with an Entra token, 401 without one <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>X-Ray trace of that request, found by its request ID <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Athena query that returns the audit record, and a denied delete on the Object Lock bucket <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Dashboard with its six alarms <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Chaos run that trips the degraded-rate alarm <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Kill-switch drill and the first daily cost report <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Golden-set eval run against dev <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Each runbook exercised once <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+<li>Load test result and the bill to date against the EUR 30 cap <em class="pylon-pending">(pending: captured in the live evidence session)</em></li>
+</ul>
+<p>There&#39;s no public live demo, because visitors would spend my AWS budget. Email me and I&#39;ll scale the agent up for a call.</p>
+<p><a class="pylon-btn pylon-btn--primary" href="mailto:joaoeduardoblasques@gmail.com?subject=Pylon%20live%20demo">Request a live demo</a></p>
+</section>
+<section id="decisions" class="pylon-sec" aria-labelledby="decisions-h">
+<h2 id="decisions-h">Decisions and runbooks</h2>
+<p>Every choice has an entry in the decision log: what, why, the alternatives I rejected, and which point of the job post it answers. The eight below shape this page.</p>
+<ul>
+<li><strong>D-04</strong> Runtime: ECS Fargate agent plus Lambda tools</li>
+<li><strong>D-05</strong> Model access: AWS Bedrock behind a thin gateway</li>
+<li><strong>D-14</strong> Networking: no managed NAT gateway</li>
+<li><strong>D-16</strong> Front door: CloudFront and WAF, then HTTP API, VPC link, Cloud Map, Fargate. No ALB.</li>
+<li><strong>D-23</strong> Audit trail storage</li>
+<li><strong>D-24</strong> Hard dev budget cap: EUR 30 per month</li>
+<li><strong>D-34</strong> SLO targets and multi-window burn-rate alarms (dev demo)</li>
+<li><strong>D-44</strong> Deploys are manual: the Organization SCP blocks GitHub OIDC</li>
+</ul>
+<p>Full decision log</p>
+<p>Each runbook ends with the date it was last run in dev. None has run yet.</p>
+<ul>
+<li>Failed deploy. Exercised on: not yet</li>
+<li>Bedrock outage. Exercised on: not yet</li>
+<li>Cost spike. Exercised on: not yet</li>
+<li>Audit bucket inaccessible. Exercised on: not yet</li>
+<li>Rotate the tools API key. Exercised on: not yet</li>
+</ul>
+</section>
+<section id="gaps" class="pylon-sec" aria-labelledby="gaps-h">
+<h2 id="gaps-h">What this project cannot show</h2>
+<p>These are the limits of a solo project that matter for this role.</p>
+<ul>
+<li>Kubernetes. I chose ECS Fargate over EKS on cost (D-04). Pylon has no Kubernetes in it.</li>
+<li>High availability. Dev runs in a single availability zone by design (D-14). The two-zone prod setting is code only.</li>
+<li>On-call history. Pylon is a showcase deployment, and no row has live evidence yet, so there is no on-call record to show.</li>
+<li>Pairing with security teams. A solo project cannot show it. The STRIDE threat model is the closest artefact.</li>
+<li>Swisscom&#39;s own standards. I don&#39;t know them. Every Swisscom-specific guess is in the assumptions file.</li>
+<li>Live evidence. No row has live evidence linked yet. Live tests are in progress, and a badge changes only when its evidence is linked.</li>
+</ul>
+</section>
+<section id="contact" class="pylon-sec" aria-labelledby="contact-h">
+<h2 id="contact-h">Contact</h2>
+<p>I am available for on-call once the platform is in service.</p>
+<p>Hybrid Lisbon, 2 office days.</p>
+<p class="pylon-cta"><a class="pylon-btn pylon-btn--primary" href="mailto:joaoeduardoblasques@gmail.com?subject=Pylon%20live%20demo">Request a live demo</a> <a class="pylon-btn" href="/cv/">My CV</a></p>
+</section>
+</article>
+<script src="/assets/pylon.js" defer></script>
+    </main>
+  </div>
+</div>
+
+<footer class="gh-footer">
+  <div class="wrap">
+    <div class="foot-brand">
+      <span class="dotwrap"><svg viewBox="0 0 16 16" width="20" height="20" style="fill:var(--faint)" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg><span class="dot dot--footer"></span></span>
+      <span>© 2026 João Blasques</span>
+    </div>
+    <div class="foot-links">
+      <a href="/">Overview</a>
+      <a href="/posts/">Posts</a>
+      <a href="https://github.com/joaoblasques">GitHub</a>
+      <a href="https://www.linkedin.com/in/joaoblasques">LinkedIn</a>
+      <a href="mailto:joaoeduardoblasques@gmail.com">Email</a>
+    </div>
+    <span>Built with HTML · CSS · JS</span>
+  </div>
+</footer>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

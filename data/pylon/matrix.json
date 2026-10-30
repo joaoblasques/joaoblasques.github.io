@@ -1,0 +1,300 @@
+{
+  "generated": "2026-10-29",
+  "rows": [
+    {
+      "id": "WYD-1",
+      "title": "Cloud foundation",
+      "badge": "offline",
+      "proof": "Network and KMS modules pass 6 Terraform tests. Gateway to Bedrock tested with a fake client. Agent service passes 7 Terraform tests offline (circuit breaker, ECR immutable+KMS+scan, Fargate 256/512 shape, env contract, Cloud Map, KMS log group); `deploy.yml` builds → trivy-scans → pushes a SHA-tagged image (gated).",
+      "decisions": [
+        "D-04",
+        "D-05",
+        "D-14",
+        "D-16",
+        "D-19"
+      ]
+    },
+    {
+      "id": "WYD-2",
+      "title": "Secure by design",
+      "badge": "offline",
+      "proof": "Task 17: one CI role per env, trust `StringEquals` on `environment:<env>`, inline policy scoped to `pylon-<env>-*`, no admin, no `iam:*` (bootstrap tftest 7/7, checkov 0 failures; never applied). STRIDE threat model in `threat-model.md`. Task SG accepts only the VPC link (test). Missing or forged identity returns 401/403 and is audited (tests). Task-role inline policy asserted wildcard-free and grant-for-grant scoped to the input ARNs (7/7 tftest).",
+      "decisions": [
+        "D-07",
+        "D-14",
+        "D-16",
+        "D-17",
+        "D-26",
+        "D-43"
+      ]
+    },
+    {
+      "id": "WYD-3",
+      "title": "Automate everything",
+      "badge": "offline",
+      "proof": "CI workflows written, actions pinned by SHA, the same Terraform loop passes locally. Task 15: `deploy.yml` → reusable `env-promote.yml` (plan → apply → image push → deploy → smoke → rollback to the SSM last-good task definition), actionlint clean (`deploy.yml`, `env-promote.yml`).",
+      "decisions": [
+        "D-03",
+        "D-15",
+        "D-22",
+        "D-39"
+      ]
+    },
+    {
+      "id": "WYD-4",
+      "title": "Manage environments",
+      "badge": "offline",
+      "proof": "`infra/envs/{dev,staging,prod}` validate and lint clean; each composes all nine modules with its own state key and `pylon-<env>` prefix (ADR-002). `scripts/teardown.sh` refuses dev and is idempotent (offline checks only).",
+      "decisions": [
+        "D-06",
+        "D-20",
+        "D-38",
+        "D-40"
+      ]
+    },
+    {
+      "id": "WYD-5",
+      "title": "Observable, with audit trail",
+      "badge": "offline",
+      "proof": "Audit record model and S3 sink tested (round trip, fail-closed on write error, UTF-8-safe excerpts). Spans and EMF metric lines tested. Audit module offline-verified: Object Lock bucket (GOVERNANCE/COMPLIANCE via var, 6/6 tftest), TLS + unencrypted-upload deny policy, SSE-KMS CMK, Glue table with dt projection (no crawler), Athena workgroup with enforced managed results location; `scripts/audit_query.sh` bytes-scanned cutoff (R-18); `prevent_destroy` CI-grepped (R-19).",
+      "decisions": [
+        "D-02",
+        "D-13",
+        "D-22",
+        "D-23"
+      ]
+    },
+    {
+      "id": "WYD-6",
+      "title": "Reliable, SLIs, degradation",
+      "badge": "offline",
+      "proof": "Primary-to-secondary fallback, degraded canned answer, chaos modes: 11 gateway tests. Task 12 (offline): `docs/slo.md` with targets and error-budget math; observability module with six alarms (fast and slow burn-rate, p95, error rate, cost per query, degraded rate) on one SNS topic and a six-widget dashboard, 7/7 tftest, tflint and checkov clean; `scripts/load.py` 3/3 unit tests. Task 13 (offline): `infra/modules/chaos` (SSM String, `ignore_changes`, tftest 4/4), agent `ChaosSwitch` with a 10 s cache that fails to off (4 new tests), `scripts/chaos.sh`, `smoke.py --chaos`. Status stays 🟡. Open: live alarm firing, dashboard screenshot and the chaos run that trips the degraded-rate alarm (R-29, R-36).",
+      "decisions": [
+        "D-02",
+        "D-05",
+        "D-34",
+        "D-35",
+        "D-36"
+      ]
+    },
+    {
+      "id": "WYD-7",
+      "title": "Run the AI platform",
+      "badge": "offline",
+      "proof": "Atomic per-user daily quota (including 20-thread concurrency test), cost from a price table, guardrail parameter, prompt version on every audit row. Task 14 (offline): `infra/modules/finops` (quota table with TTL, daily Athena cost report to S3 and `CostUSD` per team, Budgets 100% to SNS to kill switch, scoped `ecs:UpdateService`), `app/finops/` (`build_report`, kill switch handler), `scripts/resume.sh`; 12/12 pytest, 6/6 tftest, tflint clean, checkov 0 failures. Task 19 (offline): `evals/golden.jsonl` (7 cases), `evals/run.py` (`score`, per-case floor 0.8, D-41), `eval` job in `deploy.yml` between dev and staging; 16 pytest incl. dropped-fact-fails-threshold.",
+      "decisions": [
+        "D-05",
+        "D-21",
+        "D-24",
+        "D-37"
+      ]
+    },
+    {
+      "id": "WYD-8",
+      "title": "Stay compliant",
+      "badge": "offline",
+      "proof": "Task 17: STRIDE threat model over five trust boundaries, each threat linked to a control file and a test or the plain words \"no test\" ([`threat-model.md`](threat-model.md)).",
+      "decisions": [
+        "D-23",
+        "D-43"
+      ]
+    },
+    {
+      "id": "WYD-9",
+      "title": "Grow know-how",
+      "badge": "offline",
+      "proof": "Modular layout, decision log, ADRs, this map. Pairing with external specialists cannot be shown by a solo project.",
+      "decisions": [
+        "D-09"
+      ]
+    },
+    {
+      "id": "WYD-10",
+      "title": "Support production",
+      "badge": "offline",
+      "proof": "Task 18: five runbooks in `docs/runbooks/` (symptom, check, action, escalation, verification), commands checked against the code. All marked `Exercised on: never — UNVERIFIED`. Alarms (Task 12) are written, not applied. On-call itself cannot be demonstrated here. See REQ-SOFT-5.",
+      "decisions": [
+        "D-18",
+        "D-42"
+      ]
+    },
+    {
+      "id": "REQ-CLOUD-1",
+      "title": "Hands-on AWS",
+      "badge": "planned",
+      "proof": "Proof is a running account with live evidence. None is linked yet.",
+      "decisions": [
+        "D-08"
+      ]
+    },
+    {
+      "id": "REQ-CLOUD-2",
+      "title": "IaC, networking, IAM, secrets, encryption",
+      "badge": "offline",
+      "proof": "Terraform bootstrap, network and KMS modules, checkov clean (justified skips are inline).",
+      "decisions": [
+        "D-03",
+        "D-14",
+        "D-26"
+      ]
+    },
+    {
+      "id": "REQ-CLOUD-3",
+      "title": "Containers, serverless",
+      "badge": "offline",
+      "proof": "Container image builds and serves `/healthz`; three Lambda handlers tested.",
+      "decisions": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "REQ-DEVOPS-1",
+      "title": "CI/CD",
+      "badge": "offline",
+      "proof": "See WYD-3.",
+      "decisions": [
+        "D-15",
+        "D-39"
+      ]
+    },
+    {
+      "id": "REQ-DEVOPS-2",
+      "title": "Operating prod services",
+      "badge": "planned",
+      "proof": "",
+      "decisions": [
+        "D-02",
+        "D-13"
+      ]
+    },
+    {
+      "id": "REQ-DEVOPS-3",
+      "title": "Secure delivery and change practice",
+      "badge": "offline",
+      "proof": "OIDC with no stored keys, SHA-pinned actions (artifact actions added in Task 15, R-49), GitHub Environments with reviewers on staging and prod (set in GitHub, not in code). Live gate `PYLON_DEPLOY_ENABLED` (R-45). Least-privilege per-env OIDC roles (D-43, R-56; workflow variable wiring is a follow-up).",
+      "decisions": [
+        "D-15",
+        "D-22",
+        "D-39",
+        "D-40",
+        "D-43"
+      ]
+    },
+    {
+      "id": "REQ-SCRIPT-1",
+      "title": "Python and shell",
+      "badge": "offline",
+      "proof": "Python application (56 tests). Shell scripts arrive in Tasks 9, 13, 14, 15.",
+      "decisions": [
+        "D-15"
+      ]
+    },
+    {
+      "id": "REQ-SOFT-1",
+      "title": "English communication",
+      "badge": "offline",
+      "proof": "This documentation set. Spec, plan and logs are written in plain English.",
+      "decisions": [
+        "D-09"
+      ]
+    },
+    {
+      "id": "REQ-SOFT-2",
+      "title": "Reliability ownership, incidents into learning",
+      "badge": "offline",
+      "proof": "Task 18: runbooks carry an honest `Exercised on` line (never, unverified). ✅ needs one live run per runbook in dev, plus post-chaos notes.",
+      "decisions": [
+        "D-02",
+        "D-42"
+      ]
+    },
+    {
+      "id": "REQ-SOFT-3",
+      "title": "Collaboration with security teams",
+      "badge": "offline",
+      "proof": "Not demonstrable alone. [`threat-model.md`](threat-model.md) is the closest artefact.",
+      "decisions": []
+    },
+    {
+      "id": "REQ-SOFT-4",
+      "title": "Knowledge sharing",
+      "badge": "offline",
+      "proof": "Public documentation, decision log, runbooks. Repository is private until D-30 is settled.",
+      "decisions": [
+        "D-09",
+        "D-18"
+      ]
+    },
+    {
+      "id": "REQ-SOFT-5",
+      "title": "On-call availability",
+      "badge": "not-covered",
+      "proof": "A statement in the application, not a build item.",
+      "decisions": []
+    },
+    {
+      "id": "NICE-1",
+      "title": "GenAI and agentic platforms",
+      "badge": "offline",
+      "proof": "The whole project.",
+      "decisions": [
+        "D-01",
+        "D-02"
+      ]
+    },
+    {
+      "id": "NICE-2",
+      "title": "Bedrock, CloudWatch, API Gateway, Lambda, S3, CloudFront, WAF, Secrets Manager",
+      "badge": "offline",
+      "proof": "Per service: Bedrock (gateway), Lambda (tools), S3 (audit sink), Secrets Manager (tools key), CloudWatch (EMF). Edge module passes 7 Terraform tests offline (JWT authorizer on Entra issuer and audience, `POST /v1/query` gated, claim overwrite on the integration, VPC Link to Cloud Map, CloudFront to HTTP API with `/v1/*` behaviour, WAF with common, known-bad-inputs and per-IP rate rules); checkov 0 failures, tflint clean. Live apply and `smoke.py` wait for `aws login` and the dev stack (R-27).",
+      "decisions": [
+        "D-05",
+        "D-13",
+        "D-16",
+        "D-26"
+      ]
+    },
+    {
+      "id": "NICE-3",
+      "title": "Kubernetes, OpenTelemetry",
+      "badge": "offline",
+      "proof": "OpenTelemetry covered (traces tested). **Kubernetes is deliberately not covered**: EKS was rejected on cost (D-04).",
+      "decisions": [
+        "D-04",
+        "D-13"
+      ]
+    },
+    {
+      "id": "NICE-4",
+      "title": "Entra ID with OIDC",
+      "badge": "planned",
+      "proof": "",
+      "decisions": [
+        "D-07",
+        "D-17"
+      ]
+    },
+    {
+      "id": "NICE-5",
+      "title": "FinOps",
+      "badge": "offline",
+      "proof": "Cost model, quota, budget alarms at 50/80/100% (Terraform-tested).",
+      "decisions": [
+        "D-06",
+        "D-14",
+        "D-16",
+        "D-21",
+        "D-24"
+      ]
+    },
+    {
+      "id": "NICE-6",
+      "title": "Telecom, network operations, HA",
+      "badge": "offline",
+      "proof": "Dummy tools themed on network operations. **High availability is not claimed**: dev is single-AZ by design (D-14).",
+      "decisions": [
+        "D-27"
+      ]
+    }
+  ]
+}

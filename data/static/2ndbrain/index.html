@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A second brain an AI can work in, and I can trust | João Blasques</title>
+<meta name="description" content="How my 2ndBrain works: one Obsidian vault, an AI agent that files things overnight, and three rules about what the AI can see, move and undo.">
+<link rel="canonical" href="https://joaoblasques.com/2ndbrain/">
+<meta property="og:title" content="A second brain an AI can work in, and I can trust">
+<meta property="og:description" content="One vault, one inbox, a nightly job that empties it, and three rules about what the AI can see, move and undo.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://joaoblasques.com/2ndbrain/">
+<script>
+(function(){try{var t=localStorage.getItem('jb-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#ECEFF2; --panel:#F6F7F9; --ink:#14202E; --soft:#4A5766; --rule:#C7CFD7;
+  --lamp:#B87408; --lamp-bg:#F3E6CC; --safe:#1F5F63; --safe-bg:#D8E6E6;
+  --code:#E1E6EB;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0E1620; --panel:#152130; --ink:#DCE3EA; --soft:#98A6B5; --rule:#2A3A4C;
+    --lamp:#EDB04A; --lamp-bg:#2B2416; --safe:#6FBFC3; --safe-bg:#132B2E; --code:#1B2A3B;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0E1620; --panel:#152130; --ink:#DCE3EA; --soft:#98A6B5; --rule:#2A3A4C;
+  --lamp:#EDB04A; --lamp-bg:#2B2416; --safe:#6FBFC3; --safe-bg:#132B2E; --code:#1B2A3B;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--ink); font:400 1.125rem/1.7 var(--body); -webkit-font-smoothing:antialiased; }
+a { color:var(--ink); text-decoration-color:var(--lamp); text-underline-offset:3px; text-decoration-thickness:2px; }
+a:hover { color:var(--lamp); }
+:focus-visible { outline:2px solid var(--lamp); outline-offset:3px; }
+.skip { position:absolute; left:-999px; }
+.skip:focus { left:1rem; top:1rem; background:var(--panel); padding:.5rem .75rem; z-index:9; }
+
+.top { display:flex; justify-content:space-between; gap:1rem; padding:1.25rem clamp(1rem,4vw,3rem); font:500 .95rem var(--display); }
+.top a { text-decoration:none; }
+.top span { color:var(--soft); }
+
+/* hero */
+.hero { padding:clamp(2.5rem,8vw,6rem) clamp(1rem,4vw,3rem) clamp(2rem,5vw,3.5rem); max-width:78rem; margin:0 auto; }
+h1 { font:700 clamp(2.6rem,7.4vw,6rem)/.98 var(--display); letter-spacing:-.035em; margin:0 0 1.75rem; max-width:13ch; }
+.stand { font-size:clamp(1.15rem,2.2vw,1.45rem); line-height:1.55; max-width:36rem; margin:0; color:var(--soft); }
+.stand b { color:var(--ink); font-weight:600; }
+
+/* night strip: the one memorable thing */
+.night { margin:clamp(2.5rem,6vw,4.5rem) 0 0; position:relative; }
+.night ol { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,1fr); position:relative; }
+.night li { padding:1.1rem .75rem 0 0; position:relative; font:500 .9rem/1.35 var(--display); color:var(--soft); }
+.night li::before { content:""; position:absolute; top:-5px; left:0; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--ink); }
+.night li time { display:block; font:700 clamp(1.3rem,3vw,2rem)/1 var(--display); letter-spacing:-.02em; color:var(--ink); margin-bottom:.35rem; font-variant-numeric:tabular-nums; }
+.night li.off time, .night li.off { color:var(--soft); }
+.night li.off::before { border-style:dashed; border-color:var(--soft); }
+.night .track { position:absolute; left:0; right:20%; top:0; height:2px; background:var(--rule); }
+.night .lamp { position:absolute; top:-8px; left:0; width:17px; height:17px; border-radius:50%; background:var(--lamp); box-shadow:0 0 0 6px var(--lamp-bg); animation:travel 3.6s cubic-bezier(.5,.1,.2,1) .4s both; }
+@keyframes travel { from { left:0; } to { left:calc(80% - 8px); } }
+.night-note { margin:1.75rem 0 0; font:500 .95rem var(--display); color:var(--soft); }
+@media (max-width:640px) {
+  .night ol { grid-template-columns:1fr; }
+  .night .track { top:0; bottom:0; left:5px; right:auto; width:2px; height:auto; }
+  .night li { padding:0 0 1.4rem 1.6rem; }
+  .night li::before { top:6px; left:0; }
+  .night .lamp { display:none; }
+}
+
+/* layout */
+.shell { max-width:78rem; margin:0 auto; padding:0 clamp(1rem,4vw,3rem) 5rem; display:grid; grid-template-columns:13rem minmax(0,42rem); gap:clamp(2rem,6vw,6rem); }
+.toc { position:sticky; top:2rem; align-self:start; font:500 .95rem/1.5 var(--display); padding-top:.5rem; }
+.toc p { margin:0 0 .75rem; color:var(--soft); }
+.toc ol { list-style:none; margin:0; padding:0; border-left:2px solid var(--rule); }
+.toc a { display:block; padding:.3rem 0 .3rem 1rem; text-decoration:none; color:var(--soft); margin-left:-2px; border-left:2px solid transparent; }
+.toc a:hover { color:var(--ink); border-left-color:var(--lamp); }
+@media (max-width:900px) { .shell { grid-template-columns:minmax(0,1fr); } .toc { display:none; } }
+article { min-width:0; overflow-wrap:break-word; }
+@media (max-width:640px) { article td:first-child { white-space:normal; } td, th { padding-right:.6rem; } table { font-size:.95rem; } }
+
+article { border-top:2px solid var(--ink); padding-top:2.5rem; }
+h2 { font:700 clamp(1.7rem,3.4vw,2.35rem)/1.1 var(--display); letter-spacing:-.025em; margin:4rem 0 1rem; scroll-margin-top:1.5rem; }
+h2:first-child { margin-top:0; }
+h3 { font:700 1.2rem/1.3 var(--display); margin:2.2rem 0 .5rem; letter-spacing:-.01em; }
+p { margin:0 0 1.15rem; }
+ul, ol.plain { padding-left:1.25rem; margin:0 0 1.3rem; }
+li { margin-bottom:.6rem; padding-left:.2rem; }
+li::marker { color:var(--lamp); }
+strong { font-weight:600; }
+code { font:.85em ui-monospace,"SFMono-Regular",Menlo,monospace; background:var(--code); padding:.1em .35em; border-radius:3px; }
+
+.rules { list-style:none; padding:0; margin:1.5rem 0 2rem; }
+.rules li { padding:1.1rem 0 1.1rem 0; border-top:1px solid var(--rule); margin:0; display:block; }
+.rules li:last-child { border-bottom:1px solid var(--rule); }
+.rules li strong { display:block; font:700 1.25rem/1.25 var(--display); letter-spacing:-.015em; margin-bottom:.3rem; }
+
+table { width:100%; border-collapse:collapse; margin:1.25rem 0 1.75rem; font-size:1rem; line-height:1.5; }
+th, td { text-align:left; vertical-align:top; padding:.7rem 1rem .7rem 0; border-top:1px solid var(--rule); }
+th { font:500 .9rem var(--display); color:var(--soft); border-top:0; border-bottom:2px solid var(--ink); }
+td:first-child { font-family:var(--display); font-weight:500; white-space:nowrap; padding-right:1.5rem; }
+.t { font-variant-numeric:tabular-nums; }
+
+.tiers { display:grid; gap:1rem; margin:1.5rem 0 2rem; }
+.tier { background:var(--panel); padding:1.1rem 1.25rem 1.1rem 1.4rem; border-left:6px solid var(--ink); }
+.tier.t1 { border-left-color:var(--lamp); }
+.tier.t2 { border-left-color:var(--safe); }
+.tier h3 { margin:0 0 .35rem; font-size:1.3rem; }
+.tier p { margin:0 0 .5rem; font-size:1rem; line-height:1.55; }
+.tier p:last-child { margin:0; color:var(--soft); }
+
+figure { margin:2rem 0 2.5rem; }
+figure { overflow-x:auto; }
+figure svg { width:100%; min-width:560px; height:auto; display:block; }
+figcaption { font:500 .9rem var(--display); color:var(--soft); margin-top:.6rem; }
+svg text { font-family:var(--display); fill:var(--ink); }
+svg .mut { fill:var(--soft); }
+svg .box { fill:var(--panel); stroke:var(--ink); stroke-width:1.5; }
+svg .out { fill:var(--panel); stroke:var(--rule); stroke-width:1.5; }
+svg .ln { stroke:var(--ink); stroke-width:1.5; fill:none; }
+svg .arrow { fill:var(--ink); }
+
+details { background:var(--panel); border-left:6px solid var(--rule); padding:.9rem 1.25rem; margin:1.5rem 0; font-size:1rem; line-height:1.6; }
+details[open] { border-left-color:var(--lamp); }
+summary { cursor:pointer; font:500 1rem var(--display); }
+details ul { margin:.9rem 0 0; }
+
+.lesson { font:700 clamp(1.3rem,2.6vw,1.7rem)/1.25 var(--display); letter-spacing:-.02em; margin:1.75rem 0; padding-left:1.1rem; border-left:6px solid var(--lamp); }
+.open { color:var(--soft); font-style:italic; }
+
+footer { max-width:78rem; margin:0 auto; padding:2rem clamp(1rem,4vw,3rem) 3rem; border-top:1px solid var(--rule); font:500 .95rem/1.6 var(--display); color:var(--soft); }
+footer a { color:var(--ink); }
+
+@media (prefers-reduced-motion: reduce) { .night .lamp { animation:none; left:calc(80% - 8px); } html { scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#top">Skip to the article</a>
+
+<div class="top"><a href="/">João Blasques</a><span>Notes from the build</span></div>
+
+<header class="hero">
+  <h1>Drop it in. It’s filed by morning.</h1>
+  <p class="stand">I keep my notes, projects and most of my documents in one Obsidian vault, and an AI agent works inside it every day. This page shows how it works, and the <b>three rules</b> that let me trust it.</p>
+
+  <div class="night" aria-label="The nightly schedule">
+    <div class="track"></div><div class="lamp"></div>
+    <ol>
+      <li class="off"><time>02:15</time>Starred email comes in (switched off for now)</li>
+      <li><time>02:30</time>Phone folder comes in, then the local filter runs</li>
+      <li><time>02:45</time>The router sorts what is left</li>
+      <li><time>03:00</time>One-way copy of my documents to the cloud</li>
+      <li><time>03:30</time>Encrypted backup</li>
+    </ol>
+  </div>
+  <p class="night-note">By the time I open the laptop, the inbox is empty. If the router isn’t sure about something, it asks me. It doesn’t guess.</p>
+</header>
+
+<div class="shell">
+  <nav class="toc" aria-label="Contents">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#why">Why I built it</a></li>
+      <li><a href="#rules">Three rules</a></li>
+      <li><a href="#status">What runs today</a></li>
+      <li><a href="#fit">How the pieces fit</a></li>
+      <li><a href="#vault">The vault</a></li>
+      <li><a href="#corpus">The knowledge base</a></li>
+      <li><a href="#inbox">The inbox</a></li>
+      <li><a href="#tiers">The three tiers</a></li>
+      <li><a href="#undo">Mistakes are cheap</a></li>
+      <li><a href="#folders">Keeping folders tidy</a></li>
+      <li><a href="#backups">Backups and sync</a></li>
+      <li><a href="#broke">What broke</a></li>
+      <li><a href="#copy">What I would copy</a></li>
+      <li><a href="#stack">The stack</a></li>
+    </ol>
+  </nav>
+
+  <article id="top">
+    <h2 id="why">Why I built it</h2>
+    <p>I have always liked personal productivity and organization. For years I used GTD (Getting Things Done) to run my personal and professional life. When I found the Second Brain idea together with PARA, it made complete sense to me, so I built it.</p>
+    <p>Giving an agent that kind of access has an obvious risk. Your passport, bank statements and contracts end up near your notes. So the system is built around one question: <strong>what can the AI see, what can it move, and what can I undo?</strong></p>
+
+    <h2 id="rules">Three rules</h2>
+    <ol class="rules">
+      <li><strong>Sensitive documents never enter the vault, and no AI reads them.</strong>A local script that uses plain pattern matching, with no AI and no network, checks every file first.</li>
+      <li><strong>The system only moves things.</strong>It never deletes and never overwrites. Every move is logged and can be reversed with one command.</li>
+      <li><strong>I dump everything into one inbox, and a nightly job empties it.</strong>If it can’t decide, it asks me. It doesn’t guess.</li>
+    </ol>
+
+    <h2 id="status">What runs today, and what is still being built</h2>
+    <table>
+      <thead><tr><th>Part</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>The vault (folders, rules, commands)</td><td>Running</td></tr>
+        <tr><td>The knowledge base (Corpus)</td><td>Running</td></tr>
+        <tr><td>Nightly pull from my phone’s cloud folder</td><td>Running</td></tr>
+        <tr><td>The sensitivity filter and the nightly router</td><td>Running (first versions)</td></tr>
+        <tr><td>Router v2: inbox zero, review queue, triage folders, folder limits</td><td>Built, reviewed and merged. Its first night only writes a report</td></tr>
+        <tr><td>Starred-email channel</td><td>Set up and tested on 20 real messages. The rest comes in slowly. The timer is off</td></tr>
+        <tr><td>Scheduled rituals (morning brief, weekly review)</td><td>Written for my old Mac setup, being ported to Linux</td></tr>
+      </tbody>
+    </table>
+    <p>I list this on purpose. Most pages like this show only the parts that work.</p>
+
+    <h2 id="fit">How the pieces fit</h2>
+    <figure>
+      <svg viewBox="0 0 720 470" role="img" aria-labelledby="fit-t fit-d">
+        <title id="fit-t">How an item moves through the system</title>
+        <desc id="fit-d">Three sources feed one inbox. A local filter with no AI sorts each item into four outcomes: moved out of the vault, held for review, filed in a notes folder, or sent to the knowledge base.</desc>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="arrow"/></marker></defs>
+        <rect class="box" x="30" y="10" width="190" height="52" rx="3"/><text x="125" y="41" text-anchor="middle" font-size="15" font-weight="500">Phone folder (cloud)</text>
+        <rect class="box" x="265" y="10" width="190" height="52" rx="3"/><text x="360" y="41" text-anchor="middle" font-size="15" font-weight="500">Starred email</text>
+        <rect class="box" x="500" y="10" width="190" height="52" rx="3"/><text x="595" y="41" text-anchor="middle" font-size="15" font-weight="500">Files I drop in</text>
+        <path class="ln" d="M125 62 V92 H360 M595 62 V92 H360 M360 62 V110" marker-end="url(#ah)"/>
+        <rect class="box" x="230" y="112" width="260" height="52" rx="3"/><text x="360" y="136" text-anchor="middle" font-size="16" font-weight="700">00_Inbox</text><text x="360" y="154" text-anchor="middle" font-size="12.5" class="mut">staging, never kept</text>
+        <path class="ln" d="M360 164 V196" marker-end="url(#ah)"/>
+        <rect class="box" x="130" y="198" width="460" height="64" rx="3"/><text x="360" y="224" text-anchor="middle" font-size="16" font-weight="700">Local filter</text><text x="360" y="245" text-anchor="middle" font-size="12.5" class="mut">pattern matching only: no AI, no network, names patterns, never values</text>
+        <path class="ln" d="M180 262 V300 M300 262 V300 M420 262 V300 M540 262 V300" marker-end="url(#ah)"/>
+        <rect class="out" x="30" y="302" width="150" height="104" rx="3"/><text x="105" y="328" text-anchor="middle" font-size="14" font-weight="700">Sensitive</text><text x="105" y="350" text-anchor="middle" font-size="12.5" class="mut">moved out of the</text><text x="105" y="366" text-anchor="middle" font-size="12.5" class="mut">vault to my own</text><text x="105" y="382" text-anchor="middle" font-size="12.5" class="mut">documents folders</text>
+        <rect class="out" x="195" y="302" width="150" height="104" rx="3"/><text x="270" y="328" text-anchor="middle" font-size="14" font-weight="700">Unsure</text><text x="270" y="350" text-anchor="middle" font-size="12.5" class="mut">held out of any AI,</text><text x="270" y="366" text-anchor="middle" font-size="12.5" class="mut">goes to a review</text><text x="270" y="382" text-anchor="middle" font-size="12.5" class="mut">pile</text>
+        <rect class="out" x="360" y="302" width="150" height="104" rx="3"/><text x="435" y="328" text-anchor="middle" font-size="14" font-weight="700">Clear: notes</text><text x="435" y="350" text-anchor="middle" font-size="12.5" class="mut">AI reads the text,</text><text x="435" y="366" text-anchor="middle" font-size="12.5" class="mut">picks a folder in</text><text x="435" y="382" text-anchor="middle" font-size="12.5" class="mut">Areas, Projects…</text>
+        <rect class="out" x="525" y="302" width="165" height="104" rx="3"/><text x="607" y="328" text-anchor="middle" font-size="14" font-weight="700">Clear: reading</text><text x="607" y="350" text-anchor="middle" font-size="12.5" class="mut">AI reads the text,</text><text x="607" y="366" text-anchor="middle" font-size="12.5" class="mut">sends it to the</text><text x="607" y="382" text-anchor="middle" font-size="12.5" class="mut">knowledge base</text>
+        <text x="30" y="440" font-size="13" class="mut">The filter always runs first. The AI only ever sees what comes out as clear.</text>
+      </svg>
+      <figcaption>One inbox in, four places out.</figcaption>
+    </figure>
+
+    <h2 id="vault">1. The vault</h2>
+    <p>It uses the PARA method: Projects, Areas, Resources, Archives. Plus a folder for the system’s own files.</p>
+    <ul>
+      <li><strong>Inbox:</strong> quick capture. Should be empty after the nightly run.</li>
+      <li><strong>Projects:</strong> one thin note folder per project. The code lives in its own repository, and the note folder points to it.</li>
+      <li><strong>Areas:</strong> ongoing responsibilities such as career, health, finance, home, learning.</li>
+      <li><strong>Resources:</strong> reference material, including the knowledge base and my design documents.</li>
+      <li><strong>Archives:</strong> finished projects and old reviews.</li>
+      <li><strong>System:</strong> templates, rules, scripts and infrastructure notes.</li>
+    </ul>
+    <p>A thin <code>CLAUDE.md</code> at the root points the agent to three files: who I am and what I’m focused on, the folder rules, and the list of commands. It reads those instead of guessing.</p>
+    <p>The vault is built for an agent first. Status files and router notes are written so a program can parse them. A human-friendly view comes second.</p>
+    <details>
+      <summary>Technical detail: the two-layer project model</summary>
+      <p>Each project has two layers: a code repository (the technical truth) and a small folder in the vault (plans, decisions, status). A <code>/project</code> command scaffolds or audits that pairing so they don’t drift. The vault folder never duplicates what the code already says.</p>
+    </details>
+
+    <h2 id="corpus">2. The knowledge base (Corpus)</h2>
+    <p>Corpus is a second layer on top of the vault. It follows the “LLM wiki” pattern: raw sources go in, and an agent turns them into small linked pages.</p>
+    <ul>
+      <li><strong>Raw sources are read-only.</strong> Articles, blog posts, newsletters, PDFs and video transcripts land in a <code>raw/</code> area. The agent never edits them. It only stamps three fields saying “ingested, when, and which pages came from it”.</li>
+      <li><strong>Pages come in five types:</strong> hub, entity, concept, synthesis and source.</li>
+      <li><strong>Every non-trivial claim cites a source.</strong> Short quotes are kept (25 words or fewer). Claims without a source are marked as such.</li>
+      <li><strong>Disagreements are kept, not resolved.</strong> If two sources disagree, a synthesis page records both. Old claims are never deleted. They become stubs that link forward to the claim that replaced them.</li>
+      <li><strong>Asking a question:</strong> the agent reads the index, picks pages, and answers only from the corpus. If coverage is thin, it queues a few web pages for later ingest and labels the answer “fresh, not yet in corpus”. It never presents its own memory as a corpus claim.</li>
+      <li><strong>Guardrails against drift:</strong> a new top-level domain needs three or more sources that fit nowhere else. An ingest that would touch 20 or more pages pauses and asks me.</li>
+    </ul>
+    <p class="open">I have not asked it a real question yet. I am still working out when the knowledge base is the right tool and when a normal web search is better. I will add an example here once I have one that earned its place.</p>
+
+    <h2 id="inbox">3. The inbox: dump anything, wake up to zero</h2>
+    <p>Anything I want kept goes into one place, from any device:</p>
+    <ul>
+      <li><strong>From my phone:</strong> drop a file in a cloud folder. A nightly job pulls it into the vault inbox. The originals go to the cloud trash and stay recoverable for 30 days.</li>
+      <li><strong>From email:</strong> starring a message means “send this to my 2ndBrain”. The channel stores the message text and each attachment, then removes the star and archives the message. The message stays in All Mail, and a ledger records every change so I can undo it.</li>
+      <li><strong>From my desk:</strong> drag it into the inbox folder.</li>
+    </ul>
+    <p>The goal is inbox zero, like an email inbox. Every item ends up in one of four places:</p>
+    <ol class="plain">
+      <li><strong>Out of the vault</strong>, if it’s sensitive. Filed into my own documents folders by kind (identity, health, finances, home, cars, family, insurance), using only the file name, never the contents.</li>
+      <li><strong>A folder in my notes</strong>, if it belongs to an area of my life: a contract, a receipt, a note.</li>
+      <li><strong>The knowledge base</strong>, if it’s reading material: an article, a blog, a newsletter, a book.</li>
+      <li><strong>A review pile</strong>, if the router isn’t sure. A morning summary lists one question per item. The inbox itself stays empty.</li>
+    </ol>
+    <p>An email about a new car-insurance policy goes to the insurance folder, not the knowledge base. The star only means “bring this in”. What the item is decides where it goes.</p>
+    <details>
+      <summary>Technical detail: how the router stays small and safe</summary>
+      <p>The router is a thin shell wrapper around a deterministic Python engine that uses only the standard library. The AI’s job is narrow: read extracted text, then propose a destination folder and a tier for each file.</p>
+      <ul>
+        <li>The wrapper does the PDF and OCR text extraction itself.</li>
+        <li>The model runs headless with a Read tool and an Edit tool only. It has no shell, no network tool, and none of my usual settings or hooks.</li>
+        <li>It can read only one per-run folder of extracted text. It can edit only one plan file.</li>
+        <li>The engine re-checks every row the model proposes: allowed source, allowed destination, no overwrite, tier rules, a limit on how many files per run.</li>
+        <li>A move happens automatically only if the model is highly confident, a tier is set, there’s no open question and the date comes from the document’s content. Everything else is proposed, not done.</li>
+        <li>The wrapper always exits cleanly, so a timer never retries in a storm. A failure shows up in the next morning’s summary.</li>
+      </ul>
+    </details>
+
+    <h2 id="tiers">4. Trust: the three tiers</h2>
+    <p>Every file gets one of three sensitivity tiers. If I’m unsure which, the stricter one wins.</p>
+    <div class="tiers">
+      <div class="tier t0"><h3>T0</h3><p>Identity documents, medical records, bank statements, property deeds, loan papers.</p><p>Never in the vault. My own documents folders only. Nobody reads them: they are classified by name, date and folder only.</p></div>
+      <div class="tier t1"><h3>T1</h3><p>Contracts, insurance policies, company legal papers, payslips, invoices.</p><p>In the vault, but git-ignored (stays on my machine, no cloud copy of the git history). The AI may read them to classify and summarise.</p></div>
+      <div class="tier t2"><h3>T2</h3><p>CV, certificates, articles, books, reading material.</p><p>In the vault, tracked in git. The AI may read them.</p></div>
+    </div>
+    <p>Why this shape:</p>
+    <ul>
+      <li>The vault syncs and its git history can’t be undone, so anything sensitive must never be written to it in the first place.</li>
+      <li>A model that never sees T0 can’t leak T0. The strongest guarantee is that the data never reaches it.</li>
+      <li>Every non-text file that enters the vault gets a short summary note next to it (what it is, key points, a hash). That way the agent searches the note and doesn’t open the file. Summaries never contain account or ID numbers.</li>
+    </ul>
+    <h3>The local filter</h3>
+    <p>It’s the gate that makes this work. It’s a script of pattern matching in two languages: IBANs with the check digit verified, card numbers (Luhn), ID-document keywords, medical terms, secret-looking strings like keys and tokens. It has no network access and no AI. It prints the <em>name</em> of the pattern it matched, never the value.</p>
+    <p>It returns one of three results:</p>
+    <ul>
+      <li><strong>T0:</strong> a pattern matched. The file leaves the vault.</li>
+      <li><strong>Review:</strong> it couldn’t read the file, or the file is too big. The file is held out of any AI.</li>
+      <li><strong>Clear:</strong> it read the text and found nothing. Only then can the AI see it.</li>
+    </ul>
+    <p>The rule is default-deny: “clear” requires readable text. A scanned image with no text is not clear.</p>
+    <p>It’s deliberately strict. It would rather flag a harmless file than let a sensitive one through. That cost me something real, and I tell the story <a href="#broke">below</a>.</p>
+
+    <h2 id="undo">5. Mistakes are cheap</h2>
+    <p>I assume the system will make mistakes. The design aims to make each one easy to see and easy to undo.</p>
+    <ul>
+      <li><strong>It never deletes or overwrites.</strong> A name collision is proposed with both files shown.</li>
+      <li><strong>Every move is logged.</strong> One command reverses all moves from a given day.</li>
+      <li><strong>A morning summary</strong> lists what moved, what was proposed and what failed. It’s git-ignored, because it names real files.</li>
+      <li><strong>Gmail changes are tiny and reversible.</strong> The code can only remove two labels. A test fails if any other Gmail call exists. The access token technically allows more, so the limit lives in code and tests, not in the permission scope.</li>
+      <li><strong>The assistant never sends email.</strong> It writes drafts and I send them.</li>
+      <li><strong>A hold list</strong> names folders the router may not file into until I lift the hold.</li>
+    </ul>
+    <h3>When I get an item wrong, or the filter does</h3>
+    <p>Files the filter can’t clear go to a triage folder outside the vault. When I look in it now and then, I have three moves:</p>
+    <ul>
+      <li>Drag the file into the right documents folder myself.</li>
+      <li>Rename it and drop it in a <code>to-file</code> folder. A script reads only the new name, maps keywords to a kind from a fixed list, and files it. No AI is involved.</li>
+      <li>Drop it in a <code>not-sensitive</code> folder. It goes back to the inbox with a marker so the filter doesn’t flag it again. The marker is tied to the file’s content, so an edited file gets judged again.</li>
+    </ul>
+
+    <h2 id="folders">6. Keeping folders tidy</h2>
+    <p>If an agent can create folders, it will, and you end up with dozens of near-duplicates. I allow it, with six limits:</p>
+    <ol class="plain">
+      <li><strong>Rule of three.</strong> The first two items of a new topic go into the existing parent folder. The folder is created when a third item arrives, and the first two move into it.</li>
+      <li><strong>Similarity check.</strong> The router compares a proposed name with every folder in that area. If one is close, it must reuse it.</li>
+      <li><strong>Weekly cap.</strong> At most two new folders a week.</li>
+      <li><strong>A registry.</strong> One note lists every folder the router made, with the date and the reason.</li>
+      <li><strong>A monthly check.</strong> It lists folders with fewer than three files after 30 days, near-duplicate names, and areas that are growing fast.</li>
+      <li><strong>Hard limits.</strong> Three levels deep, never a new top-level folder, never in the system area, never a name that repeats its parent. The checks only report. I merge, and nothing is deleted.</li>
+    </ol>
+    <p class="open">I don’t have a view on the number three yet. It is a starting value, one number in a config file. I will tune it after the first few weeks of real use.</p>
+
+    <h2 id="backups">7. Backups and sync</h2>
+    <ul>
+      <li><strong>Encrypted nightly backup</strong> of my documents, work, code and the whole vault to cloud storage. It keeps 30 daily and 12 monthly copies. It’s the only copy of the git-ignored files, so it matters.</li>
+      <li><strong>A one-way mirror</strong> of my documents to a cloud drive, so I can read them on my phone. Changed and deleted files go to a dated recovery folder, pruned after 90 days. The triage folder is excluded.</li>
+      <li><strong>Obsidian Sync</strong> for phone and laptop editing, with selective exclusions for big folders.</li>
+      <li><strong>Git</strong> for the vault itself, in a private repository.</li>
+    </ul>
+
+    <h2 id="broke">What broke, and what it taught me</h2>
+    <p>The first version of the filter flagged a file as sensitive on single words like “bank” or “patient”. Overnight it flagged 26 reading PDFs and a spreadsheet and moved them to the triage folder. That folder sat inside the tree my phone mirror copies to the cloud. By morning the files had been uploaded.</p>
+    <p>Nothing private was in them. They were books and articles. But two things were wrong: the filter was too eager, and the folder meant to be safe sat in an unsafe place.</p>
+    <p>I fixed both. I restored the files, exempted the reading folders from the filter, excluded the triage folder from the mirror and purged the stray copies from the drive. I also added a report-only first night. A new rule now writes a report and moves nothing until I have read it.</p>
+    <p class="lesson">A safety step is only as good as every folder it writes into.</p>
+
+    <h2 id="copy">What I would copy if I were you</h2>
+    <ul>
+      <li>Decide your tiers before you automate anything. “What may an AI read?” is a design decision, not a setting.</li>
+      <li>Run the sensitivity check as plain code, with no model in it. Pattern matching is boring and predictable. That’s what you want here.</li>
+      <li>Make every automated change reversible, and write the undo before the feature.</li>
+      <li>Keep the agent’s tools minimal. Mine can read one folder and edit one file.</li>
+      <li>Let a nightly job run unattended only after a night of report-only output.</li>
+      <li>Keep an “unsure” pile. An empty inbox you can’t trust is worse than a full one.</li>
+    </ul>
+
+    <h2 id="stack">The stack</h2>
+    <p>Obsidian for the vault. Claude Code for the agent, headless for the nightly router. Python (standard library only) for the engine. Bash for the wrappers. systemd timers for scheduling. rclone and restic for sync and backup. Git and GitHub for history. The Gmail API for the starred-email channel.</p>
+  </article>
+</div>
+
+<footer>
+  <p>Written by João Blasques. First published 2026-10-30, and still changing: the router’s first night has not run yet, so I will update this page as the system settles.</p>
+  <p><a href="/">joaoblasques.com</a></p>
+</footer>
+</body>
+</html>

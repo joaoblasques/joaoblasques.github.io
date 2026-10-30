@@ -345,7 +345,7 @@ ${posts.map((p) => `    <item>
 `);
 
 const urls = [
-  `${SITE}/`, `${SITE}/posts/`, `${SITE}/projects/`, `${SITE}/skills/`, `${SITE}/about/`, `${SITE}/tags/`,
+  `${SITE}/`, `${SITE}/posts/`, `${SITE}/projects/`, `${SITE}/skills/`, `${SITE}/about/`, `${SITE}/tags/`, `${SITE}/2ndbrain/`,
   ...(draft ? [] : [`${SITE}/pylon/`]),
   ...posts.map((p) => `${SITE}/post/${p.slug}/`),
   ...[...tags.keys()].map((t) => `${SITE}/tags/${t}/`),
@@ -366,7 +366,8 @@ write('search.json', JSON.stringify(
 
 copy('CNAME', 'CNAME');           // custom domain — must survive every build
 copyDir('assets', 'assets');
-copyDir('assets/img', 'images');  // /images/* paths are baked into old inbound links
+copyDir('assets/img', 'images');
+copyDir('data/static', '');       // hand-designed standalone pages, e.g. /2ndbrain/  // /images/* paths are baked into old inbound links
 
 // Redaction gate, after the copy: file names and text under docs/pylon/ and docs/assets/pylon*.
 const extra = loadExtra(redactFile);

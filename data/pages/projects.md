@@ -66,6 +66,15 @@ The design constraint that shapes everything: **Nora drafts, the human sends.** 
 asymmetry is the product's trust model — an assistant that can send on your behalf is
 one bad inference away from an incident you can't take back. [Read the write-up →](/post/nora-ai-executive-assistant/)
 
+### 2ndBrain — A Second Brain an AI Can Work In
+
+**Page**: [joaoblasques.com/2ndbrain](https://joaoblasques.com/2ndbrain/)  
+**Technologies**: Obsidian, Claude Code, Python, systemd, rclone, restic
+
+**One inbox, a nightly job that empties it, and three rules about what the AI can see, move and undo.**
+
+My notes, projects and documents live in one vault that an agent works in every day. A local filter keeps sensitive files out of the vault and away from any model, and every move can be reversed. The page explains how it works, including what broke.
+
 ## Craft
 
 ### Terminal-Craft — tmux & nvim Fluency for AI-Coding Work
